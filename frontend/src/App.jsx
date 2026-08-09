@@ -8,6 +8,9 @@ import HostPanel from './components/HostPanel';
 import Leaderboard from './components/Leaderboard';
 import { useRoomSocket } from './hooks/useRoomSocket';
 
+const isDev = typeof window !== 'undefined' && (window.location.host.includes('5173') || window.location.host.includes('localhost'));
+export const API_BASE = isDev ? '' : 'https://api-zakoweb.claive.uz';
+
 export default function App() {
   const [sessionState, setSessionState] = useState(() => {
     const savedCode = localStorage.getItem('zakoweb_room_code') || '';
@@ -46,7 +49,7 @@ export default function App() {
 
   // Handle Player Join
   const handleJoin = async ({ nickname, code, avatar }) => {
-    const res = await fetch(`/api/rooms/${code}/join/`, {
+    const res = await fetch(`${API_BASE}/api/rooms/${code}/join/`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ nickname, avatar, is_host_player: false })
@@ -71,7 +74,7 @@ export default function App() {
 
   // Handle Host Room Creation
   const handleCreateRoom = async ({ settings, pack_id }) => {
-    const res = await fetch('/api/rooms/', {
+    const res = await fetch(`${API_BASE}/api/rooms/`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ settings, pack_id })
@@ -83,7 +86,7 @@ export default function App() {
     }
 
     const hostNickname = 'Host';
-    const joinRes = await fetch(`/api/rooms/${roomObj.code}/join/`, {
+    const joinRes = await fetch(`${API_BASE}/api/rooms/${roomObj.code}/join/`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ nickname: hostNickname, avatar: '👑', is_host_player: true })

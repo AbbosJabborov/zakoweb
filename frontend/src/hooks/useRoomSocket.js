@@ -17,12 +17,10 @@ export function useRoomSocket(roomCode, sessionToken) {
   const connect = useCallback(() => {
     if (!roomCode || !sessionToken) return;
 
-    // Build WS URL dynamically based on environment
+    const isDev = window.location.host.includes('5173') || window.location.host.includes('localhost');
     const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
-    const host = window.location.host;
-    // If running in Vite dev mode (port 5173), target port 8000 directly unless proxied
-    const wsHost = host.includes('5173') ? 'localhost:8000' : host;
-    const wsUrl = `${protocol}//${wsHost}/ws/room/${roomCode.toUpperCase()}/`;
+    const targetHost = isDev ? 'localhost:8000' : 'api-zakoweb.claive.uz';
+    const wsUrl = `${protocol}//${targetHost}/ws/room/${roomCode.toUpperCase()}/`;
 
     console.log('[WS] Connecting to:', wsUrl);
     const ws = new WebSocket(wsUrl);

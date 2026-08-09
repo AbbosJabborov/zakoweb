@@ -16,7 +16,9 @@ export default function CreateRoomModal({ isOpen, onClose, onCreate }) {
 
   useEffect(() => {
     if (isOpen) {
-      fetch('/api/question-packs/')
+      const isDev = typeof window !== 'undefined' && (window.location.host.includes('5173') || window.location.host.includes('localhost'));
+      const apiBase = isDev ? '' : 'https://api-zakoweb.claive.uz';
+      fetch(`${apiBase}/api/question-packs/`)
         .then(res => res.json())
         .then(data => {
           if (Array.isArray(data)) {

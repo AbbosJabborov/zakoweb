@@ -23,14 +23,18 @@ class RoomConsumer(AsyncWebsocketConsumer):
     async def disconnect(self, close_code):
         if self.player:
             await self.set_player_connection(self.player.id, False)
+            players_list = await self.get_room_players(self.room_code)
             await self.channel_layer.group_send(
                 self.room_group_name,
                 {
                     'type': 'broadcast_event',
-                    'event': 'player_left',
+                    'event': 'players_updated',
                     'data': {
-                        'nickname': self.player.nickname,
-                        'player_id': self.player.id
+                        'players': players_list,
+                        'left_player': {
+                            'nickname': self.player.nickname,
+                            'id': self.player.id
+                        }
                     }
                 }
             )
@@ -74,25 +78,33 @@ class RoomConsumer(AsyncWebsocketConsumer):
 
         await self.set_player_connection(self.player.id, True)
 
-        # Broadcast join to group
-        await self.channel_layer.group_send(
-            self.room_group_name,
-            {
-                'type': 'broadcast_event',
-                'event': 'player_joined',
-                'data': {
-                    'nickname': self.player.nickname,
-                    'player_id': self.player.id,
-                    'avatar': self.player.avatar
-                }
-            }
-        )
-
         # Send full room snapshot to connecting client
         snapshot = await self.get_room_state_snapshot(self.room_code)
         await self.send_json({'event': 'room_snapshot', 'data': snapshot})
 
+        # Broadcast updated player list to room group
+        players_list = await self.get_room_players(self.room_code)
+        await self.channel_layer.group_send(
+            self.room_group_name,
+            {
+                'type': 'broadcast_event',
+                'event': 'players_updated',
+                'data': {
+                    'players': players_list,
+                    'joined_player': {
+                        'nickname': self.player.nickname,
+                        'avatar': self.player.avatar
+                    }
+                }
+            }
+        )
+
     async def handle_submit_answer(self, data):
+        if not self.player:
+            session_token = data.get('session_token')
+            if session_token:
+                self.player = await self.get_player_by_token(self.room_code, session_token)
+
         if not self.player:
             return
 
@@ -279,6 +291,12 @@ class RoomConsumer(AsyncWebsocketConsumer):
     @database_sync_to_async
     def verify_host(self, room_code, host_token):
         return Room.objects.filter(code__iexact=room_code, host_token=host_token).exists()
+
+    @database_sync_to_async
+    def get_room_players(self, room_code):
+        from rooms.serializers import PlayerSerializer
+        room = Room.objects.get(code__iexact=room_code)
+        return PlayerSerializer(room.players.all(), many=True).data
 
     @database_sync_to_async
     def get_room_state_snapshot(self, room_code):
@@ -489,7 +507,6 @@ class RoomConsumer(AsyncWebsocketConsumer):
                 pstate.save()
         else:
             answer.points_awarded = 0
-            # Check if player has any other correct answers for this question
             other_correct = Answer.objects.filter(room_question=rq, player=player, is_correct=True).exclude(id=answer.id).exists()
             if not other_correct:
                 pstate.solved = False
@@ -509,7 +526,6 @@ class RoomConsumer(AsyncWebsocketConsumer):
         next_index = room.current_question_index + 1
 
         if next_index >= room.room_questions.count():
-            # Game complete
             room.status = 'ended'
             room.save()
             from rooms.serializers import PlayerSerializer
@@ -517,7 +533,6 @@ class RoomConsumer(AsyncWebsocketConsumer):
             leaderboard.sort(key=lambda p: p['score'], reverse=True)
             return {'action': 'game_over', 'data': {'leaderboard': leaderboard}}
         else:
-            # Advance to next question
             room.current_question_index = next_index
             room.save()
 

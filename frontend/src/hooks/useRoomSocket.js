@@ -13,6 +13,7 @@ export function useRoomSocket(roomCode, sessionToken) {
 
   const socketRef = useRef(null);
   const cooldownTimerRef = useRef(null);
+  const heartbeatTimerRef = useRef(null);
 
   const connect = useCallback(() => {
     if (!roomCode || !sessionToken) return;
@@ -29,11 +30,20 @@ export function useRoomSocket(roomCode, sessionToken) {
     ws.onopen = () => {
       console.log('[WS] Connected');
       setIsConnected(true);
-      // Join room with session token
+
+      // Send join room action with session token
       ws.send(JSON.stringify({
         action: 'join_room',
         data: { room_code: roomCode, session_token: sessionToken }
       }));
+
+      // Setup 15s heartbeat ping
+      if (heartbeatTimerRef.current) clearInterval(heartbeatTimerRef.current);
+      heartbeatTimerRef.current = setInterval(() => {
+        if (ws.readyState === WebSocket.OPEN) {
+          ws.send(JSON.stringify({ action: 'ping' }));
+        }
+      }, 15000);
     };
 
     ws.onmessage = (event) => {
@@ -51,18 +61,9 @@ export function useRoomSocket(roomCode, sessionToken) {
             }
             break;
 
-          case 'player_joined':
-            setRoomData(prev => prev ? {
-              ...prev,
-              players: [...(prev.players || []).filter(p => p.nickname !== data.nickname), data]
-            } : prev);
-            break;
-
-          case 'player_left':
-            setRoomData(prev => prev ? {
-              ...prev,
-              players: (prev.players || []).map(p => p.nickname === data.nickname ? { ...p, connected: false } : p)
-            } : prev);
+          case 'players_updated':
+            setRoomData(prev => prev ? { ...prev, players: data.players } : { code: roomCode, players: data.players, status: 'lobby' });
+            setLeaderboard(data.players || []);
             break;
 
           case 'question_started':
@@ -75,7 +76,11 @@ export function useRoomSocket(roomCode, sessionToken) {
             });
             setAnswersFeed([]);
             setPlayerSolved(false);
-            setRoomData(prev => prev ? { ...prev, status: 'active', current_question_index: data.index } : prev);
+            setRoomData(prev => ({
+              ...(prev || { code: roomCode }),
+              status: 'active',
+              current_question_index: data.index
+            }));
             break;
 
           case 'answer_submitted':
@@ -84,7 +89,7 @@ export function useRoomSocket(roomCode, sessionToken) {
 
           case 'player_solved':
             sound.playCorrect();
-            setLastNotification(`${data.avatar} ${data.nickname} solved the question! (+${data.points} pts)`);
+            setLastNotification(`${data.nickname} solved the question! (+${data.points} pts)`);
             setTimeout(() => setLastNotification(null), 4000);
             break;
 
@@ -112,7 +117,10 @@ export function useRoomSocket(roomCode, sessionToken) {
 
           case 'game_over':
             sound.playFanfare();
-            setRoomData(prev => prev ? { ...prev, status: 'ended' } : prev);
+            setRoomData(prev => ({
+              ...(prev || { code: roomCode }),
+              status: 'ended'
+            }));
             setLeaderboard(data.leaderboard || []);
             break;
 
@@ -133,6 +141,7 @@ export function useRoomSocket(roomCode, sessionToken) {
     ws.onclose = () => {
       console.log('[WS] Disconnected');
       setIsConnected(false);
+      if (heartbeatTimerRef.current) clearInterval(heartbeatTimerRef.current);
     };
 
     ws.onerror = (err) => {
@@ -146,6 +155,9 @@ export function useRoomSocket(roomCode, sessionToken) {
     return () => {
       if (socketRef.current) {
         socketRef.current.close();
+      }
+      if (heartbeatTimerRef.current) {
+        clearInterval(heartbeatTimerRef.current);
       }
     };
   }, [connect]);
@@ -169,7 +181,7 @@ export function useRoomSocket(roomCode, sessionToken) {
     if (socketRef.current && socketRef.current.readyState === WebSocket.OPEN) {
       socketRef.current.send(JSON.stringify({
         action: 'submit_answer',
-        data: { text }
+        data: { text, session_token: sessionToken }
       }));
     }
   };

@@ -1,4 +1,5 @@
 import json
+import logging
 from datetime import datetime, timezone
 from channels.generic.websocket import AsyncWebsocketConsumer
 from channels.db import database_sync_to_async
@@ -6,6 +7,8 @@ from django.utils import timezone as django_timezone
 from rooms.models import Room, RoomSettings
 from gameplay.models import Player, RoomQuestion, Answer, PlayerQuestionState
 from gameplay.grading import check_answer_correctness, calculate_points
+
+logger = logging.getLogger(__name__)
 
 class RoomConsumer(AsyncWebsocketConsumer):
     async def connect(self):
@@ -79,7 +82,7 @@ class RoomConsumer(AsyncWebsocketConsumer):
         await self.set_player_connection(self.player.id, True)
 
         # Send full room snapshot to connecting client
-        snapshot = await self.get_room_state_snapshot(self.room_code)
+        snapshot = await self.get_room_state_snapshot(self.room_code, self.player)
         await self.send_json({'event': 'room_snapshot', 'data': snapshot})
 
         # Broadcast updated player list to room group
@@ -106,6 +109,7 @@ class RoomConsumer(AsyncWebsocketConsumer):
                 self.player = await self.get_player_by_token(self.room_code, session_token)
 
         if not self.player:
+            await self.send_json({'event': 'error', 'message': 'Player not authenticated on WS'})
             return
 
         text = data.get('text', '').strip()
@@ -123,6 +127,9 @@ class RoomConsumer(AsyncWebsocketConsumer):
                         'remaining_seconds': res.get('remaining')
                     }
                 })
+            elif res.get('reason') == 'time_expired':
+                # Auto lock question when time expired
+                await self.handle_lock_question({'host_token': 'auto_expired'})
             return
 
         # Broadcast submitted answer feed item
@@ -164,7 +171,9 @@ class RoomConsumer(AsyncWebsocketConsumer):
             )
 
     async def handle_start_game(self, data):
-        if not await self.verify_host(self.room_code, data.get('host_token')):
+        host_token = data.get('host_token')
+        if not await self.verify_host(self.room_code, host_token):
+            await self.send_json({'event': 'error', 'message': 'Unauthorized host action'})
             return
 
         start_res = await self.start_game_question(self.room_code, index=0)
@@ -179,7 +188,10 @@ class RoomConsumer(AsyncWebsocketConsumer):
             )
 
     async def handle_lock_question(self, data):
-        if not await self.verify_host(self.room_code, data.get('host_token')):
+        host_token = data.get('host_token')
+        # Allow auto_expired trigger or verified host token
+        if host_token != 'auto_expired' and not await self.verify_host(self.room_code, host_token):
+            await self.send_json({'event': 'error', 'message': 'Unauthorized host action'})
             return
 
         reveal_res = await self.lock_current_question(self.room_code)
@@ -203,7 +215,9 @@ class RoomConsumer(AsyncWebsocketConsumer):
             )
 
     async def handle_override_grade(self, data):
-        if not await self.verify_host(self.room_code, data.get('host_token')):
+        host_token = data.get('host_token')
+        if not await self.verify_host(self.room_code, host_token):
+            await self.send_json({'event': 'error', 'message': 'Unauthorized host action'})
             return
 
         answer_id = data.get('answer_id')
@@ -230,7 +244,9 @@ class RoomConsumer(AsyncWebsocketConsumer):
             )
 
     async def handle_next_question(self, data):
-        if not await self.verify_host(self.room_code, data.get('host_token')):
+        host_token = data.get('host_token')
+        if not await self.verify_host(self.room_code, host_token):
+            await self.send_json({'event': 'error', 'message': 'Unauthorized host action'})
             return
 
         next_res = await self.advance_next_question(self.room_code)
@@ -254,7 +270,9 @@ class RoomConsumer(AsyncWebsocketConsumer):
             )
 
     async def handle_end_game(self, data):
-        if not await self.verify_host(self.room_code, data.get('host_token')):
+        host_token = data.get('host_token')
+        if not await self.verify_host(self.room_code, host_token):
+            await self.send_json({'event': 'error', 'message': 'Unauthorized host action'})
             return
 
         res = await self.finish_game(self.room_code)
@@ -279,10 +297,16 @@ class RoomConsumer(AsyncWebsocketConsumer):
     # --- DB Helper Methods ---
     @database_sync_to_async
     def get_player_by_token(self, room_code, token):
-        try:
-            return Player.objects.get(room__code__iexact=room_code, session_token=token)
-        except Player.DoesNotExist:
+        if not token:
             return None
+        token_str = str(token).strip()
+        try:
+            return Player.objects.get(room__code__iexact=room_code, session_token=token_str)
+        except Player.DoesNotExist:
+            try:
+                return Player.objects.filter(room__code__iexact=room_code, session_token__iexact=token_str).first()
+            except Exception:
+                return None
 
     @database_sync_to_async
     def set_player_connection(self, player_id, status_bool):
@@ -290,7 +314,9 @@ class RoomConsumer(AsyncWebsocketConsumer):
 
     @database_sync_to_async
     def verify_host(self, room_code, host_token):
-        return Room.objects.filter(code__iexact=room_code, host_token=host_token).exists()
+        if not host_token:
+            return False
+        return Room.objects.filter(code__iexact=room_code, host_token=str(host_token).strip()).exists()
 
     @database_sync_to_async
     def get_room_players(self, room_code):
@@ -299,13 +325,15 @@ class RoomConsumer(AsyncWebsocketConsumer):
         return PlayerSerializer(room.players.all(), many=True).data
 
     @database_sync_to_async
-    def get_room_state_snapshot(self, room_code):
+    def get_room_state_snapshot(self, room_code, current_player=None):
         from rooms.serializers import RoomDetailSerializer
-        from gameplay.models import RoomQuestion
         room = Room.objects.get(code__iexact=room_code)
         data = RoomDetailSerializer(room).data
 
-        # Attach active question state if active
+        # If current player is the host, attach host_token so frontend restores host rights automatically!
+        if current_player and current_player.is_host_player:
+            data['host_token'] = room.host_token
+
         rq = room.room_questions.filter(order_index=room.current_question_index).first()
         if rq and room.status == 'active':
             q = rq.question
@@ -313,7 +341,6 @@ class RoomConsumer(AsyncWebsocketConsumer):
             elapsed = (now - rq.started_at).total_seconds() if rq.started_at else 0
             time_remaining = max(0, room.settings.time_per_question - elapsed)
 
-            # Gather submitted answers feed for active question
             answers = Answer.objects.filter(room_question=rq).order_by('submitted_at')
             feed = []
             for a in answers:
@@ -354,14 +381,19 @@ class RoomConsumer(AsyncWebsocketConsumer):
         if not rq or rq.locked_at is not None:
             return {'success': False, 'reason': 'locked'}
 
+        now = django_timezone.now()
+
+        # Check if question time has expired
+        if rq.started_at:
+            elapsed = (now - rq.started_at).total_seconds()
+            if elapsed > room.settings.time_per_question:
+                return {'success': False, 'reason': 'time_expired'}
+
         pstate, _ = PlayerQuestionState.objects.get_or_create(room_question=rq, player=player)
 
-        # In single mode, once answered, locked out
         if room.settings.answers_per_player == 'single' and pstate.attempts_count >= 1:
             return {'success': False, 'reason': 'single_mode_limit'}
 
-        # In multiple mode, check cooldown
-        now = django_timezone.now()
         if room.settings.answers_per_player == 'multiple' and pstate.last_submitted_at:
             delta = (now - pstate.last_submitted_at).total_seconds()
             if delta < room.settings.answering_cooldown:
@@ -371,7 +403,6 @@ class RoomConsumer(AsyncWebsocketConsumer):
         pstate.last_submitted_at = now
         pstate.save()
 
-        # Grade submission
         is_correct, matched_canonical = check_answer_correctness(text, rq.question.accepted_answers)
 
         points = 0
@@ -382,11 +413,8 @@ class RoomConsumer(AsyncWebsocketConsumer):
             pstate.solved_at = now
             pstate.save()
 
-            # Calculate points
             elapsed = (now - rq.started_at).total_seconds() if rq.started_at else 0
             time_remaining = max(0, room.settings.time_per_question - elapsed)
-
-            # Determine solve order (how many players solved this question already)
             solved_count = PlayerQuestionState.objects.filter(room_question=rq, solved=True).count()
             points = calculate_points(
                 time_remaining=time_remaining,

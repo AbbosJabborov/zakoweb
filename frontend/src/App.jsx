@@ -31,6 +31,14 @@ export default function App() {
     }
   }, []);
 
+  // Auto recover hostToken from roomData snapshot if player is host
+  useEffect(() => {
+    if (roomData?.host_token && !sessionState.hostToken) {
+      localStorage.setItem('zakoweb_host_token', roomData.host_token);
+      setSessionState(prev => ({ ...prev, hostToken: roomData.host_token }));
+    }
+  }, [roomData, sessionState.hostToken]);
+
   const {
     isConnected,
     roomData,
@@ -163,6 +171,8 @@ export default function App() {
               onSubmitAnswer={submitAnswer}
               currentPlayer={currentPlayer}
               roomSettings={roomData?.settings}
+              isHost={isHost}
+              onLockQuestion={() => hostLockQuestion(sessionState.hostToken)}
             />
 
             {isHost && (

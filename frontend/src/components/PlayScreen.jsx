@@ -11,7 +11,9 @@ export default function PlayScreen({
   lastNotification,
   onSubmitAnswer,
   currentPlayer,
-  roomSettings
+  roomSettings,
+  isHost,
+  onLockQuestion
 }) {
   const [inputText, setInputText] = useState('');
   const [timeLeft, setTimeLeft] = useState(activeQuestion?.duration || 30);
@@ -30,6 +32,9 @@ export default function PlayScreen({
       setTimeLeft((prev) => {
         if (prev <= 1) {
           clearInterval(interval);
+          if (isHost && onLockQuestion) {
+            onLockQuestion();
+          }
           return 0;
         }
         if (prev <= 6 && prev > 1) {
@@ -40,7 +45,7 @@ export default function PlayScreen({
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [activeQuestion, isLocked]);
+  }, [activeQuestion, isLocked, isHost, onLockQuestion]);
 
   useEffect(() => {
     if (activeQuestion?.time_remaining !== undefined) {
@@ -234,7 +239,7 @@ export default function PlayScreen({
         </div>
         <div style={{ display: 'flex', gap: '0.75rem', overflowX: 'auto', paddingBottom: '0.25rem' }}>
           {leaderboard.slice(0, 8).map((p, rank) => (
-            <div key={p.id} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', background: 'rgba(255, 255, 255, 0.04)', padding: '0.45rem 0.75rem', borderRadius: '0.75rem', whiteSpace: 'nowrap', border: rank === 0 ? '1px solid rgba(245, 158, 11, 0.4)' : '1px solid rgba(255, 255, 255, 0.06)' }}>
+            <div key={p.id || p.nickname} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', background: 'rgba(255, 255, 255, 0.04)', padding: '0.45rem 0.75rem', borderRadius: '0.75rem', whiteSpace: 'nowrap', border: rank === 0 ? '1px solid rgba(245, 158, 11, 0.4)' : '1px solid rgba(255, 255, 255, 0.06)' }}>
               <span style={{ fontWeight: 800, fontSize: '0.8rem', color: rank === 0 ? '#f59e0b' : '#9ca3af' }}>#{rank + 1}</span>
               <AvatarIcon id={p.avatar} size={14} />
               <span style={{ fontWeight: 700, fontSize: '0.85rem' }}>{p.nickname}</span>

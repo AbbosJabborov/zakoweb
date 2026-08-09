@@ -1,0 +1,66 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: zakoweb_backend
+    restart: always
+    env_file:
+      - .env
+    command: >
+      sh -c "python manage.py migrate &&
+             python manage.py seed_questions &&
+             daphne -b 0.0.0.0 -p 8000 config.asgi:application"
+    ports:
+      - "8000:8000"
+    environment:
+      - DEBUG=${DEBUG:-False}
+      - SECRET_KEY=${SECRET_KEY}
+      - ALLOWED_HOSTS=${ALLOWED_HOSTS:-*}
+      - DB_ENGINE=django.db.backends.postgresql
+      - DB_NAME=${POSTGRES_DB:-zakoweb_db}
+      - DB_USER=${POSTGRES_USER:-claive}
+      - DB_PASSWORD=${POSTGRES_PASSWORD}
+      - DB_HOST=${POSTGRES_HOST:-db}
+      - DB_PORT=${POSTGRES_PORT:-5432}
+      - REDIS_HOST=${REDIS_HOST:-redis}
+      - REDIS_PORT=${REDIS_PORT:-6379}
+    depends_on:
+      - db
+      - redis
+    networks:
+      - zakoweb_net
+
+  db:
+    image: postgres:16-alpine
+    container_name: zakoweb_db
+    restart: always
+    env_file:
+      - .env
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-zakoweb_db}
+      POSTGRES_USER: ${POSTGRES_USER:-claive}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - zakoweb_net
+
+  redis:
+    image: redis:7-alpine
+    container_name: zakoweb_redis
+    restart: always
+    volumes:
+      - redis_data:/data
+    networks:
+      - zakoweb_net
+
+networks:
+  zakoweb_net:
+    driver: bridge
+
+volumes:
+  postgres_data:
+  redis_data:

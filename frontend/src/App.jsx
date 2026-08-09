@@ -1,0 +1,194 @@
+import React, { useState, useEffect } from 'react';
+import Navbar from './components/Navbar';
+import JoinCard from './components/JoinCard';
+import CreateRoomModal from './components/CreateRoomModal';
+import PlayerLobby from './components/PlayerLobby';
+import PlayScreen from './components/PlayScreen';
+import HostPanel from './components/HostPanel';
+import Leaderboard from './components/Leaderboard';
+import { useRoomSocket } from './hooks/useRoomSocket';
+
+export default function App() {
+  const [sessionState, setSessionState] = useState(() => {
+    const savedCode = localStorage.getItem('zakoweb_room_code') || '';
+    const savedToken = localStorage.getItem('zakoweb_session_token') || '';
+    const savedHostToken = localStorage.getItem('zakoweb_host_token') || '';
+    const savedNickname = localStorage.getItem('zakoweb_nickname') || '';
+    return { roomCode: savedCode, sessionToken: savedToken, hostToken: savedHostToken, nickname: savedNickname };
+  });
+
+  const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
+
+  // Check URL params for code
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const codeParam = params.get('code');
+    if (codeParam && !sessionState.roomCode) {
+      setSessionState(prev => ({ ...prev, roomCode: codeParam.toUpperCase() }));
+    }
+  }, []);
+
+  const {
+    isConnected,
+    roomData,
+    activeQuestion,
+    answersFeed,
+    leaderboard,
+    cooldownRemaining,
+    lastNotification,
+    submitAnswer,
+    hostStartGame,
+    hostLockQuestion,
+    hostOverrideGrade,
+    hostNextQuestion,
+    hostEndGame
+  } = useRoomSocket(sessionState.roomCode, sessionState.sessionToken);
+
+  // Handle Player Join
+  const handleJoin = async ({ nickname, code, avatar }) => {
+    const res = await fetch(`/api/rooms/${code}/join/`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ nickname, avatar, is_host_player: false })
+    });
+
+    const data = await res.json();
+    if (!res.ok) {
+      throw new Error(data.error || 'Join room failed');
+    }
+
+    localStorage.setItem('zakoweb_room_code', code);
+    localStorage.setItem('zakoweb_session_token', data.session_token);
+    localStorage.setItem('zakoweb_nickname', nickname);
+
+    setSessionState({
+      roomCode: code,
+      sessionToken: data.session_token,
+      hostToken: '',
+      nickname: nickname
+    });
+  };
+
+  // Handle Host Room Creation
+  const handleCreateRoom = async ({ settings, pack_id }) => {
+    const res = await fetch('/api/rooms/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ settings, pack_id })
+    });
+
+    const roomObj = await res.json();
+    if (!res.ok) {
+      throw new Error('Create room failed');
+    }
+
+    const hostNickname = 'Host';
+    const joinRes = await fetch(`/api/rooms/${roomObj.code}/join/`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ nickname: hostNickname, avatar: '👑', is_host_player: true })
+    });
+
+    const joinData = await joinRes.json();
+
+    localStorage.setItem('zakoweb_room_code', roomObj.code);
+    localStorage.setItem('zakoweb_session_token', joinData.session_token);
+    localStorage.setItem('zakoweb_host_token', roomObj.host_token);
+    localStorage.setItem('zakoweb_nickname', hostNickname);
+
+    setSessionState({
+      roomCode: roomObj.code,
+      sessionToken: joinData.session_token,
+      hostToken: roomObj.host_token,
+      nickname: hostNickname
+    });
+
+    setIsCreateModalOpen(false);
+  };
+
+  const handleLeave = () => {
+    localStorage.removeItem('zakoweb_room_code');
+    localStorage.removeItem('zakoweb_session_token');
+    localStorage.removeItem('zakoweb_host_token');
+    localStorage.removeItem('zakoweb_nickname');
+    setSessionState({ roomCode: '', sessionToken: '', hostToken: '', nickname: '' });
+    window.history.replaceState({}, '', window.location.pathname);
+  };
+
+  // Current Player Object
+  const currentPlayer = (roomData?.players || []).find(p => p.nickname === sessionState.nickname) || {
+    nickname: sessionState.nickname,
+    avatar: '🧠'
+  };
+
+  const isHost = Boolean(sessionState.hostToken);
+  const status = roomData?.status || (sessionState.roomCode ? 'lobby' : 'home');
+
+  return (
+    <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+      <Navbar
+        roomCode={sessionState.roomCode}
+        isConnected={isConnected}
+        onLeave={handleLeave}
+      />
+
+      <main style={{ flex: 1, padding: '2rem 1rem 6rem 1rem' }}>
+        {!sessionState.roomCode || status === 'home' ? (
+          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '75vh' }}>
+            <JoinCard
+              onJoin={handleJoin}
+              onCreateOpen={() => setIsCreateModalOpen(true)}
+            />
+          </div>
+        ) : status === 'lobby' ? (
+          <PlayerLobby
+            roomData={roomData}
+            isHost={isHost}
+            hostToken={sessionState.hostToken}
+            onStartGame={hostStartGame}
+          />
+        ) : status === 'active' ? (
+          <>
+            <PlayScreen
+              activeQuestion={activeQuestion}
+              answersFeed={answersFeed}
+              leaderboard={leaderboard}
+              cooldownRemaining={cooldownRemaining}
+              lastNotification={lastNotification}
+              onSubmitAnswer={submitAnswer}
+              currentPlayer={currentPlayer}
+              roomSettings={roomData?.settings}
+            />
+
+            {isHost && (
+              <HostPanel
+                isHost={isHost}
+                hostToken={sessionState.hostToken}
+                activeQuestion={activeQuestion}
+                answersFeed={answersFeed}
+                onLockQuestion={hostLockQuestion}
+                onNextQuestion={hostNextQuestion}
+                onEndGame={hostEndGame}
+                onOverrideGrade={hostOverrideGrade}
+              />
+            )}
+          </>
+        ) : status === 'ended' ? (
+          <Leaderboard
+            leaderboard={leaderboard}
+            onPlayAgain={() => {
+              if (isHost) hostStartGame(sessionState.hostToken);
+            }}
+            onHome={handleLeave}
+          />
+        ) : null}
+      </main>
+
+      <CreateRoomModal
+        isOpen={isCreateModalOpen}
+        onClose={() => setIsCreateModalOpen(false)}
+        onCreate={handleCreateRoom}
+      />
+    </div>
+  );
+}

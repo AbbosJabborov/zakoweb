@@ -22,6 +22,22 @@ export default function App() {
 
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
 
+  const {
+    isConnected,
+    roomData,
+    activeQuestion,
+    answersFeed,
+    leaderboard,
+    cooldownRemaining,
+    lastNotification,
+    submitAnswer,
+    hostStartGame,
+    hostLockQuestion,
+    hostOverrideGrade,
+    hostNextQuestion,
+    hostEndGame
+  } = useRoomSocket(sessionState.roomCode, sessionState.sessionToken);
+
   // Check URL params for code
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -38,22 +54,6 @@ export default function App() {
       setSessionState(prev => ({ ...prev, hostToken: roomData.host_token }));
     }
   }, [roomData, sessionState.hostToken]);
-
-  const {
-    isConnected,
-    roomData,
-    activeQuestion,
-    answersFeed,
-    leaderboard,
-    cooldownRemaining,
-    lastNotification,
-    submitAnswer,
-    hostStartGame,
-    hostLockQuestion,
-    hostOverrideGrade,
-    hostNextQuestion,
-    hostEndGame
-  } = useRoomSocket(sessionState.roomCode, sessionState.sessionToken);
 
   // Handle Player Join
   const handleJoin = async ({ nickname, code, avatar }) => {
@@ -131,7 +131,7 @@ export default function App() {
   // Current Player Object
   const currentPlayer = (roomData?.players || []).find(p => p.nickname === sessionState.nickname) || {
     nickname: sessionState.nickname,
-    avatar: '🧠'
+    avatar: 'brain'
   };
 
   const isHost = Boolean(sessionState.hostToken);

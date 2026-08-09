@@ -73,7 +73,7 @@ export default function App() {
   };
 
   // Handle Host Room Creation
-  const handleCreateRoom = async ({ settings, pack_id }) => {
+  const handleCreateRoom = async ({ hostNickname, hostAvatar, settings, pack_id }) => {
     const res = await fetch(`${API_BASE}/api/rooms/`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -85,11 +85,13 @@ export default function App() {
       throw new Error('Create room failed');
     }
 
-    const hostNickname = 'Host';
+    const finalHostName = hostNickname || 'Host';
+    const finalHostAvatar = hostAvatar || 'crown';
+
     const joinRes = await fetch(`${API_BASE}/api/rooms/${roomObj.code}/join/`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ nickname: hostNickname, avatar: '👑', is_host_player: true })
+      body: JSON.stringify({ nickname: finalHostName, avatar: finalHostAvatar, is_host_player: true })
     });
 
     const joinData = await joinRes.json();
@@ -97,13 +99,13 @@ export default function App() {
     localStorage.setItem('zakoweb_room_code', roomObj.code);
     localStorage.setItem('zakoweb_session_token', joinData.session_token);
     localStorage.setItem('zakoweb_host_token', roomObj.host_token);
-    localStorage.setItem('zakoweb_nickname', hostNickname);
+    localStorage.setItem('zakoweb_nickname', finalHostName);
 
     setSessionState({
       roomCode: roomObj.code,
       sessionToken: joinData.session_token,
       hostToken: roomObj.host_token,
-      nickname: hostNickname
+      nickname: finalHostName
     });
 
     setIsCreateModalOpen(false);

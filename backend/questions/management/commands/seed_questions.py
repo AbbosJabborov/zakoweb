@@ -1,122 +1,137 @@
+import os
+import zipfile
+import xml.etree.ElementTree as ET
+import re
 from django.core.management.base import BaseCommand
 from questions.models import QuestionPack, Question
 
-SEED_PACKS = [
-    {
-        'title': "Zakovat O'zbekiston Saralangan Savollar Vol.1",
-        'description': "Mantiqiy va qiziqarli Zakovat savollari to'plami. Do'stlar davrasida o'ynash uchun mo'ljallangan.",
-        'language': 'uz',
-        'is_official': True,
-        'questions': [
-            {
-                'text': "Ushbu narsani XIX asrda ixtiro qilishgan. Bugungi kunda har bir xonadonda topiladi. Uning nomi grekcha 'ubiquitous' va 'vision' so'zlaridan kelib chiqqan. Gap nima haqida ketmoqda?",
-                'accepted_answers': ["Televizor", "TV", "Televideniye"],
-                'category': "Mantiqiy savol",
-                'explanation': "Televizor so'zi grekcha 'tele' (uzoq) va lotincha 'visio' (ko'rish) birikmasidan olingan."
-            },
-            {
-                'text': "Qadimgi Rimda uni 'oq oltin' deyishgan va askarlarga maosh o'rniga berishgan. Bugungi kunda oshxonamizda ishlatamiz. Bu nima?",
-                'accepted_answers': ["Tuz", "Namak", "Osh tuzi"],
-                'category': "Tarixiy zakovat",
-                'explanation': "Lotincha 'salarium' (ish haqi) so'zi tuz (sal) sotib olish uchun askarlarga beriladigan puldan kelib chiqqan."
-            },
-            {
-                'text': "Gipokrat bemorlarga ushbu ichimlikni shamollashga qarshi dori sifatida tavsiya qilgan. Bugun u dunyodagi eng ommabop issiq ichimliklardan biri. Diqqat savol: u nima?",
-                'accepted_answers': ["Choy", "Issiq choy", "Ko'k choy", "Qora choy"],
-                'category': "Tibbiyot va Tarix",
-                'explanation': "Choy uzoq asrlar davomida dori vositasi sifatli foydalanilgan."
-            },
-            {
-                'text': "U doimo oldinga harakat qiladi, uni to'xtatib ham, ortga qaytarib ham bo'lmaydi. U nimani anglatadi?",
-                'accepted_answers': ["Vaqt", "Vaqtlar", "Time"],
-                'category': "Mantiqiy jumboq",
-                'explanation': "Vaqt uzluksiz oqim bo'lib, uning bir yo'nalishli harakati fiziologik va fizik qonuniyatdir."
-            },
-            {
-                'text': "Shaxmat taxtasida eng ko'p harakat imkoniyatiga ega bo'lgan figura qaysi?",
-                'accepted_answers': ["Farzin", "Vazir", "Queen"],
-                'category': "Sport va Mantiq",
-                'explanation': "Farzin (Vazir) gorizontal, vertikal va diagonal bo'ylab istalgancha katak harakatlana oladi."
-            },
-            {
-                'text': "U yig'laydi lekin ko'zlari yo'q, u uchadi lekin qanotlari yo'q. Bu nima?",
-                'accepted_answers': ["Bulut", "Yomg'ir buluti", "Cloud"],
-                'category': "Topishmoq",
-                'explanation': "Bulut ko'zi bo'lmay turib yomg'ir (yosh) to'kadi va shamolda uchadi."
-            },
-            {
-                'text': "Dunyo xaritasida 5 ta okean bor. Maydoni bo'yicha eng katta okean qaysi?",
-                'accepted_answers': ["Tinch okeani", "Tinch", "Pacific ocean", "Pacific"],
-                'category': "Geografiya",
-                'explanation': "Tinch okeani Yer yuzasining 30% dan ortig'ini egallaydi."
-            },
-            {
-                'text': "Qaysi mashhur ixtirochi elektr lampani ommaviylashtirgan va 1000 dan ortiq patentga ega bo'lgan?",
-                'accepted_answers': ["Tomas Edison", "Edison", "Thomas Edison"],
-                'category': "Fan va Texnika",
-                'explanation': "Tomas Edison 1879 yili amaliy foydalanishga yaraydigan lampochkani namoyish etgan."
-            }
-        ]
-    },
-    {
-        'title': "Global Trivia & Pop Culture (English)",
-        'description': "Engaging global trivia questions suitable for party matches.",
-        'language': 'en',
-        'is_official': True,
-        'questions': [
-            {
-                'text': "What planet in our solar system is known as the Red Planet?",
-                'accepted_answers': ["Mars"],
-                'category': "Astronomy",
-                'explanation': "Mars appears red due to iron oxide (rust) on its surface."
-            },
-            {
-                'text': "Which element has the chemical symbol 'Au' on the periodic table?",
-                'accepted_answers': ["Gold"],
-                'category': "Science",
-                'explanation': "'Au' comes from the Latin word for gold, 'Aurum'."
-            },
-            {
-                'text': "What is the capital city of Japan?",
-                'accepted_answers': ["Tokyo"],
-                'category': "Geography",
-                'explanation': "Tokyo is the world's most populous metropolitan region."
-            },
-            {
-                'text': "Who painted the Mona Lisa?",
-                'accepted_answers': ["Leonardo da Vinci", "Da Vinci", "Leonardo"],
-                'category': "Art History",
-                'explanation': "Leonardo da Vinci painted the Mona Lisa in the early 16th century."
-            },
-            {
-                'text': "What is the hardest natural substance on Earth?",
-                'accepted_answers': ["Diamond"],
-                'category': "Geology",
-                'explanation': "Diamond scores 10 on the Mohs scale of mineral hardness."
-            }
-        ]
-    }
-]
+def parse_docx_questions(docx_path):
+    if not os.path.exists(docx_path):
+        return []
+
+    with zipfile.ZipFile(docx_path) as z:
+        xml_content = z.read('word/document.xml')
+        tree = ET.fromstring(xml_content)
+        paras = []
+        for elem in tree.iter():
+            if elem.tag.endswith('}p'):
+                p_text = ''.join(e.text for e in elem.iter() if e.tag.endswith('}t') and e.text)
+                if p_text.strip():
+                    paras.append(p_text.strip())
+
+    full_text = '\n'.join(paras)
+    chunks = re.split(r'\n(?=\d+\s*-\s*savol)', full_text, flags=re.IGNORECASE)
+
+    parsed = []
+    for chunk in chunks:
+        match_num = re.search(r'^(\d+)\s*-\s*savol', chunk, flags=re.IGNORECASE)
+        if not match_num:
+            continue
+
+        q_num = match_num.group(1)
+
+        # Extract Javob, Qabul, Izoh, Manba, Muallif
+        q_text_m = re.search(r'^\d+\s*-\s*savol\.?\s*(.*?)(?=\nJavob:)', chunk, flags=re.DOTALL | re.IGNORECASE)
+        javob_m = re.search(r'Javob:\s*(.*?)(?=\nQabul:|\nIzoh:|\nManba:|\nMuallif:|$)', chunk, flags=re.DOTALL | re.IGNORECASE)
+        qabul_m = re.search(r'Qabul:\s*(.*?)(?=\nIzoh:|\nManba:|\nMuallif:|$)', chunk, flags=re.DOTALL | re.IGNORECASE)
+        izoh_m = re.search(r'Izoh:\s*(.*?)(?=\nManba:|\nMuallif:|$)', chunk, flags=re.DOTALL | re.IGNORECASE)
+
+        q_text = q_text_m.group(1).strip() if q_text_m else chunk.strip()
+        javob = javob_m.group(1).strip() if javob_m else ''
+        qabul = qabul_m.group(1).strip() if qabul_m else ''
+        izoh = izoh_m.group(1).strip() if izoh_m else ''
+
+        answers = []
+        if javob:
+            lines = [l.strip() for l in javob.split('\n') if l.strip()]
+            for line in lines:
+                cleaned_line = re.sub(r'^\d+\.\s*', '', line)
+                raw_clean = cleaned_line.replace('[', '').replace(']', '').strip()
+                if raw_clean:
+                    answers.append(raw_clean)
+
+                no_bracket = re.sub(r'\[.*?\]', '', cleaned_line).strip()
+                if no_bracket and no_bracket != raw_clean:
+                    answers.append(no_bracket)
+
+                bracket_words = re.findall(r'\[(.*?)\]', cleaned_line)
+                for bw in bracket_words:
+                    if bw.strip() and len(bw.strip()) > 1:
+                        answers.append(bw.strip())
+
+        if qabul:
+            qabul_clean = qabul.replace('"', '').replace("'", '').strip()
+            if qabul_clean:
+                answers.append(qabul_clean)
+            quoted = re.findall(r'["\'](.*?)["\']', qabul)
+            for qstr in quoted:
+                if qstr.strip():
+                    answers.append(qstr.strip())
+
+        unique_answers = list(dict.fromkeys(answers))
+        if not unique_answers:
+            unique_answers = ["Javob berilmadi"]
+
+        parsed.append({
+            'num': q_num,
+            'text': q_text,
+            'accepted_answers': unique_answers,
+            'explanation': izoh,
+            'category': f"Zakovat #{q_num}"
+        })
+
+    return parsed
+
 
 class Command(BaseCommand):
-    help = "Seed initial Zakovat question packs into database"
+    help = "Seed official Zakovat questions from 120qs.docx into database"
 
     def handle(self, *args, **options):
-        self.stdout.write("Seeding Zakoweb question packs...")
-        for pack_data in SEED_PACKS:
-            questions_data = pack_data.pop('questions')
-            pack, created = QuestionPack.objects.get_or_create(
-                title=pack_data['title'],
-                defaults=pack_data
+        self.stdout.write("Seeding official 120qs.docx questions bank...")
+
+        base_dir = os.path.dirname(__file__)
+        possible_paths = [
+            os.path.join(base_dir, '../../fixtures/120qs.docx'),
+            '/home/claive/website/zakoweb/qs_bank/120qs.docx',
+            '/app/questions/fixtures/120qs.docx',
+            'qs_bank/120qs.docx'
+        ]
+
+        target_path = None
+        for p in possible_paths:
+            if os.path.exists(p):
+                target_path = p
+                break
+
+        if not target_path:
+            self.stdout.write(self.style.ERROR("Could not locate 120qs.docx in any expected path."))
+            return
+
+        parsed_qs = parse_docx_questions(target_path)
+        if not parsed_qs:
+            self.stdout.write(self.style.ERROR(f"Failed to parse questions from {target_path}"))
+            return
+
+        # Replace existing questions
+        Question.objects.all().delete()
+        QuestionPack.objects.all().delete()
+
+        pack = QuestionPack.objects.create(
+            title="Zakovat Rasmiy Bank (120 Savol)",
+            description="Sardor Axmedov muallifligidagi 120 ta saralangan va izohli Zakovat savollari banki.",
+            language='uz',
+            is_official=True
+        )
+
+        created_count = 0
+        for q in parsed_qs:
+            Question.objects.create(
+                pack=pack,
+                text=q['text'],
+                accepted_answers=q['accepted_answers'],
+                explanation=q['explanation'],
+                category=q['category']
             )
-            for q_item in questions_data:
-                Question.objects.get_or_create(
-                    pack=pack,
-                    text=q_item['text'],
-                    defaults={
-                        'accepted_answers': q_item['accepted_answers'],
-                        'category': q_item['category'],
-                        'explanation': q_item['explanation']
-                    }
-                )
-        self.stdout.write(self.style.SUCCESS("Successfully seeded default Zakoweb question packs!"))
+            created_count += 1
+
+        self.stdout.write(self.style.SUCCESS(f"Successfully seeded {created_count} official Zakovat questions with full explanations into '{pack.title}'!"))

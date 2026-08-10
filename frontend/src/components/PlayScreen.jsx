@@ -19,6 +19,14 @@ export default function PlayScreen({
   const [timeLeft, setTimeLeft] = useState(activeQuestion?.duration || 30);
   const feedEndRef = useRef(null);
 
+  const onLockQuestionRef = useRef(onLockQuestion);
+  const isHostRef = useRef(isHost);
+
+  useEffect(() => {
+    onLockQuestionRef.current = onLockQuestion;
+    isHostRef.current = isHost;
+  });
+
   const duration = activeQuestion?.duration || 30;
   const isLocked = activeQuestion?.is_locked || false;
 
@@ -26,14 +34,16 @@ export default function PlayScreen({
     feedEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [answersFeed]);
 
+  // Smooth continuous 1s countdown timer
   useEffect(() => {
     if (isLocked || !activeQuestion) return;
+
     const interval = setInterval(() => {
       setTimeLeft((prev) => {
         if (prev <= 1) {
           clearInterval(interval);
-          if (isHost && onLockQuestion) {
-            onLockQuestion();
+          if (isHostRef.current && onLockQuestionRef.current) {
+            onLockQuestionRef.current();
           }
           return 0;
         }
@@ -45,13 +55,13 @@ export default function PlayScreen({
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [activeQuestion, isLocked, isHost, onLockQuestion]);
+  }, [activeQuestion?.index, isLocked]);
 
   useEffect(() => {
     if (activeQuestion?.time_remaining !== undefined) {
       setTimeLeft(Math.ceil(activeQuestion.time_remaining));
     }
-  }, [activeQuestion]);
+  }, [activeQuestion?.index, activeQuestion?.time_remaining]);
 
   const handleSubmit = (e) => {
     e.preventDefault();

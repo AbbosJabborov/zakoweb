@@ -7,18 +7,44 @@ export function useRoomSocket(roomCode, sessionToken) {
   const [activeQuestion, setActiveQuestion] = useState(null);
   const [answersFeed, setAnswersFeed] = useState([]);
   const [leaderboard, setLeaderboard] = useState([]);
-  const [playerSolved, setPlayerSolved] = useState(false);
   const [cooldownRemaining, setCooldownRemaining] = useState(0);
   const [lastNotification, setLastNotification] = useState(null);
 
   const socketRef = useRef(null);
   const cooldownTimerRef = useRef(null);
   const heartbeatTimerRef = useRef(null);
+  const reconnectTimerRef = useRef(null);
+  const pollTimerRef = useRef(null);
+
+  const isDev = typeof window !== 'undefined' && (window.location.host.includes('5173') || window.location.host.includes('localhost'));
+  const apiBase = isDev ? '' : 'https://api-zakoweb.claive.uz';
+
+  // Fetch REST snapshot as instant sync fallback
+  const fetchSnapshot = useCallback(async () => {
+    if (!roomCode) return;
+    try {
+      const res = await fetch(`${apiBase}/api/rooms/${roomCode.toUpperCase()}/snapshot/`);
+      if (res.ok) {
+        const data = await res.json();
+        setRoomData(data);
+        setLeaderboard(data.players || []);
+        if (data.active_question) {
+          setActiveQuestion(data.active_question);
+          setAnswersFeed(data.active_question.answers_feed || []);
+        }
+      }
+    } catch (err) {
+      console.warn('[WS Fallback] Fetch snapshot failed:', err);
+    }
+  }, [roomCode, apiBase]);
 
   const connect = useCallback(() => {
     if (!roomCode || !sessionToken) return;
 
-    const isDev = window.location.host.includes('5173') || window.location.host.includes('localhost');
+    if (socketRef.current && (socketRef.current.readyState === WebSocket.OPEN || socketRef.current.readyState === WebSocket.CONNECTING)) {
+      return;
+    }
+
     const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
     const targetHost = isDev ? 'localhost:8000' : 'api-zakoweb.claive.uz';
     const wsUrl = `${protocol}//${targetHost}/ws/room/${roomCode.toUpperCase()}/`;
@@ -28,16 +54,20 @@ export function useRoomSocket(roomCode, sessionToken) {
     socketRef.current = ws;
 
     ws.onopen = () => {
-      console.log('[WS] Connected');
+      console.log('[WS] Connected successfully');
       setIsConnected(true);
+      if (reconnectTimerRef.current) clearTimeout(reconnectTimerRef.current);
 
-      // Send join room action with session token
+      // Join room with session token
       ws.send(JSON.stringify({
         action: 'join_room',
         data: { room_code: roomCode, session_token: sessionToken }
       }));
 
-      // Setup 15s heartbeat ping
+      // Instant snapshot sync
+      fetchSnapshot();
+
+      // 15s heartbeat
       if (heartbeatTimerRef.current) clearInterval(heartbeatTimerRef.current);
       heartbeatTimerRef.current = setInterval(() => {
         if (ws.readyState === WebSocket.OPEN) {
@@ -75,7 +105,6 @@ export function useRoomSocket(roomCode, sessionToken) {
               answers_feed: []
             });
             setAnswersFeed([]);
-            setPlayerSolved(false);
             setRoomData(prev => ({
               ...(prev || { code: roomCode }),
               status: 'active',
@@ -84,7 +113,10 @@ export function useRoomSocket(roomCode, sessionToken) {
             break;
 
           case 'answer_submitted':
-            setAnswersFeed(prev => [...prev, data]);
+            setAnswersFeed(prev => {
+              if (prev.some(a => a.id === data.id)) return prev;
+              return [...prev, data];
+            });
             break;
 
           case 'player_solved':
@@ -139,28 +171,44 @@ export function useRoomSocket(roomCode, sessionToken) {
     };
 
     ws.onclose = () => {
-      console.log('[WS] Disconnected');
+      console.log('[WS] Disconnected, scheduling auto-reconnect...');
       setIsConnected(false);
       if (heartbeatTimerRef.current) clearInterval(heartbeatTimerRef.current);
+
+      // Auto-reconnect after 1.5s
+      if (reconnectTimerRef.current) clearTimeout(reconnectTimerRef.current);
+      reconnectTimerRef.current = setTimeout(() => {
+        connect();
+      }, 1500);
     };
 
     ws.onerror = (err) => {
       console.error('[WS] Error:', err);
+      ws.close();
     };
 
-  }, [roomCode, sessionToken]);
+  }, [roomCode, sessionToken, fetchSnapshot, isDev]);
 
   useEffect(() => {
-    connect();
+    if (roomCode && sessionToken) {
+      connect();
+      fetchSnapshot();
+
+      // Poll room state every 3 seconds so UI NEVER freezes or requires manual page refresh
+      pollTimerRef.current = setInterval(() => {
+        fetchSnapshot();
+      }, 3000);
+    }
+
     return () => {
       if (socketRef.current) {
         socketRef.current.close();
       }
-      if (heartbeatTimerRef.current) {
-        clearInterval(heartbeatTimerRef.current);
-      }
+      if (heartbeatTimerRef.current) clearInterval(heartbeatTimerRef.current);
+      if (reconnectTimerRef.current) clearTimeout(reconnectTimerRef.current);
+      if (pollTimerRef.current) clearInterval(pollTimerRef.current);
     };
-  }, [connect]);
+  }, [connect, fetchSnapshot, roomCode, sessionToken]);
 
   const startCooldown = (secs) => {
     setCooldownRemaining(secs);
@@ -176,60 +224,30 @@ export function useRoomSocket(roomCode, sessionToken) {
     }, 200);
   };
 
+  const sendMsg = (action, data = {}) => {
+    if (!socketRef.current || socketRef.current.readyState !== WebSocket.OPEN) {
+      connect();
+    }
+
+    if (socketRef.current && socketRef.current.readyState === WebSocket.OPEN) {
+      socketRef.current.send(JSON.stringify({ action, data }));
+    } else {
+      // Retry send after short delay if socket is connecting
+      setTimeout(() => {
+        if (socketRef.current && socketRef.current.readyState === WebSocket.OPEN) {
+          socketRef.current.send(JSON.stringify({ action, data }));
+        }
+      }, 500);
+    }
+  };
+
   // Dispatchers
-  const submitAnswer = (text) => {
-    if (socketRef.current && socketRef.current.readyState === WebSocket.OPEN) {
-      socketRef.current.send(JSON.stringify({
-        action: 'submit_answer',
-        data: { text, session_token: sessionToken }
-      }));
-    }
-  };
-
-  const hostStartGame = (hostToken) => {
-    if (socketRef.current && socketRef.current.readyState === WebSocket.OPEN) {
-      socketRef.current.send(JSON.stringify({
-        action: 'host_start_game',
-        data: { host_token: hostToken }
-      }));
-    }
-  };
-
-  const hostLockQuestion = (hostToken) => {
-    if (socketRef.current && socketRef.current.readyState === WebSocket.OPEN) {
-      socketRef.current.send(JSON.stringify({
-        action: 'host_lock_question',
-        data: { host_token: hostToken }
-      }));
-    }
-  };
-
-  const hostOverrideGrade = (hostToken, answerId, isCorrect) => {
-    if (socketRef.current && socketRef.current.readyState === WebSocket.OPEN) {
-      socketRef.current.send(JSON.stringify({
-        action: 'host_override_grade',
-        data: { host_token: hostToken, answer_id: answerId, is_correct: isCorrect }
-      }));
-    }
-  };
-
-  const hostNextQuestion = (hostToken) => {
-    if (socketRef.current && socketRef.current.readyState === WebSocket.OPEN) {
-      socketRef.current.send(JSON.stringify({
-        action: 'host_next_question',
-        data: { host_token: hostToken }
-      }));
-    }
-  };
-
-  const hostEndGame = (hostToken) => {
-    if (socketRef.current && socketRef.current.readyState === WebSocket.OPEN) {
-      socketRef.current.send(JSON.stringify({
-        action: 'host_end_game',
-        data: { host_token: hostToken }
-      }));
-    }
-  };
+  const submitAnswer = (text) => sendMsg('submit_answer', { text, session_token: sessionToken });
+  const hostStartGame = (hostToken) => sendMsg('host_start_game', { host_token: hostToken });
+  const hostLockQuestion = (hostToken) => sendMsg('host_lock_question', { host_token: hostToken });
+  const hostOverrideGrade = (hostToken, answerId, isCorrect) => sendMsg('host_override_grade', { host_token: hostToken, answer_id: answerId, is_correct: isCorrect });
+  const hostNextQuestion = (hostToken) => sendMsg('host_next_question', { host_token: hostToken });
+  const hostEndGame = (hostToken) => sendMsg('host_end_game', { host_token: hostToken });
 
   return {
     isConnected,
@@ -244,6 +262,7 @@ export function useRoomSocket(roomCode, sessionToken) {
     hostLockQuestion,
     hostOverrideGrade,
     hostNextQuestion,
-    hostEndGame
+    hostEndGame,
+    refreshState: fetchSnapshot
   };
 }

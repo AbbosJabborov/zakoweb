@@ -15,31 +15,50 @@ export function useRoomSocket(roomCode, sessionToken) {
   const heartbeatTimerRef = useRef(null);
   const reconnectTimerRef = useRef(null);
   const pollTimerRef = useRef(null);
+  // Track whether this hook instance is still mounted
+  const mountedRef = useRef(true);
+  // Stable refs for roomCode/sessionToken to avoid dependency churn
+  const roomCodeRef = useRef(roomCode);
+  const sessionTokenRef = useRef(sessionToken);
+
+  roomCodeRef.current = roomCode;
+  sessionTokenRef.current = sessionToken;
 
   const isDev = typeof window !== 'undefined' && (window.location.host.includes('5173') || window.location.host.includes('localhost'));
   const apiBase = isDev ? '' : 'https://api-zakoweb.claive.uz';
 
+  // Apply a full snapshot (from REST or WS) to all state atomically
+  const applySnapshot = useCallback((data) => {
+    if (!mountedRef.current) return;
+    setRoomData(data);
+    setLeaderboard(data.players || []);
+    if (data.active_question) {
+      setActiveQuestion(data.active_question);
+      setAnswersFeed(data.active_question.answers_feed || []);
+    }
+  }, []);
+
   // Fetch REST snapshot as instant sync fallback
+  // Uses the correct URL: /api/rooms/<CODE>/ (not /snapshot/)
   const fetchSnapshot = useCallback(async () => {
-    if (!roomCode) return;
+    const code = roomCodeRef.current;
+    if (!code) return;
     try {
-      const res = await fetch(`${apiBase}/api/rooms/${roomCode.toUpperCase()}/snapshot/`);
+      const res = await fetch(`${apiBase}/api/rooms/${code.toUpperCase()}/`);
       if (res.ok) {
         const data = await res.json();
-        setRoomData(data);
-        setLeaderboard(data.players || []);
-        if (data.active_question) {
-          setActiveQuestion(data.active_question);
-          setAnswersFeed(data.active_question.answers_feed || []);
-        }
+        applySnapshot(data);
       }
     } catch (err) {
-      console.warn('[WS Fallback] Fetch snapshot failed:', err);
+      console.warn('[REST Fallback] Fetch snapshot failed:', err);
     }
-  }, [roomCode, apiBase]);
+  }, [apiBase, applySnapshot]);
 
+  // Stable connect function that reads roomCode/sessionToken from refs
   const connect = useCallback(() => {
-    if (!roomCode || !sessionToken) return;
+    const code = roomCodeRef.current;
+    const token = sessionTokenRef.current;
+    if (!code || !token) return;
 
     if (socketRef.current && (socketRef.current.readyState === WebSocket.OPEN || socketRef.current.readyState === WebSocket.CONNECTING)) {
       return;
@@ -47,7 +66,7 @@ export function useRoomSocket(roomCode, sessionToken) {
 
     const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
     const targetHost = isDev ? 'localhost:8000' : 'api-zakoweb.claive.uz';
-    const wsUrl = `${protocol}//${targetHost}/ws/room/${roomCode.toUpperCase()}/`;
+    const wsUrl = `${protocol}//${targetHost}/ws/room/${code.toUpperCase()}/`;
 
     console.log('[WS] Connecting to:', wsUrl);
     const ws = new WebSocket(wsUrl);
@@ -55,16 +74,17 @@ export function useRoomSocket(roomCode, sessionToken) {
 
     ws.onopen = () => {
       console.log('[WS] Connected successfully');
+      if (!mountedRef.current) { ws.close(); return; }
       setIsConnected(true);
       if (reconnectTimerRef.current) clearTimeout(reconnectTimerRef.current);
 
       // Join room with session token
       ws.send(JSON.stringify({
         action: 'join_room',
-        data: { room_code: roomCode, session_token: sessionToken }
+        data: { room_code: code, session_token: token }
       }));
 
-      // Instant snapshot sync
+      // Instant snapshot sync via REST as backup
       fetchSnapshot();
 
       // 15s heartbeat
@@ -77,22 +97,18 @@ export function useRoomSocket(roomCode, sessionToken) {
     };
 
     ws.onmessage = (event) => {
+      if (!mountedRef.current) return;
       try {
         const msg = JSON.parse(event.data);
         const { event: evtName, data } = msg;
 
         switch (evtName) {
           case 'room_snapshot':
-            setRoomData(data);
-            setLeaderboard(data.players || []);
-            if (data.active_question) {
-              setActiveQuestion(data.active_question);
-              setAnswersFeed(data.active_question.answers_feed || []);
-            }
+            applySnapshot(data);
             break;
 
           case 'players_updated':
-            setRoomData(prev => prev ? { ...prev, players: data.players } : { code: roomCode, players: data.players, status: 'lobby' });
+            setRoomData(prev => prev ? { ...prev, players: data.players } : { code, players: data.players, status: 'lobby' });
             setLeaderboard(data.players || []);
             break;
 
@@ -106,7 +122,7 @@ export function useRoomSocket(roomCode, sessionToken) {
             });
             setAnswersFeed([]);
             setRoomData(prev => ({
-              ...(prev || { code: roomCode }),
+              ...(prev || { code }),
               status: 'active',
               current_question_index: data.index
             }));
@@ -122,7 +138,9 @@ export function useRoomSocket(roomCode, sessionToken) {
           case 'player_solved':
             sound.playCorrect();
             setLastNotification(`${data.nickname} solved the question! (+${data.points} pts)`);
-            setTimeout(() => setLastNotification(null), 4000);
+            setTimeout(() => {
+              if (mountedRef.current) setLastNotification(null);
+            }, 4000);
             break;
 
           case 'question_locked':
@@ -150,7 +168,7 @@ export function useRoomSocket(roomCode, sessionToken) {
           case 'game_over':
             sound.playFanfare();
             setRoomData(prev => ({
-              ...(prev || { code: roomCode }),
+              ...(prev || { code }),
               status: 'ended'
             }));
             setLeaderboard(data.leaderboard || []);
@@ -172,13 +190,14 @@ export function useRoomSocket(roomCode, sessionToken) {
 
     ws.onclose = () => {
       console.log('[WS] Disconnected, scheduling auto-reconnect...');
+      if (!mountedRef.current) return;
       setIsConnected(false);
       if (heartbeatTimerRef.current) clearInterval(heartbeatTimerRef.current);
 
       // Auto-reconnect after 1.5s
       if (reconnectTimerRef.current) clearTimeout(reconnectTimerRef.current);
       reconnectTimerRef.current = setTimeout(() => {
-        connect();
+        if (mountedRef.current) connect();
       }, 1500);
     };
 
@@ -187,9 +206,13 @@ export function useRoomSocket(roomCode, sessionToken) {
       ws.close();
     };
 
-  }, [roomCode, sessionToken, fetchSnapshot, isDev]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isDev, apiBase, applySnapshot, fetchSnapshot]);
 
+  // Main lifecycle: connect WS + start REST polling
   useEffect(() => {
+    mountedRef.current = true;
+
     if (roomCode && sessionToken) {
       connect();
       fetchSnapshot();
@@ -201,14 +224,16 @@ export function useRoomSocket(roomCode, sessionToken) {
     }
 
     return () => {
+      mountedRef.current = false;
       if (socketRef.current) {
         socketRef.current.close();
+        socketRef.current = null;
       }
       if (heartbeatTimerRef.current) clearInterval(heartbeatTimerRef.current);
       if (reconnectTimerRef.current) clearTimeout(reconnectTimerRef.current);
       if (pollTimerRef.current) clearInterval(pollTimerRef.current);
     };
-  }, [connect, fetchSnapshot, roomCode, sessionToken]);
+  }, [roomCode, sessionToken, connect, fetchSnapshot]);
 
   const startCooldown = (secs) => {
     setCooldownRemaining(secs);
@@ -224,7 +249,7 @@ export function useRoomSocket(roomCode, sessionToken) {
     }, 200);
   };
 
-  const sendMsg = (action, data = {}) => {
+  const sendMsg = useCallback((action, data = {}) => {
     if (!socketRef.current || socketRef.current.readyState !== WebSocket.OPEN) {
       connect();
     }
@@ -239,15 +264,15 @@ export function useRoomSocket(roomCode, sessionToken) {
         }
       }, 500);
     }
-  };
+  }, [connect]);
 
   // Dispatchers
-  const submitAnswer = (text) => sendMsg('submit_answer', { text, session_token: sessionToken });
-  const hostStartGame = (hostToken) => sendMsg('host_start_game', { host_token: hostToken });
-  const hostLockQuestion = (hostToken) => sendMsg('host_lock_question', { host_token: hostToken });
-  const hostOverrideGrade = (hostToken, answerId, isCorrect) => sendMsg('host_override_grade', { host_token: hostToken, answer_id: answerId, is_correct: isCorrect });
-  const hostNextQuestion = (hostToken) => sendMsg('host_next_question', { host_token: hostToken });
-  const hostEndGame = (hostToken) => sendMsg('host_end_game', { host_token: hostToken });
+  const submitAnswer = useCallback((text) => sendMsg('submit_answer', { text, session_token: sessionTokenRef.current }), [sendMsg]);
+  const hostStartGame = useCallback((hostToken) => sendMsg('host_start_game', { host_token: hostToken }), [sendMsg]);
+  const hostLockQuestion = useCallback((hostToken) => sendMsg('host_lock_question', { host_token: hostToken }), [sendMsg]);
+  const hostOverrideGrade = useCallback((hostToken, answerId, isCorrect) => sendMsg('host_override_grade', { host_token: hostToken, answer_id: answerId, is_correct: isCorrect }), [sendMsg]);
+  const hostNextQuestion = useCallback((hostToken) => sendMsg('host_next_question', { host_token: hostToken }), [sendMsg]);
+  const hostEndGame = useCallback((hostToken) => sendMsg('host_end_game', { host_token: hostToken }), [sendMsg]);
 
   return {
     isConnected,

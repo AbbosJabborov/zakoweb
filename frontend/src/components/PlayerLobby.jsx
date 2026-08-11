@@ -226,6 +226,55 @@ export default function PlayerLobby({ roomData, isHost, hostToken, onStartGame, 
                 )}
               </div>
 
+              {/* Room Visibility: Public vs Private */}
+              <div>
+                <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 700, color: 'var(--text-muted)', marginBottom: '0.4rem' }}>
+                  ROOM VISIBILITY
+                </label>
+                {isHost ? (
+                  <div style={{ display: 'flex', gap: '0.35rem' }}>
+                    <button
+                      type="button"
+                      onClick={() => handleSettingsChange('is_public', true)}
+                      style={{
+                        flex: 1,
+                        padding: '0.45rem',
+                        borderRadius: '0.4rem',
+                        background: (settings.is_public ?? true) ? '#538d4e' : '#121213',
+                        border: (settings.is_public ?? true) ? 'none' : '1px solid #3a3a3c',
+                        color: '#ffffff',
+                        fontWeight: 700,
+                        fontSize: '0.85rem',
+                        cursor: 'pointer'
+                      }}
+                    >
+                      🌐 Public
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => handleSettingsChange('is_public', false)}
+                      style={{
+                        flex: 1,
+                        padding: '0.45rem',
+                        borderRadius: '0.4rem',
+                        background: !(settings.is_public ?? true) ? '#c9b458' : '#121213',
+                        border: !(settings.is_public ?? true) ? 'none' : '1px solid #3a3a3c',
+                        color: '#ffffff',
+                        fontWeight: 700,
+                        fontSize: '0.85rem',
+                        cursor: 'pointer'
+                      }}
+                    >
+                      🔒 Private
+                    </button>
+                  </div>
+                ) : (
+                  <div style={{ background: '#121213', padding: '0.55rem 0.85rem', borderRadius: '0.4rem', border: '1px solid #3a3a3c', color: '#ffffff', fontWeight: 800, fontSize: '0.95rem' }}>
+                    {(settings.is_public ?? true) ? '🌐 Public Room' : '🔒 Private Room'}
+                  </div>
+                )}
+              </div>
+
             </div>
           </div>
 

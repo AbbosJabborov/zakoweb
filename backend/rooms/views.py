@@ -3,9 +3,22 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
 from rooms.models import Room, RoomSettings
-from rooms.serializers import RoomDetailSerializer, RoomSettingsSerializer, PlayerSerializer
+from rooms.serializers import RoomDetailSerializer, RoomSettingsSerializer, PlayerSerializer, PublicRoomSerializer
 from gameplay.models import Player, RoomQuestion, Answer
 from questions.models import Question
+
+@api_view(['GET'])
+def list_public_rooms(api_request):
+    """
+    Returns list of active public rooms waiting in lobby or currently playing.
+    """
+    rooms = Room.objects.filter(
+        status__in=['lobby', 'active'],
+        settings__is_public=True
+    ).order_by('-created_at')[:20]
+
+    serializer = PublicRoomSerializer(rooms, many=True)
+    return Response(serializer.data, status=status.HTTP_200_OK)
 
 @api_view(['POST'])
 def create_room(api_request):
@@ -57,11 +70,9 @@ def join_room(api_request, code):
     if not nickname:
         return Response({'error': 'Nickname is required'}, status=status.HTTP_400_BAD_REQUEST)
 
-    # Check max players limit
     if room.players.count() >= room.settings.max_players:
         return Response({'error': 'Room is full'}, status=status.HTTP_400_BAD_REQUEST)
 
-    # Re-use existing player session if same nickname joins
     player, created = Player.objects.get_or_create(
         room=room,
         nickname=nickname,
@@ -88,8 +99,6 @@ def join_room(api_request, code):
 def get_room_snapshot(api_request, code):
     """
     Returns full room snapshot for page reloads / state recovery.
-    Includes active_question with timer, answers feed, and lock state
-    so the frontend REST polling fallback provides complete game state.
     """
     from django.utils import timezone as django_timezone
 
@@ -100,7 +109,6 @@ def get_room_snapshot(api_request, code):
 
     data = RoomDetailSerializer(room).data
 
-    # Compute active_question if game is in progress
     if room.status == 'active':
         rq = room.room_questions.filter(order_index=room.current_question_index).first()
         if rq:
@@ -150,7 +158,6 @@ def get_room_results(api_request, code):
         return Response({'error': 'Room not found'}, status=status.HTTP_404_NOT_FOUND)
 
     players = PlayerSerializer(room.players.all(), many=True).data
-    # Sort by score descending
     players.sort(key=lambda p: p['score'], reverse=True)
 
     return Response({

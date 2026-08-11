@@ -43,6 +43,7 @@ class RoomSettings(models.Model):
     host_participates = models.BooleanField(default=True)
     max_players = models.IntegerField(default=50)
     speed_bonus_enabled = models.BooleanField(default=True)
+    is_public = models.BooleanField(default=True)
 
     def __str__(self):
         return f"Settings for Room {self.room.code}"

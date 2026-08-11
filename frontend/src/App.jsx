@@ -9,6 +9,7 @@ import Leaderboard from './components/Leaderboard';
 import DailyChallenge from './components/DailyChallenge';
 import InfiniteMode from './components/InfiniteMode';
 import StatsModal from './components/StatsModal';
+import PublicRoomsList from './components/PublicRoomsList';
 import { useRoomSocket } from './hooks/useRoomSocket';
 
 const isDev = typeof window !== 'undefined' && (window.location.host.includes('5173') || window.location.host.includes('localhost'));
@@ -207,11 +208,16 @@ export default function App() {
               lang={lang}
             />
           ) : (
-            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '70vh' }}>
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'stretch', minHeight: '70vh', flexWrap: 'wrap', gap: '1.5rem', maxWidth: '960px', margin: '0 auto' }}>
               <JoinCard
                 initialCode={pendingCode}
                 onJoin={handleJoin}
                 onCreateOpen={() => setIsCreateModalOpen(true)}
+                lang={lang}
+              />
+              <PublicRoomsList
+                apiBase={API_BASE}
+                onSelectRoomCode={(code) => setPendingCode(code)}
                 lang={lang}
               />
             </div>

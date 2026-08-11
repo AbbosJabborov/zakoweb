@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Clock, Send, CheckCircle2, Trophy, MessageSquare, AlertCircle } from 'lucide-react';
+import { Clock, Send, CheckCircle2, Trophy, MessageSquare, Image } from 'lucide-react';
 import { sound } from '../utils/sound';
 import { AvatarIcon } from '../utils/avatars';
 
@@ -130,14 +130,18 @@ export default function PlayScreen({
             </div>
 
             {/* Question Text */}
-            <h2 style={{ fontSize: '1.45rem', fontWeight: 700, lineHeight: 1.35, marginBottom: '1.25rem', color: '#ffffff' }}>
+            <h2 style={{ fontSize: '1.35rem', fontWeight: 700, lineHeight: 1.45, marginBottom: '1.25rem', color: '#ffffff' }}>
               {activeQuestion?.text || 'Loading question...'}
             </h2>
 
             {/* Media Image if present */}
             {activeQuestion?.media_url && (
-              <div style={{ textAlign: 'center', marginBottom: '1.25rem' }}>
-                <img src={activeQuestion.media_url} alt="Question Media" style={{ maxWidth: '100%', maxHeight: '220px', borderRadius: '0.85rem', border: '1px solid rgba(255, 255, 255, 0.1)' }} />
+              <div style={{ textAlign: 'center', marginBottom: '1.25rem', background: '#000000', padding: '0.5rem', borderRadius: '0.75rem', border: '1px solid rgba(255, 255, 255, 0.15)' }}>
+                <img
+                  src={activeQuestion.media_url}
+                  alt="Tarqatma Material"
+                  style={{ maxWidth: '100%', maxHeight: '340px', objectFit: 'contain', borderRadius: '0.5rem' }}
+                />
               </div>
             )}
 

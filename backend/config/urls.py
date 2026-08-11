@@ -1,6 +1,8 @@
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path, include, re_path
 from django.http import JsonResponse
+from django.conf import settings
+from django.views.static import serve
 from rest_framework.routers import DefaultRouter
 from rooms.views import create_room, join_room, get_room_snapshot, get_room_results
 from questions.views import QuestionViewSet, QuestionPackViewSet
@@ -24,4 +26,8 @@ urlpatterns = [
     path('api/rooms/<str:code>/join/', join_room, name='join_room'),
     path('api/rooms/<str:code>/', get_room_snapshot, name='get_room_snapshot'),
     path('api/rooms/<str:code>/results/', get_room_results, name='get_room_results'),
+]
+
+urlpatterns += [
+    re_path(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
 ]

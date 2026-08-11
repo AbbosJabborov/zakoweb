@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Volume2, VolumeX, LogOut, Brain, Calendar, Gamepad2, BarChart2, Globe } from 'lucide-react';
+import { Volume2, VolumeX, LogOut, Brain, Calendar, Gamepad2, BarChart2, Globe, Infinity as InfinityIcon } from 'lucide-react';
 import { sound } from '../utils/sound';
 import { translations } from '../utils/i18n';
 
@@ -52,7 +52,7 @@ export default function Navbar({ roomCode, onLeave, activeTab, setActiveTab, onO
         </span>
       </div>
 
-      {/* Middle Mode Tabs */}
+      {/* Middle Mode Selector Tabs: Daily | Infinite | Multiplayer */}
       {!roomCode && (
         <div style={{
           display: 'flex',
@@ -65,13 +65,13 @@ export default function Navbar({ roomCode, onLeave, activeTab, setActiveTab, onO
           <button
             onClick={() => setActiveTab('daily')}
             style={{
-              padding: '0.35rem 0.8rem',
+              padding: '0.35rem 0.75rem',
               borderRadius: '0.35rem',
               border: 'none',
               background: activeTab === 'daily' ? '#538d4e' : 'transparent',
               color: activeTab === 'daily' ? '#ffffff' : '#818384',
               fontWeight: 800,
-              fontSize: '0.8rem',
+              fontSize: '0.78rem',
               cursor: 'pointer',
               display: 'flex',
               alignItems: 'center',
@@ -83,15 +83,35 @@ export default function Navbar({ roomCode, onLeave, activeTab, setActiveTab, onO
           </button>
 
           <button
+            onClick={() => setActiveTab('infinite')}
+            style={{
+              padding: '0.35rem 0.75rem',
+              borderRadius: '0.35rem',
+              border: 'none',
+              background: activeTab === 'infinite' ? '#538d4e' : 'transparent',
+              color: activeTab === 'infinite' ? '#ffffff' : '#818384',
+              fontWeight: 800,
+              fontSize: '0.78rem',
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.35rem',
+              transition: 'all 0.15s ease'
+            }}
+          >
+            <InfinityIcon size={14} /> {t.infiniteTab}
+          </button>
+
+          <button
             onClick={() => setActiveTab('party')}
             style={{
-              padding: '0.35rem 0.8rem',
+              padding: '0.35rem 0.75rem',
               borderRadius: '0.35rem',
               border: 'none',
               background: activeTab === 'party' ? '#538d4e' : 'transparent',
               color: activeTab === 'party' ? '#ffffff' : '#818384',
               fontWeight: 800,
-              fontSize: '0.8rem',
+              fontSize: '0.78rem',
               cursor: 'pointer',
               display: 'flex',
               alignItems: 'center',
@@ -111,7 +131,7 @@ export default function Navbar({ roomCode, onLeave, activeTab, setActiveTab, onO
         </div>
       )}
 
-      {/* Right Controls: Language, Stats, Mute */}
+      {/* Right Controls */}
       <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
         {/* Language Switcher */}
         <button

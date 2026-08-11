@@ -7,6 +7,7 @@ import PlayScreen from './components/PlayScreen';
 import HostPanel from './components/HostPanel';
 import Leaderboard from './components/Leaderboard';
 import DailyChallenge from './components/DailyChallenge';
+import InfiniteMode from './components/InfiniteMode';
 import StatsModal from './components/StatsModal';
 import { useRoomSocket } from './hooks/useRoomSocket';
 
@@ -14,7 +15,7 @@ const isDev = typeof window !== 'undefined' && (window.location.host.includes('5
 export const API_BASE = isDev ? '' : 'https://api-zakoweb.claive.uz';
 
 export default function App() {
-  const [activeTab, setActiveTab] = useState('daily'); // DEFAULT MAIN PAGE IS DAILY
+  const [activeTab, setActiveTab] = useState('daily'); // 'daily', 'infinite', 'party'
   const [lang, setLang] = useState(() => localStorage.getItem('zakoweb_lang') || 'uz');
   const [isStatsOpen, setIsStatsOpen] = useState(false);
 
@@ -44,7 +45,7 @@ export default function App() {
     hostEndGame
   } = useRoomSocket(sessionState.roomCode, sessionState.sessionToken);
 
-  // Check URL params for room code (if shared via link)
+  // Check URL params for room code
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const codeParam = params.get('code');
@@ -165,6 +166,11 @@ export default function App() {
             <DailyChallenge
               apiBase={API_BASE}
               onOpenStats={() => setIsStatsOpen(true)}
+              lang={lang}
+            />
+          ) : activeTab === 'infinite' ? (
+            <InfiniteMode
+              apiBase={API_BASE}
               lang={lang}
             />
           ) : (

@@ -1,4 +1,5 @@
 import datetime
+import random
 from rest_framework import viewsets
 from rest_framework.decorators import action
 from rest_framework.response import Response
@@ -30,6 +31,34 @@ class QuestionViewSet(viewsets.ModelViewSet):
             'day_number': day_num,
             'question_number': idx + 1,
             'total_questions': len(questions),
+            'id': q.id,
+            'text': q.text,
+            'category': q.category,
+            'media_url': q.media_url,
+            'accepted_answers': q.accepted_answers,
+            'explanation': q.explanation
+        })
+
+    @action(detail=False, methods=['get'])
+    def random_question(self, request):
+        """
+        Returns a random question for infinite single-player mode.
+        """
+        exclude_raw = request.query_params.get('exclude', '')
+        exclude_ids = [int(i) for i in exclude_raw.split(',') if i.isdigit()]
+
+        qs = Question.objects.exclude(id__in=exclude_ids)
+        if not qs.exists():
+            qs = Question.objects.all()
+
+        if not qs.exists():
+            return Response({'error': 'No questions available'}, status=404)
+
+        count = qs.count()
+        random_index = random.randint(0, count - 1)
+        q = qs[random_index]
+
+        return Response({
             'id': q.id,
             'text': q.text,
             'category': q.category,

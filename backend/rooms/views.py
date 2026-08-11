@@ -114,6 +114,20 @@ def join_room(api_request, code):
         'session_token': player.session_token
     }, status=status.HTTP_200_OK)
 
+@api_view(['POST'])
+def terminate_room_api(api_request, code):
+    """
+    Terminates a room by room code (Admin or Host access).
+    """
+    try:
+        room = Room.objects.get(code__iexact=code)
+    except Room.DoesNotExist:
+        return Response({'error': 'Room not found'}, status=status.HTTP_404_NOT_FOUND)
+
+    room.status = 'ended'
+    room.save()
+    return Response({'status': 'terminated', 'code': room.code}, status=status.HTTP_200_OK)
+
 @api_view(['GET'])
 def get_room_snapshot(api_request, code):
     """

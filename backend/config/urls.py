@@ -4,7 +4,7 @@ from django.http import JsonResponse
 from django.conf import settings
 from django.views.static import serve
 from rest_framework.routers import DefaultRouter
-from rooms.views import create_room, join_room, get_room_snapshot, get_room_results, list_public_rooms
+from rooms.views import create_room, join_room, get_room_snapshot, get_room_results, list_public_rooms, terminate_room_api
 from questions.views import QuestionViewSet, QuestionPackViewSet
 
 def health_check(request):
@@ -25,6 +25,7 @@ urlpatterns = [
     path('api/rooms/', create_room, name='create_room'),
     path('api/public-rooms/', list_public_rooms, name='list_public_rooms'),
     path('api/rooms/<str:code>/join/', join_room, name='join_room'),
+    path('api/rooms/<str:code>/terminate/', terminate_room_api, name='terminate_room_api'),
     path('api/rooms/<str:code>/', get_room_snapshot, name='get_room_snapshot'),
     path('api/rooms/<str:code>/results/', get_room_results, name='get_room_results'),
 ]

@@ -16,7 +16,6 @@ def extract_and_parse_docx(docx_path):
     os.makedirs(MEDIA_DIR, exist_ok=True)
 
     with zipfile.ZipFile(docx_path) as z:
-        # Map rIds from document.xml.rels
         rels_xml = z.read('word/_rels/document.xml.rels')
         rels_tree = ET.fromstring(rels_xml)
         rids = {}
@@ -41,21 +40,24 @@ def extract_and_parse_docx(docx_path):
             if p_text or img_rids:
                 paras.append({'text': p_text, 'imgs': img_rids})
 
-    # Group into question blocks
     raw_blocks = []
     current_block = []
 
     for item in paras:
         t = item['text']
-        is_header = False
-        if re.search(r'^\d+[\.\-]\s*', t) and not re.search(r'^(to[\'`ʻʼ]?g[\'`ʻʼ]?ri\s*)?javob', t, re.I) and not re.search(r'^izoh', t, re.I):
-            is_header = True
-        elif re.search(r'^\d+\s*-\s*savol', t, re.I):
-            is_header = True
+        is_new_q = False
+        if re.search(r'^\d+\s*-\s*savol', t, re.I):
+            is_new_q = True
+        elif re.search(r'^\d+[\.\-]\s*', t) and not re.search(r'^(to[\'`ʻʼ]?g[\'`ʻʼ]?ri\s*)?javob', t, re.I) and not re.search(r'^(izoh|qabul|manba|muallif)', t, re.I):
+            is_new_q = True
 
-        if is_header and current_block:
-            raw_blocks.append(current_block)
-            current_block = [item]
+        if is_new_q and current_block:
+            cb_text = '\n'.join([b['text'] for b in current_block if b['text']])
+            if re.search(r'javob:', cb_text, re.I):
+                raw_blocks.append(current_block)
+                current_block = [item]
+            else:
+                current_block.append(item)
         else:
             current_block.append(item)
 
@@ -101,19 +103,20 @@ def extract_and_parse_docx(docx_path):
         # RULE 2: TARQATMA MATERIAL & IMAGE EXTRACTION
         media_url = None
         if block_imgs:
-            img_path_in_zip = block_imgs[0]
+            raw_img_path = block_imgs[0]
+            zip_target_path = raw_img_path if raw_img_path.startswith('word/') else f"word/{raw_img_path}"
             try:
                 with zipfile.ZipFile(docx_path) as z:
-                    img_data = z.read(img_path_in_zip)
-                    ext = os.path.splitext(img_path_in_zip)[1] or '.png'
+                    img_data = z.read(zip_target_path)
+                    ext = os.path.splitext(zip_target_path)[1] or '.png'
                     img_hash = hashlib.md5(img_data).hexdigest()[:12]
                     filename = f"q_{img_hash}{ext}"
                     out_path = os.path.join(MEDIA_DIR, filename)
                     with open(out_path, 'wb') as f:
                         f.write(img_data)
                     media_url = f"https://api-zakoweb.claive.uz/media/questions/{filename}"
-            except Exception:
-                pass
+            except Exception as e:
+                print(f"Error extracting image {zip_target_path}: {e}")
 
         # Build accepted answers list
         answers = []
@@ -161,7 +164,6 @@ class Command(BaseCommand):
             (os.path.join(base_dir, '../../fixtures/120qs.docx'), 'Zakovat Rasmiy Bank (120 Savol)'),
         ]
 
-        # Reset Question Pack & Questions
         Question.objects.all().delete()
         QuestionPack.objects.all().delete()
 

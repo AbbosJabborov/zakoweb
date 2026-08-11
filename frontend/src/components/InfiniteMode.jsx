@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Sparkles, Flame, Trophy, Check, X, ArrowRight, Lightbulb, HelpCircle, RefreshCw } from 'lucide-react';
+import { Sparkles, Flame, Trophy, Check, X, ArrowRight, Lightbulb, HelpCircle, RefreshCw, Play } from 'lucide-react';
 import { sound } from '../utils/sound';
 import { translations } from '../utils/i18n';
 
-export default function InfiniteMode({ apiBase, lang = 'uz' }) {
+export default function InfiniteMode({ apiBase, lang = 'en' }) {
+  const [hasStarted, setHasStarted] = useState(false);
   const [currentQuestion, setCurrentQuestion] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [userGuess, setUserGuess] = useState('');
   const [isSolved, setIsSolved] = useState(false);
@@ -16,11 +17,12 @@ export default function InfiniteMode({ apiBase, lang = 'uz' }) {
   const [streak, setStreak] = useState(0);
   const [seenIds, setSeenIds] = useState([]);
 
-  const t = translations[lang] || translations.uz;
+  const t = translations[lang] || translations.en;
 
-  useEffect(() => {
+  const startPractice = () => {
+    setHasStarted(true);
     fetchRandomQuestion();
-  }, []);
+  };
 
   const fetchRandomQuestion = async () => {
     setLoading(true);
@@ -77,6 +79,68 @@ export default function InfiniteMode({ apiBase, lang = 'uz' }) {
     setIsRevealed(true);
     setStreak(0);
   };
+
+  // 1. Landing Screen before Play button is clicked
+  if (!hasStarted) {
+    return (
+      <div style={{ maxWidth: '600px', margin: '2rem auto', padding: '0.5rem' }}>
+        <div className="wordle-card animate-pop-in" style={{ padding: '2.5rem 1.5rem', textAlign: 'center' }}>
+          
+          <div style={{
+            width: '64px',
+            height: '64px',
+            borderRadius: '16px',
+            background: '#538d4e',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            margin: '0 auto 1.25rem auto',
+            boxShadow: '0 8px 24px rgba(83, 141, 78, 0.3)'
+          }}>
+            <Play size={32} color="#ffffff" style={{ marginLeft: '4px' }} />
+          </div>
+
+          <div style={{ fontSize: '0.8rem', fontWeight: 800, color: '#6aaa64', letterSpacing: '1.5px', textTransform: 'uppercase', marginBottom: '0.5rem' }}>
+            ∞ {t.infiniteTab}
+          </div>
+
+          <h1 style={{ fontSize: '1.75rem', fontWeight: 800, color: '#ffffff', marginBottom: '0.75rem' }}>
+            {t.infiniteTitle}
+          </h1>
+
+          <p style={{ color: '#818384', fontSize: '0.95rem', lineHeight: 1.5, maxWidth: '440px', margin: '0 auto 1.75rem auto' }}>
+            {t.infiniteSub}
+          </p>
+
+          <div style={{ background: '#272729', borderRadius: '0.75rem', padding: '1rem 1.25rem', marginBottom: '2rem', border: '1px solid #3a3a3c', display: 'flex', justifyContent: 'space-around' }}>
+            <div>
+              <div style={{ fontSize: '1.25rem', fontWeight: 800, color: '#ffffff' }}>515+</div>
+              <div style={{ fontSize: '0.75rem', color: '#818384', fontWeight: 700 }}>Puzzles</div>
+            </div>
+            <div style={{ borderLeft: '1px solid #3a3a3c' }} />
+            <div>
+              <div style={{ fontSize: '1.25rem', fontWeight: 800, color: '#6aaa64' }}>Media</div>
+              <div style={{ fontSize: '0.75rem', color: '#818384', fontWeight: 700 }}>Tarqatma Support</div>
+            </div>
+            <div style={{ borderLeft: '1px solid #3a3a3c' }} />
+            <div>
+              <div style={{ fontSize: '1.25rem', fontWeight: 800, color: '#f59e0b' }}>∞</div>
+              <div style={{ fontSize: '0.75rem', color: '#818384', fontWeight: 700 }}>No Limits</div>
+            </div>
+          </div>
+
+          <button
+            onClick={startPractice}
+            className="wordle-btn-submit"
+            style={{ width: '100%', padding: '1rem', fontSize: '1.1rem', fontWeight: 800, letterSpacing: '0.5px' }}
+          >
+            {t.playInfinite}
+          </button>
+
+        </div>
+      </div>
+    );
+  }
 
   if (loading) {
     return (
@@ -146,9 +210,10 @@ export default function InfiniteMode({ apiBase, lang = 'uz' }) {
           {currentQuestion.text}
         </h3>
 
+        {/* Media Image display for Tarqatma material questions */}
         {currentQuestion.media_url && (
-          <div style={{ textAlign: 'center', marginBottom: '1rem' }}>
-            <img src={currentQuestion.media_url} alt="Savol rasmi" style={{ maxWidth: '100%', maxHeight: '220px', borderRadius: '0.5rem' }} />
+          <div style={{ textAlign: 'center', marginBottom: '1.25rem', background: '#000000', padding: '0.5rem', borderRadius: '0.5rem', border: '1px solid #3a3a3c' }}>
+            <img src={currentQuestion.media_url} alt="Tarqatma material" style={{ maxWidth: '100%', maxHeight: '340px', objectFit: 'contain', borderRadius: '0.4rem' }} />
           </div>
         )}
 

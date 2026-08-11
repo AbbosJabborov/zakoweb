@@ -54,6 +54,10 @@ export const translations = {
     scoreLabel: "Ochko",
     solvedLabel: "Topilgan",
     streakLabel: "Streak",
+    playInfinite: "▶ O'YINNI BOSHLASH",
+    playDaily: "▶ BUGUNGI SAVOLNI BOSHLASH",
+    infiniteReady: "Zakovat bilimingizni cheksiz savollar bilan sinab ko'rishga tayyormisiz?",
+    dailyReady: "Bugungi rasmiy Zakovat savolini yechishga tayyormisiz?",
     langUz: "UZ",
     langEn: "EN"
   },
@@ -92,9 +96,6 @@ export const translations = {
     lockRound: "Lock Question",
     nextRound: "Next Question",
     endGame: "End Game",
-    liveFeed: "Live Feed",
-    scoreboard: "LEADERBOARD",
-    playAgain: "Play Again",
     leave: "Leave",
     question: "QUESTION",
     timeRemaining: "Time",
@@ -112,6 +113,10 @@ export const translations = {
     scoreLabel: "Score",
     solvedLabel: "Solved",
     streakLabel: "Streak",
+    playInfinite: "▶ PLAY GAME",
+    playDaily: "▶ PLAY TODAY'S PUZZLE",
+    infiniteReady: "Ready to practice non-stop with 500+ Zakovat puzzles?",
+    dailyReady: "Ready to attempt today's official Zakovat puzzle?",
     langUz: "UZ",
     langEn: "EN"
   }

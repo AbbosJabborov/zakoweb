@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Sparkles, Trophy, Share2, Clock, Lightbulb, Check, X } from 'lucide-react';
+import { Sparkles, Trophy, Share2, Clock, Lightbulb, Check, X, Play } from 'lucide-react';
 import { sound } from '../utils/sound';
 import { translations } from '../utils/i18n';
 
-export default function DailyChallenge({ apiBase, onOpenStats, lang = 'uz' }) {
+export default function DailyChallenge({ apiBase, onOpenStats, lang = 'en' }) {
+  const [hasStarted, setHasStarted] = useState(false);
   const [dailyData, setDailyData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -14,7 +15,7 @@ export default function DailyChallenge({ apiBase, onOpenStats, lang = 'uz' }) {
   const [copied, setCopied] = useState(false);
   const [timeUntilNext, setTimeUntilNext] = useState('');
 
-  const t = translations[lang] || translations.uz;
+  const t = translations[lang] || translations.en;
   const todayStr = new Date().toISOString().split('T')[0];
 
   useEffect(() => {
@@ -62,6 +63,9 @@ export default function DailyChallenge({ apiBase, onOpenStats, lang = 'uz' }) {
         setGuesses(parsed.guesses || []);
         setIsSolved(parsed.isSolved || false);
         setIsFailed(parsed.isFailed || false);
+        if (parsed.guesses && parsed.guesses.length > 0) {
+          setHasStarted(true);
+        }
       } catch (e) {
         console.error(e);
       }
@@ -165,6 +169,51 @@ export default function DailyChallenge({ apiBase, onOpenStats, lang = 'uz' }) {
 
   const primaryAnswer = dailyData.accepted_answers?.[0] || '';
 
+  // Start Screen before user starts today's challenge
+  if (!hasStarted) {
+    return (
+      <div style={{ maxWidth: '600px', margin: '2rem auto', padding: '0.5rem' }}>
+        <div className="wordle-card animate-pop-in" style={{ padding: '2.5rem 1.5rem', textAlign: 'center' }}>
+          
+          <div style={{
+            width: '64px',
+            height: '64px',
+            borderRadius: '16px',
+            background: '#538d4e',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            margin: '0 auto 1.25rem auto',
+            boxShadow: '0 8px 24px rgba(83, 141, 78, 0.3)'
+          }}>
+            <Play size={32} color="#ffffff" style={{ marginLeft: '4px' }} />
+          </div>
+
+          <div style={{ fontSize: '0.8rem', fontWeight: 800, color: '#6aaa64', letterSpacing: '1.5px', textTransform: 'uppercase', marginBottom: '0.5rem' }}>
+            {t.dailyTab} #{dailyData.question_number}
+          </div>
+
+          <h1 style={{ fontSize: '1.75rem', fontWeight: 800, color: '#ffffff', marginBottom: '0.75rem' }}>
+            {t.dailyTitle}
+          </h1>
+
+          <p style={{ color: '#818384', fontSize: '0.95rem', lineHeight: 1.5, maxWidth: '440px', margin: '0 auto 1.75rem auto' }}>
+            {t.howToPlayDesc}
+          </p>
+
+          <button
+            onClick={() => setHasStarted(true)}
+            className="wordle-btn-submit"
+            style={{ width: '100%', padding: '1rem', fontSize: '1.1rem', fontWeight: 800 }}
+          >
+            {t.playDaily}
+          </button>
+
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div style={{ maxWidth: '640px', margin: '0 auto', padding: '0.5rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
       
@@ -210,9 +259,10 @@ export default function DailyChallenge({ apiBase, onOpenStats, lang = 'uz' }) {
           {dailyData.text}
         </h3>
 
+        {/* Media Image display for Tarqatma material questions */}
         {dailyData.media_url && (
-          <div style={{ textAlign: 'center', marginBottom: '1rem' }}>
-            <img src={dailyData.media_url} alt="Media" style={{ maxWidth: '100%', maxHeight: '200px', borderRadius: '0.5rem' }} />
+          <div style={{ textAlign: 'center', marginBottom: '1.25rem', background: '#000000', padding: '0.5rem', borderRadius: '0.5rem', border: '1px solid #3a3a3c' }}>
+            <img src={dailyData.media_url} alt="Tarqatma material" style={{ maxWidth: '100%', maxHeight: '340px', objectFit: 'contain', borderRadius: '0.4rem' }} />
           </div>
         )}
 

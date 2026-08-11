@@ -2,10 +2,10 @@ from django.contrib import admin
 from rooms.models import Room, RoomSettings
 from gameplay.models import Player
 
-@admin.action(description='Terminate Selected Rooms (Set status=ended)')
 def terminate_rooms(modeladmin, request, queryset):
     updated = queryset.update(status='ended')
     modeladmin.message_user(request, f"Successfully terminated {updated} room(s).")
+terminate_rooms.short_description = "Terminate Selected Rooms (Set status=ended)"
 
 class RoomSettingsInline(admin.StackedInline):
     model = RoomSettings

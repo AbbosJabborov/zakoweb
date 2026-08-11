@@ -7,9 +7,9 @@ export default function CreateRoomModal({ isOpen, onClose, onCreate }) {
   const [selectedAvatarId, setSelectedAvatarId] = useState('crown');
 
   const [questionCount, setQuestionCount] = useState(10);
-  const [timePerQuestion, setTimePerQuestion] = useState(30);
+  const [timePerQuestion, setTimePerQuestion] = useState(60);
   const [answersPerPlayer, setAnswersPerPlayer] = useState('multiple');
-  const [answeringCooldown, setAnsweringCooldown] = useState(3);
+  const [answeringCooldown, setAnsweringCooldown] = useState(0);
   const [answerVisibility, setAnswerVisibility] = useState('as_submitted');
   const [speedBonusEnabled, setSpeedBonusEnabled] = useState(true);
   const [hostParticipates, setHostParticipates] = useState(true);

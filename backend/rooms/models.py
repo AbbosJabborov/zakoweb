@@ -35,9 +35,9 @@ class RoomSettings(models.Model):
 
     room = models.OneToOneField(Room, on_delete=models.CASCADE, related_name='settings')
     question_count = models.IntegerField(default=10)
-    time_per_question = models.IntegerField(default=30)
+    time_per_question = models.IntegerField(default=60)
     answers_per_player = models.CharField(max_length=20, choices=ANSWER_MODE_CHOICES, default='multiple')
-    answering_cooldown = models.IntegerField(default=3, help_text="Cooldown in seconds between guesses in multiple mode")
+    answering_cooldown = models.IntegerField(default=0, help_text="Cooldown in seconds between guesses in multiple mode")
     recap_duration = models.IntegerField(default=8)
     answer_visibility = models.CharField(max_length=25, choices=VISIBILITY_CHOICES, default='as_submitted')
     host_participates = models.BooleanField(default=True)

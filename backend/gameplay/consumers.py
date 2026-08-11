@@ -10,6 +10,9 @@ from gameplay.grading import check_answer_correctness, calculate_points
 
 logger = logging.getLogger(__name__)
 
+# Global in-memory skip votes tracker: { "ROOMCODE_QINDEX": set(player_ids) }
+ROOM_SKIP_VOTES = {}
+
 class RoomConsumer(AsyncWebsocketConsumer):
     async def connect(self):
         self.room_code = self.scope['url_route']['kwargs']['room_code'].upper()
@@ -74,8 +77,14 @@ class RoomConsumer(AsyncWebsocketConsumer):
             await self.handle_join_room(data)
         elif action == 'submit_answer':
             await self.handle_submit_answer(data)
+        elif action == 'send_lobby_chat':
+            await self.handle_send_lobby_chat(data)
+        elif action == 'vote_skip_question':
+            await self.handle_vote_skip_question(data)
         elif action == 'host_start_game':
             await self.handle_start_game(data)
+        elif action == 'host_update_settings':
+            await self.handle_update_settings(data)
         elif action == 'host_lock_question':
             await self.handle_lock_question(data)
         elif action == 'host_override_grade':
@@ -116,6 +125,97 @@ class RoomConsumer(AsyncWebsocketConsumer):
             }
         )
 
+    async def handle_send_lobby_chat(self, data):
+        if not self.player:
+            session_token = data.get('session_token')
+            if session_token:
+                self.player = await self.get_player_by_token(self.room_code, session_token)
+
+        if not self.player:
+            return
+
+        text = data.get('text', '').strip()
+        if not text:
+            return
+
+        msg_data = {
+            'id': f"lobby_{datetime.now().timestamp()}",
+            'player_id': self.player.id,
+            'player_nickname': self.player.nickname,
+            'player_avatar': self.player.avatar,
+            'text': text,
+            'submitted_at': datetime.now(timezone.utc).isoformat()
+        }
+
+        await self.channel_layer.group_send(
+            self.room_group_name,
+            {
+                'type': 'broadcast_event',
+                'event': 'lobby_chat_received',
+                'data': msg_data
+            }
+        )
+
+    async def handle_update_settings(self, data):
+        host_token = data.get('host_token')
+        if not await self.verify_host(self.room_code, host_token):
+            await self.send_json({'event': 'error', 'message': 'Unauthorized host action'})
+            return
+
+        settings_dict = data.get('settings', {})
+        updated_settings = await self.update_room_settings(self.room_code, settings_dict)
+
+        await self.channel_layer.group_send(
+            self.room_group_name,
+            {
+                'type': 'broadcast_event',
+                'event': 'settings_updated',
+                'data': {'settings': updated_settings}
+            }
+        )
+
+    async def handle_vote_skip_question(self, data):
+        if not self.player:
+            session_token = data.get('session_token')
+            if session_token:
+                self.player = await self.get_player_by_token(self.room_code, session_token)
+
+        if not self.player:
+            return
+
+        room_info = await self.get_active_room_question_info(self.room_code)
+        if not room_info or not room_info.get('is_active') or room_info.get('is_locked'):
+            return
+
+        q_key = f"{self.room_code}_{room_info['q_index']}"
+        if q_key not in ROOM_SKIP_VOTES:
+            ROOM_SKIP_VOTES[q_key] = set()
+
+        ROOM_SKIP_VOTES[q_key].add(self.player.id)
+
+        vote_count = len(ROOM_SKIP_VOTES[q_key])
+        total_players = max(1, room_info.get('total_players', 1))
+        percentage = round((vote_count / total_players) * 100)
+        required_votes = max(1, int(round(total_players * 0.7)))
+
+        await self.channel_layer.group_send(
+            self.room_group_name,
+            {
+                'type': 'broadcast_event',
+                'event': 'skip_vote_updated',
+                'data': {
+                    'vote_count': vote_count,
+                    'total_players': total_players,
+                    'percentage': percentage,
+                    'required_votes': required_votes
+                }
+            }
+        )
+
+        # If >= 70% of players vote to skip, lock and skip question!
+        if percentage >= 70 or data.get('is_host_skip'):
+            await self.handle_lock_question({'host_token': 'auto_expired'})
+
     async def handle_submit_answer(self, data):
         if not self.player:
             session_token = data.get('session_token')
@@ -142,11 +242,9 @@ class RoomConsumer(AsyncWebsocketConsumer):
                     }
                 })
             elif res.get('reason') == 'time_expired':
-                # Auto lock question when time expired
                 await self.handle_lock_question({'host_token': 'auto_expired'})
             return
 
-        # Broadcast submitted answer feed item
         await self.channel_layer.group_send(
             self.room_group_name,
             {
@@ -156,7 +254,6 @@ class RoomConsumer(AsyncWebsocketConsumer):
             }
         )
 
-        # If player solved it on this guess
         if res.get('solved'):
             await self.channel_layer.group_send(
                 self.room_group_name,
@@ -173,7 +270,6 @@ class RoomConsumer(AsyncWebsocketConsumer):
                 }
             )
 
-            # Send leaderboard update
             leaderboard = await self.get_current_leaderboard(self.room_code)
             await self.channel_layer.group_send(
                 self.room_group_name,
@@ -326,6 +422,39 @@ class RoomConsumer(AsyncWebsocketConsumer):
         Player.objects.filter(id=player_id).update(connected=status_bool)
 
     @database_sync_to_async
+    def update_room_settings(self, room_code, settings_dict):
+        room = Room.objects.get(code__iexact=room_code)
+        st = room.settings
+        if 'time_per_question' in settings_dict:
+            st.time_per_question = int(settings_dict['time_per_question'])
+        if 'answering_cooldown' in settings_dict:
+            st.answering_cooldown = int(settings_dict['answering_cooldown'])
+        if 'question_count' in settings_dict:
+            st.question_count = int(settings_dict['question_count'])
+        if 'answers_per_player' in settings_dict:
+            st.answers_per_player = settings_dict['answers_per_player']
+        if 'answer_visibility' in settings_dict:
+            st.answer_visibility = settings_dict['answer_visibility']
+        st.save()
+
+        from rooms.serializers import RoomSettingsSerializer
+        return RoomSettingsSerializer(st).data
+
+    @database_sync_to_async
+    def get_active_room_question_info(self, room_code):
+        try:
+            room = Room.objects.get(code__iexact=room_code)
+            rq = room.room_questions.filter(order_index=room.current_question_index).first()
+            return {
+                'is_active': room.status == 'active',
+                'q_index': room.current_question_index,
+                'is_locked': rq.locked_at is not None if rq else True,
+                'total_players': room.players.filter(connected=True).count()
+            }
+        except Exception:
+            return None
+
+    @database_sync_to_async
     def handle_player_departure(self, player_id, room_code):
         try:
             player = Player.objects.get(id=player_id)
@@ -336,7 +465,6 @@ class RoomConsumer(AsyncWebsocketConsumer):
             
             connected_players = room.players.filter(connected=True)
             if not connected_players.exists():
-                # If no players connected, terminate room
                 room.status = 'ended'
                 room.save()
                 return {'room_terminated': True, 'players': [], 'new_host': None}
@@ -449,7 +577,7 @@ class RoomConsumer(AsyncWebsocketConsumer):
         if room.settings.answers_per_player == 'single' and pstate.attempts_count >= 1:
             return {'success': False, 'reason': 'single_mode_limit'}
 
-        if room.settings.answers_per_player == 'multiple' and pstate.last_submitted_at:
+        if room.settings.answers_per_player == 'multiple' and pstate.last_submitted_at and room.settings.answering_cooldown > 0:
             delta = (now - pstate.last_submitted_at).total_seconds()
             if delta < room.settings.answering_cooldown:
                 return {'success': False, 'reason': 'cooldown', 'remaining': round(room.settings.answering_cooldown - delta, 1)}

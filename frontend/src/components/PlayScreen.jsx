@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Clock, Send, CheckCircle2, Trophy, MessageSquare } from 'lucide-react';
+import { Clock, Send, CheckCircle2, Trophy, MessageSquare, FastForward } from 'lucide-react';
 import { sound } from '../utils/sound';
 import { AvatarIcon } from '../utils/avatars';
 
@@ -13,10 +13,12 @@ export default function PlayScreen({
   currentPlayer,
   roomSettings,
   isHost,
-  onLockQuestion
+  onLockQuestion,
+  skipVoteData = { vote_count: 0, required_votes: 1, percentage: 0 },
+  onVoteSkip
 }) {
   const [inputText, setInputText] = useState('');
-  const [timeLeft, setTimeLeft] = useState(activeQuestion?.duration || 30);
+  const [timeLeft, setTimeLeft] = useState(activeQuestion?.duration || 60);
   const feedContainerRef = useRef(null);
 
   const onLockQuestionRef = useRef(onLockQuestion);
@@ -27,7 +29,7 @@ export default function PlayScreen({
     isHostRef.current = isHost;
   });
 
-  const duration = activeQuestion?.duration || 30;
+  const duration = activeQuestion?.duration || 60;
   const isLocked = activeQuestion?.is_locked || false;
 
   // Scroll ONLY the inner chat feed element without jumping the outer page window
@@ -108,7 +110,7 @@ export default function PlayScreen({
           {/* Question Card */}
           <div className="glass-panel glass-panel-glow" style={{ padding: '1.75rem', position: 'relative' }}>
             
-            {/* Question Top Header: Index & Timer */}
+            {/* Question Top Header: Index, Skip Button & Timer */}
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1rem', flexWrap: 'wrap', gap: '0.5rem' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                 <span style={{ background: 'rgba(139, 92, 246, 0.2)', color: '#c084fc', border: '1px solid rgba(139, 92, 246, 0.35)', padding: '0.3rem 0.75rem', borderRadius: '2rem', fontSize: '0.82rem', fontWeight: 800 }}>
@@ -121,9 +123,22 @@ export default function PlayScreen({
                 )}
               </div>
 
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', color: timerColor, fontWeight: 900, fontSize: '1.2rem', fontFamily: 'var(--font-mono)' }}>
-                <Clock size={20} />
-                <span>{timeLeft}s</span>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                {!isLocked && onVoteSkip && (
+                  <button
+                    onClick={() => onVoteSkip(isHost)}
+                    className="btn-secondary"
+                    style={{ padding: '0.35rem 0.75rem', fontSize: '0.78rem', gap: '0.35rem' }}
+                    title="Vote to skip question (70% required)"
+                  >
+                    <FastForward size={14} color="#f59e0b" /> Skip ({skipVoteData?.vote_count || 0}/{skipVoteData?.required_votes || 1} • {skipVoteData?.percentage || 0}%)
+                  </button>
+                )}
+
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', color: timerColor, fontWeight: 900, fontSize: '1.2rem', fontFamily: 'var(--font-mono)' }}>
+                  <Clock size={20} />
+                  <span>{timeLeft}s</span>
+                </div>
               </div>
             </div>
 

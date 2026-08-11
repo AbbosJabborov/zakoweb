@@ -40,11 +40,9 @@ export default function App() {
       const savedCode = localStorage.getItem('zakoweb_room_code') || '';
       const savedToken = localStorage.getItem('zakoweb_session_token') || '';
 
-      // If user already has valid session token for this room, reconnect directly
       if (savedCode === upperCode && savedToken) {
         setSessionState(prev => ({ ...prev, roomCode: upperCode, sessionToken: savedToken }));
       } else {
-        // Shared link visitor: show JoinCard with pre-filled room code
         setPendingCode(upperCode);
         setSessionState(prev => ({ ...prev, roomCode: '', sessionToken: '' }));
       }
@@ -60,7 +58,12 @@ export default function App() {
     leaderboard,
     cooldownRemaining,
     lastNotification,
+    lobbyChatMessages,
+    skipVoteData,
     submitAnswer,
+    sendLobbyChat,
+    hostUpdateSettings,
+    voteSkipQuestion,
     hostStartGame,
     hostLockQuestion,
     hostOverrideGrade,
@@ -104,7 +107,6 @@ export default function App() {
     localStorage.setItem('zakoweb_session_token', data.session_token);
     localStorage.setItem('zakoweb_nickname', nickname);
 
-    // Update URL parameter
     window.history.pushState({}, '', `?code=${upperCode}`);
 
     setSessionState({
@@ -146,7 +148,6 @@ export default function App() {
     localStorage.setItem('zakoweb_host_token', roomObj.host_token);
     localStorage.setItem('zakoweb_nickname', finalHostName);
 
-    // Update URL parameter with room code
     window.history.pushState({}, '', `?code=${roomObj.code}`);
 
     setSessionState({
@@ -171,7 +172,6 @@ export default function App() {
     window.history.pushState({}, '', window.location.pathname);
   };
 
-  // Current Player Object
   const currentPlayer = (roomData?.players || []).find(p => p.nickname === sessionState.nickname) || {
     nickname: sessionState.nickname,
     avatar: 'brain'
@@ -222,6 +222,9 @@ export default function App() {
             isHost={isHost}
             hostToken={sessionState.hostToken}
             onStartGame={hostStartGame}
+            onUpdateSettings={(settings) => hostUpdateSettings(sessionState.hostToken, settings)}
+            lobbyChatMessages={lobbyChatMessages}
+            onSendLobbyChat={sendLobbyChat}
           />
         ) : status === 'active' ? (
           <>
@@ -236,6 +239,8 @@ export default function App() {
               roomSettings={roomData?.settings}
               isHost={isHost}
               onLockQuestion={() => hostLockQuestion(sessionState.hostToken)}
+              skipVoteData={skipVoteData}
+              onVoteSkip={voteSkipQuestion}
             />
 
             {isHost && (

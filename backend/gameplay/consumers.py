@@ -25,22 +25,36 @@ class RoomConsumer(AsyncWebsocketConsumer):
 
     async def disconnect(self, close_code):
         if self.player:
-            await self.set_player_connection(self.player.id, False)
-            players_list = await self.get_room_players(self.room_code)
-            await self.channel_layer.group_send(
-                self.room_group_name,
-                {
-                    'type': 'broadcast_event',
-                    'event': 'players_updated',
-                    'data': {
-                        'players': players_list,
-                        'left_player': {
-                            'nickname': self.player.nickname,
-                            'id': self.player.id
-                        }
+            res = await self.handle_player_departure(self.player.id, self.room_code)
+
+            if res.get('room_terminated'):
+                await self.channel_layer.group_send(
+                    self.room_group_name,
+                    {
+                        'type': 'broadcast_event',
+                        'event': 'room_terminated',
+                        'data': {'message': 'Room terminated as all players left.'}
+                    }
+                )
+            else:
+                event_data = {
+                    'players': res['players'],
+                    'left_player': {
+                        'nickname': self.player.nickname,
+                        'id': self.player.id
                     }
                 }
-            )
+                if res.get('new_host'):
+                    event_data['new_host'] = res['new_host']
+
+                await self.channel_layer.group_send(
+                    self.room_group_name,
+                    {
+                        'type': 'broadcast_event',
+                        'event': 'players_updated',
+                        'data': event_data
+                    }
+                )
 
         await self.channel_layer.group_discard(
             self.room_group_name,
@@ -189,7 +203,6 @@ class RoomConsumer(AsyncWebsocketConsumer):
 
     async def handle_lock_question(self, data):
         host_token = data.get('host_token')
-        # Allow auto_expired trigger or verified host token
         if host_token != 'auto_expired' and not await self.verify_host(self.room_code, host_token):
             await self.send_json({'event': 'error', 'message': 'Unauthorized host action'})
             return
@@ -313,6 +326,50 @@ class RoomConsumer(AsyncWebsocketConsumer):
         Player.objects.filter(id=player_id).update(connected=status_bool)
 
     @database_sync_to_async
+    def handle_player_departure(self, player_id, room_code):
+        try:
+            player = Player.objects.get(id=player_id)
+            player.connected = False
+            player.save()
+
+            room = Room.objects.get(code__iexact=room_code)
+            
+            connected_players = room.players.filter(connected=True)
+            if not connected_players.exists():
+                # If no players connected, terminate room
+                room.status = 'ended'
+                room.save()
+                return {'room_terminated': True, 'players': [], 'new_host': None}
+
+            new_host = None
+            if player.is_host_player:
+                player.is_host_player = False
+                player.save()
+
+                next_player = connected_players.first() or room.players.order_by('id').first()
+                if next_player:
+                    next_player.is_host_player = True
+                    next_player.save()
+                    new_host = {
+                        'id': next_player.id,
+                        'nickname': next_player.nickname,
+                        'session_token': next_player.session_token,
+                        'host_token': room.host_token
+                    }
+
+            from rooms.serializers import PlayerSerializer
+            players_data = PlayerSerializer(room.players.all(), many=True).data
+
+            return {
+                'room_terminated': False,
+                'players': players_data,
+                'new_host': new_host
+            }
+        except Exception as e:
+            logger.error(f"Error handling player departure: {e}")
+            return {'room_terminated': False, 'players': [], 'new_host': None}
+
+    @database_sync_to_async
     def verify_host(self, room_code, host_token):
         if not host_token:
             return False
@@ -330,7 +387,6 @@ class RoomConsumer(AsyncWebsocketConsumer):
         room = Room.objects.get(code__iexact=room_code)
         data = RoomDetailSerializer(room).data
 
-        # If current player is the host, attach host_token so frontend restores host rights automatically!
         if current_player and current_player.is_host_player:
             data['host_token'] = room.host_token
 
@@ -383,7 +439,6 @@ class RoomConsumer(AsyncWebsocketConsumer):
 
         now = django_timezone.now()
 
-        # Check if question time has expired
         if rq.started_at:
             elapsed = (now - rq.started_at).total_seconds()
             if elapsed > room.settings.time_per_question:

@@ -15,8 +15,9 @@ const isDev = typeof window !== 'undefined' && (window.location.host.includes('5
 export const API_BASE = isDev ? '' : 'https://api-zakoweb.claive.uz';
 
 export default function App() {
-  const [activeTab, setActiveTab] = useState('daily'); // 'daily', 'infinite', 'party'
-  const [lang, setLang] = useState(() => localStorage.getItem('zakoweb_lang') || 'uz');
+  // English & Infinite Mode set as defaults!
+  const [activeTab, setActiveTab] = useState('infinite'); // 'infinite', 'daily', 'party'
+  const [lang, setLang] = useState(() => localStorage.getItem('zakoweb_lang') || 'en');
   const [isStatsOpen, setIsStatsOpen] = useState(false);
 
   const [sessionState, setSessionState] = useState(() => {
@@ -45,19 +46,31 @@ export default function App() {
     hostEndGame
   } = useRoomSocket(sessionState.roomCode, sessionState.sessionToken);
 
-  // Check URL params for room code
+  // Check URL params for room code on initial load
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const codeParam = params.get('code');
-    if (codeParam && !sessionState.roomCode) {
-      setSessionState(prev => ({ ...prev, roomCode: codeParam.toUpperCase() }));
+    if (codeParam) {
+      const upperCode = codeParam.toUpperCase();
+      setSessionState(prev => ({ ...prev, roomCode: upperCode }));
       setActiveTab('party');
     }
   }, []);
 
-  // Auto recover hostToken from roomData snapshot if player is host
+  // Update browser URL query string whenever active room code changes
   useEffect(() => {
-    if (roomData?.host_token && !sessionState.hostToken) {
+    if (sessionState.roomCode) {
+      const newUrl = `${window.location.pathname}?code=${sessionState.roomCode}`;
+      window.history.pushState({ roomCode: sessionState.roomCode }, '', newUrl);
+    } else if (!window.location.search.includes('code=')) {
+      // Clean URL when no room code active
+      window.history.pushState({}, '', window.location.pathname);
+    }
+  }, [sessionState.roomCode]);
+
+  // Host Migration & Auto recover hostToken from roomData snapshot
+  useEffect(() => {
+    if (roomData?.host_token && roomData.host_token !== sessionState.hostToken) {
       localStorage.setItem('zakoweb_host_token', roomData.host_token);
       setSessionState(prev => ({ ...prev, hostToken: roomData.host_token }));
     }
@@ -65,7 +78,8 @@ export default function App() {
 
   // Handle Player Join
   const handleJoin = async ({ nickname, code, avatar }) => {
-    const res = await fetch(`${API_BASE}/api/rooms/${code}/join/`, {
+    const upperCode = code.trim().toUpperCase();
+    const res = await fetch(`${API_BASE}/api/rooms/${upperCode}/join/`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ nickname, avatar, is_host_player: false })
@@ -76,12 +90,15 @@ export default function App() {
       throw new Error(data.error || 'Join room failed');
     }
 
-    localStorage.setItem('zakoweb_room_code', code);
+    localStorage.setItem('zakoweb_room_code', upperCode);
     localStorage.setItem('zakoweb_session_token', data.session_token);
     localStorage.setItem('zakoweb_nickname', nickname);
 
+    // Update URL parameter
+    window.history.pushState({}, '', `?code=${upperCode}`);
+
     setSessionState({
-      roomCode: code,
+      roomCode: upperCode,
       sessionToken: data.session_token,
       hostToken: '',
       nickname: nickname
@@ -118,6 +135,9 @@ export default function App() {
     localStorage.setItem('zakoweb_host_token', roomObj.host_token);
     localStorage.setItem('zakoweb_nickname', finalHostName);
 
+    // Update URL parameter with room code
+    window.history.pushState({}, '', `?code=${roomObj.code}`);
+
     setSessionState({
       roomCode: roomObj.code,
       sessionToken: joinData.session_token,
@@ -135,7 +155,7 @@ export default function App() {
     localStorage.removeItem('zakoweb_host_token');
     localStorage.removeItem('zakoweb_nickname');
     setSessionState({ roomCode: '', sessionToken: '', hostToken: '', nickname: '' });
-    window.history.replaceState({}, '', window.location.pathname);
+    window.history.pushState({}, '', window.location.pathname);
   };
 
   // Current Player Object
@@ -162,15 +182,15 @@ export default function App() {
 
       <main style={{ flex: 1, padding: '1.5rem 1rem 6rem 1rem' }}>
         {!sessionState.roomCode || status === 'home' ? (
-          activeTab === 'daily' ? (
+          activeTab === 'infinite' ? (
+            <InfiniteMode
+              apiBase={API_BASE}
+              lang={lang}
+            />
+          ) : activeTab === 'daily' ? (
             <DailyChallenge
               apiBase={API_BASE}
               onOpenStats={() => setIsStatsOpen(true)}
-              lang={lang}
-            />
-          ) : activeTab === 'infinite' ? (
-            <InfiniteMode
-              apiBase={API_BASE}
               lang={lang}
             />
           ) : (

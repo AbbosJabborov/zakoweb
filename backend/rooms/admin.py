@@ -14,7 +14,7 @@ class RoomSettingsInline(admin.StackedInline):
 class PlayerInline(admin.TabularInline):
     model = Player
     extra = 0
-    readonly_fields = ('session_token', 'created_at')
+    readonly_fields = ('session_token',)
 
 @admin.register(Room)
 class RoomAdmin(admin.ModelAdmin):

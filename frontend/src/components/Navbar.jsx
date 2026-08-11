@@ -1,22 +1,30 @@
 import React, { useState } from 'react';
-import { Volume2, VolumeX, LogOut, Sparkles, Brain, Calendar, Gamepad2, BarChart2 } from 'lucide-react';
+import { Volume2, VolumeX, LogOut, Brain, Calendar, Gamepad2, BarChart2, Globe } from 'lucide-react';
 import { sound } from '../utils/sound';
+import { translations } from '../utils/i18n';
 
-export default function Navbar({ roomCode, onLeave, activeTab, setActiveTab, onOpenStats }) {
+export default function Navbar({ roomCode, onLeave, activeTab, setActiveTab, onOpenStats, lang, setLang }) {
   const [soundMuted, setSoundMuted] = useState(sound.isMuted);
+
+  const t = translations[lang] || translations.uz;
 
   const toggleSound = () => {
     const isMutedNow = sound.toggleMute();
     setSoundMuted(isMutedNow);
   };
 
+  const toggleLang = () => {
+    const nextLang = lang === 'uz' ? 'en' : 'uz';
+    setLang(nextLang);
+    localStorage.setItem('zakoweb_lang', nextLang);
+  };
+
   return (
     <nav style={{
       width: '100%',
-      padding: '0.75rem 1.25rem',
-      background: 'rgba(11, 15, 25, 0.85)',
-      backdropFilter: 'blur(16px)',
-      borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
+      padding: '0.65rem 1.25rem',
+      background: '#121213',
+      borderBottom: '1px solid #3a3a3c',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'space-between',
@@ -26,73 +34,72 @@ export default function Navbar({ roomCode, onLeave, activeTab, setActiveTab, onO
       flexWrap: 'wrap',
       gap: '0.5rem'
     }}>
-      {/* Brand Logo */}
+      {/* Left: Brand Logo & Title */}
       <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', cursor: 'pointer' }} onClick={() => onLeave && onLeave()}>
         <div style={{
-          width: '36px',
-          height: '36px',
-          borderRadius: '10px',
-          background: 'linear-gradient(135deg, #538d4e 0%, #8b5cf6 100%)',
+          width: '32px',
+          height: '32px',
+          borderRadius: '6px',
+          background: '#538d4e',
           display: 'flex',
           alignItems: 'center',
-          justifyContent: 'center',
-          boxShadow: '0 4px 15px rgba(83, 141, 78, 0.4)'
+          justifyContent: 'center'
         }}>
-          <Brain size={20} color="#ffffff" />
+          <Brain size={18} color="#ffffff" />
         </div>
-        <span style={{ fontSize: '1.3rem', fontWeight: 800, fontFamily: 'var(--font-display)', letterSpacing: '-0.5px' }}>
-          Zako<span style={{ color: '#6aaa64' }}>web</span>
+        <span style={{ fontSize: '1.25rem', fontWeight: 800, letterSpacing: '1px', textTransform: 'uppercase' }}>
+          ZAKO<span style={{ color: '#6aaa64' }}>WEB</span>
         </span>
       </div>
 
-      {/* Middle Mode Selector Tabs */}
+      {/* Middle Mode Tabs */}
       {!roomCode && (
         <div style={{
           display: 'flex',
           alignItems: 'center',
-          background: '#121213',
-          padding: '0.25rem',
-          borderRadius: '0.75rem',
+          background: '#272729',
+          padding: '0.2rem',
+          borderRadius: '0.5rem',
           border: '1px solid #3a3a3c'
         }}>
           <button
-            onClick={() => setActiveTab('party')}
-            style={{
-              padding: '0.4rem 0.85rem',
-              borderRadius: '0.55rem',
-              border: 'none',
-              background: activeTab === 'party' ? '#538d4e' : 'transparent',
-              color: activeTab === 'party' ? '#ffffff' : '#818384',
-              fontWeight: 800,
-              fontSize: '0.82rem',
-              cursor: 'pointer',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '0.4rem',
-              transition: 'all 0.2s ease'
-            }}
-          >
-            <Gamepad2 size={15} /> Multi-Player
-          </button>
-
-          <button
             onClick={() => setActiveTab('daily')}
             style={{
-              padding: '0.4rem 0.85rem',
-              borderRadius: '0.55rem',
+              padding: '0.35rem 0.8rem',
+              borderRadius: '0.35rem',
               border: 'none',
               background: activeTab === 'daily' ? '#538d4e' : 'transparent',
               color: activeTab === 'daily' ? '#ffffff' : '#818384',
               fontWeight: 800,
-              fontSize: '0.82rem',
+              fontSize: '0.8rem',
               cursor: 'pointer',
               display: 'flex',
               alignItems: 'center',
-              gap: '0.4rem',
-              transition: 'all 0.2s ease'
+              gap: '0.35rem',
+              transition: 'all 0.15s ease'
             }}
           >
-            <Calendar size={15} /> Kun Savoli
+            <Calendar size={14} /> {t.dailyTab}
+          </button>
+
+          <button
+            onClick={() => setActiveTab('party')}
+            style={{
+              padding: '0.35rem 0.8rem',
+              borderRadius: '0.35rem',
+              border: 'none',
+              background: activeTab === 'party' ? '#538d4e' : 'transparent',
+              color: activeTab === 'party' ? '#ffffff' : '#818384',
+              fontWeight: 800,
+              fontSize: '0.8rem',
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.35rem',
+              transition: 'all 0.15s ease'
+            }}
+          >
+            <Gamepad2 size={14} /> {t.multiplayerTab}
           </button>
         </div>
       )}
@@ -100,20 +107,29 @@ export default function Navbar({ roomCode, onLeave, activeTab, setActiveTab, onO
       {/* Middle: Active Room Tag */}
       {roomCode && (
         <div className="room-code-tag" style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-          <Sparkles size={16} color="#c084fc" />
           <span>{roomCode}</span>
         </div>
       )}
 
-      {/* Right Controls */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+      {/* Right Controls: Language, Stats, Mute */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+        {/* Language Switcher */}
+        <button
+          onClick={toggleLang}
+          className="wordle-icon-btn"
+          title="Switch Language (UZ / EN)"
+        >
+          <Globe size={15} style={{ marginRight: '0.2rem' }} />
+          <span>{lang === 'uz' ? 'UZ' : 'EN'}</span>
+        </button>
+
         {/* Stats Modal Trigger */}
         <button
           onClick={onOpenStats}
           className="wordle-icon-btn"
-          title="Daily Stats"
+          title={t.stats}
         >
-          <BarChart2 size={18} />
+          <BarChart2 size={16} />
         </button>
 
         {/* Sound Toggle */}
@@ -122,7 +138,7 @@ export default function Navbar({ roomCode, onLeave, activeTab, setActiveTab, onO
           className="wordle-icon-btn"
           title={soundMuted ? "Unmute Audio" : "Mute Audio"}
         >
-          {soundMuted ? <VolumeX size={18} color="#f43f5e" /> : <Volume2 size={18} color="#6aaa64" />}
+          {soundMuted ? <VolumeX size={16} color="#f43f5e" /> : <Volume2 size={16} color="#6aaa64" />}
         </button>
 
         {/* Leave Room Button */}
@@ -130,10 +146,10 @@ export default function Navbar({ roomCode, onLeave, activeTab, setActiveTab, onO
           <button
             onClick={onLeave}
             className="btn-secondary"
-            style={{ padding: '0.45rem 0.75rem', borderRadius: '0.65rem', background: 'rgba(244, 63, 94, 0.15)', border: '1px solid rgba(244, 63, 94, 0.3)', color: '#fb7185' }}
-            title="Leave Room"
+            style={{ padding: '0.35rem 0.65rem', borderRadius: '0.4rem', fontSize: '0.78rem', background: 'rgba(244, 63, 94, 0.15)', border: '1px solid rgba(244, 63, 94, 0.3)', color: '#fb7185' }}
+            title={t.leave}
           >
-            <LogOut size={15} /> <span style={{ fontSize: '0.8rem', fontWeight: 700 }}>Leave</span>
+            <LogOut size={14} /> {t.leave}
           </button>
         )}
       </div>

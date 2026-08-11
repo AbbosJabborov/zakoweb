@@ -1,36 +1,24 @@
 :root {
-  --font-display: 'Fredoka', cursive, sans-serif;
-  --font-body: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-nyt: -apple-system, BlinkMacSystemFont, "nyt-franklin", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   --font-mono: 'Fira Code', monospace;
 
-  /* Playful & Wordle Aesthetic Theme */
-  --bg-dark: #0b0f19;
+  /* Wordle / Corporate Puzzle Theme Colors */
   --bg-wordle: #121213;
-  --bg-card: rgba(18, 24, 43, 0.85);
-  --bg-card-hover: rgba(28, 38, 66, 0.95);
-  --border-glow: rgba(139, 92, 246, 0.35);
-  --border-light: rgba(255, 255, 255, 0.1);
+  --bg-card: #121213;
+  --border-wordle: #3a3a3c;
+  --border-light: #272729;
 
-  --wordle-green: #538d4e;
-  --wordle-green-bright: #6aaa64;
-  --wordle-gold: #c9b458;
-  --wordle-gray: #3a3a3c;
-  --wordle-light-gray: #818384;
-  --wordle-dark-tile: #272729;
+  --color-green: #538d4e;
+  --color-green-hover: #6aaa64;
+  --color-gold: #c9b458;
+  --color-gray: #3a3a3c;
+  --color-light-gray: #818384;
+  --color-tile-empty: #121213;
+  --color-tile-filled: #272729;
 
-  --primary: #8b5cf6;
-  --primary-hover: #7c3aed;
-  --primary-glow: rgba(139, 92, 246, 0.45);
-
-  --accent-cyan: #06b6d4;
-  --accent-emerald: #10b981;
-  --accent-amber: #f59e0b;
-  --accent-rose: #f43f5e;
-  --accent-magenta: #ec4899;
-
-  --text-main: #f8fafc;
-  --text-muted: #94a3b8;
-  --text-dim: #64748b;
+  --text-main: #ffffff;
+  --text-muted: #818384;
+  --text-dim: #565758;
 }
 
 * {
@@ -41,80 +29,94 @@
 }
 
 body {
-  background-color: var(--bg-dark);
+  background-color: var(--bg-wordle);
   color: var(--text-main);
-  font-family: var(--font-body);
+  font-family: var(--font-nyt);
   min-height: 100vh;
   overflow-x: hidden;
-  background-image: 
-    radial-gradient(circle at 10% 10%, rgba(139, 92, 246, 0.2) 0%, transparent 45%),
-    radial-gradient(circle at 90% 90%, rgba(236, 72, 153, 0.18) 0%, transparent 45%),
-    radial-gradient(circle at 50% 30%, rgba(6, 182, 212, 0.12) 0%, transparent 50%);
 }
 
-h1, h2, h3, h4, .font-display {
-  font-family: var(--font-display);
+h1, h2, h3, h4 {
+  font-family: var(--font-nyt);
+  font-weight: 800;
   letter-spacing: -0.2px;
 }
 
-/* Glassmorphic Container */
-.glass-panel {
-  background: var(--bg-card);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1.5px solid var(--border-light);
-  border-radius: 1.5rem;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
-  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+/* Wordle Container / Panel */
+.glass-panel, .wordle-card {
+  background: #121213;
+  border: 1.5px solid var(--border-wordle);
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+  transition: all 0.2s ease;
 }
 
 .glass-panel-glow {
-  border-color: var(--border-glow);
-  box-shadow: 0 0 35px rgba(139, 92, 246, 0.2), 0 16px 40px rgba(0, 0, 0, 0.4);
+  border-color: var(--color-green-hover);
+  box-shadow: 0 0 20px rgba(106, 170, 100, 0.2);
 }
 
-/* Wordle Card Styles */
-.wordle-card {
-  background: #121213;
-  border: 1.5px solid #3a3a3c;
-  border-radius: 1rem;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
-}
-
-.wordle-input {
+/* Wordle Input & Buttons */
+.input-custom, .wordle-input {
   background: #121213;
   border: 1.5px solid #3a3a3c;
   color: #ffffff;
   padding: 0.85rem 1.15rem;
-  border-radius: 0.65rem;
+  border-radius: 0.5rem;
   font-size: 1.05rem;
   width: 100%;
   outline: none;
   font-family: inherit;
+  font-weight: 600;
   transition: all 0.2s ease;
 }
 
-.wordle-input:focus {
-  border-color: var(--wordle-green-bright);
-  box-shadow: 0 0 0 3px rgba(106, 170, 100, 0.25);
+.input-custom:focus, .wordle-input:focus {
+  border-color: var(--color-green-hover);
+  box-shadow: 0 0 0 3px rgba(106, 170, 100, 0.2);
 }
 
-.wordle-btn-submit {
-  background: var(--wordle-green-bright);
+.wordle-btn-submit, .btn-primary, .btn-success {
+  background: var(--color-green);
   color: #ffffff;
   font-weight: 800;
   padding: 0.85rem 1.5rem;
-  border-radius: 0.65rem;
+  border-radius: 0.5rem;
   border: none;
   cursor: pointer;
   letter-spacing: 1px;
   font-size: 0.95rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
   transition: all 0.2s ease;
 }
 
-.wordle-btn-submit:hover:not(:disabled) {
-  background: var(--wordle-green);
-  transform: translateY(-2px);
+.wordle-btn-submit:hover:not(:disabled), .btn-primary:hover:not(:disabled), .btn-success:hover:not(:disabled) {
+  background: var(--color-green-hover);
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  background: #272729;
+  color: #ffffff;
+  font-weight: 700;
+  padding: 0.75rem 1.25rem;
+  border-radius: 0.5rem;
+  border: 1px solid #3a3a3c;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background: #3a3a3c;
+  border-color: #565758;
 }
 
 .wordle-btn-share {
@@ -123,7 +125,7 @@ h1, h2, h3, h4, .font-display {
   color: #ffffff;
   font-weight: 800;
   padding: 0.5rem 1rem;
-  border-radius: 0.5rem;
+  border-radius: 0.4rem;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -137,28 +139,31 @@ h1, h2, h3, h4, .font-display {
 }
 
 .wordle-icon-btn {
-  background: #272729;
+  background: #121213;
   border: 1px solid #3a3a3c;
   color: #d7dadc;
-  padding: 0.5rem;
-  border-radius: 0.5rem;
+  padding: 0.45rem 0.65rem;
+  border-radius: 0.4rem;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
+  font-weight: 700;
+  font-size: 0.82rem;
   transition: all 0.2s ease;
 }
 
 .wordle-icon-btn:hover {
-  background: #3a3a3c;
+  background: #272729;
   color: #ffffff;
+  border-color: #565758;
 }
 
 /* Stats Modal Box */
 .stat-box {
   background: #272729;
   padding: 0.75rem 0.5rem;
-  border-radius: 0.65rem;
+  border-radius: 0.5rem;
   border: 1px solid #3a3a3c;
 }
 
@@ -176,100 +181,42 @@ h1, h2, h3, h4, .font-display {
   margin-top: 0.2rem;
 }
 
-/* Buttons */
-.btn-primary {
-  font-family: var(--font-display);
-  background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%);
-  color: #ffffff;
-  font-weight: 700;
-  padding: 0.9rem 1.85rem;
-  border-radius: 1rem;
-  border: none;
-  cursor: pointer;
-  display: inline-flex;
+/* Animations */
+@keyframes pop-in {
+  0% { opacity: 0; transform: scale(0.95); }
+  100% { opacity: 1; transform: scale(1); }
+}
+.animate-pop-in {
+  animation: pop-in 0.2s ease-out forwards;
+}
+
+/* Feed item */
+.feed-item {
+  display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  font-size: 1.05rem;
-  box-shadow: 0 6px 20px rgba(139, 92, 246, 0.45);
-  transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  gap: 0.75rem;
+  padding: 0.65rem 0.85rem;
+  border-radius: 0.5rem;
+  background: #272729;
+  border: 1px solid #3a3a3c;
+  margin-bottom: 0.4rem;
 }
 
-.btn-primary:hover:not(:disabled) {
-  transform: translateY(-3px) scale(1.02);
-  box-shadow: 0 10px 25px rgba(139, 92, 246, 0.65);
+.feed-item.correct {
+  background: rgba(83, 141, 78, 0.25);
+  border-color: var(--color-green);
 }
 
-.btn-primary:active:not(:disabled) {
-  transform: translateY(0) scale(0.98);
-}
-
-.btn-primary:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-  transform: none;
-}
-
-.btn-secondary {
-  font-family: var(--font-display);
-  background: rgba(255, 255, 255, 0.07);
-  color: var(--text-main);
-  font-weight: 600;
-  padding: 0.85rem 1.5rem;
-  border-radius: 1rem;
-  border: 1px solid var(--border-light);
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  font-size: 1rem;
-  transition: all 0.2s ease;
-}
-
-.btn-secondary:hover:not(:disabled) {
-  background: rgba(255, 255, 255, 0.14);
-  border-color: rgba(255, 255, 255, 0.25);
-  transform: translateY(-2px);
-}
-
-.btn-success {
-  font-family: var(--font-display);
-  background: linear-gradient(135deg, #10b981 0%, #047857 100%);
-  color: #ffffff;
+.room-code-tag {
+  font-family: var(--font-mono);
   font-weight: 700;
-  padding: 0.9rem 1.85rem;
-  border-radius: 1rem;
-  border: none;
-  cursor: pointer;
-  font-size: 1.05rem;
-  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
-  transition: all 0.2s ease;
-}
-
-.btn-success:hover:not(:disabled) {
-  transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 10px 25px rgba(16, 185, 129, 0.6);
-}
-
-/* Custom Input */
-.input-custom {
-  background: rgba(15, 23, 42, 0.7);
-  border: 1.5px solid var(--border-light);
-  color: var(--text-main);
-  padding: 0.9rem 1.25rem;
-  border-radius: 1rem;
-  font-size: 1rem;
-  width: 100%;
-  outline: none;
-  font-family: inherit;
-  transition: all 0.2s ease;
-}
-
-.input-custom:focus {
-  border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.3);
-  background: rgba(15, 23, 42, 0.9);
+  letter-spacing: 2px;
+  background: #272729;
+  border: 1px solid #3a3a3c;
+  color: var(--color-green-hover);
+  padding: 0.35rem 0.75rem;
+  border-radius: 0.4rem;
+  font-size: 0.95rem;
 }
 
 /* Custom Scrollbar */
@@ -278,83 +225,15 @@ h1, h2, h3, h4, .font-display {
   height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.2);
+  background: #121213;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.15);
+  background: #3a3a3c;
   border-radius: 4px;
 }
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.3);
-}
 
-/* Animations */
-@keyframes pop-in {
-  0% { opacity: 0; transform: scale(0.92) translateY(10px); }
-  100% { opacity: 1; transform: scale(1) translateY(0); }
-}
-.animate-pop-in {
-  animation: pop-in 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-}
-
-/* Chat Feed Badges */
-.feed-item {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  padding: 0.75rem 1rem;
-  border-radius: 1rem;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  margin-bottom: 0.5rem;
-  animation: pop-in 0.25s ease-out;
-}
-
-.feed-item.correct {
-  background: rgba(16, 185, 129, 0.15);
-  border-color: rgba(16, 185, 129, 0.4);
-}
-
-/* Room Code Tag */
-.room-code-tag {
-  font-family: var(--font-mono);
-  font-weight: 700;
-  letter-spacing: 2px;
-  background: linear-gradient(135deg, rgba(139, 92, 246, 0.25), rgba(236, 72, 153, 0.25));
-  border: 1px solid rgba(139, 92, 246, 0.45);
-  color: #c084fc;
-  padding: 0.45rem 1rem;
-  border-radius: 0.75rem;
-  font-size: 1.1rem;
-}
-
-/* Responsive Rules for Mobile Devices */
 @media (max-width: 768px) {
-  body {
-    font-size: 0.95rem;
-  }
-
-  .glass-panel {
-    border-radius: 1.15rem;
-    padding: 1.25rem !important;
-  }
-
   .play-screen-grid {
     grid-template-columns: 1fr !important;
-    gap: 1rem !important;
-  }
-
-  .chat-feed-container {
-    height: 360px !important;
-  }
-
-  .btn-primary, .btn-secondary, .btn-success {
-    padding: 0.8rem 1.25rem;
-    font-size: 0.95rem;
-  }
-
-  .room-code-tag {
-    font-size: 0.9rem;
-    padding: 0.35rem 0.75rem;
   }
 }

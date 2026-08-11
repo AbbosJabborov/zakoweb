@@ -14,7 +14,8 @@ const isDev = typeof window !== 'undefined' && (window.location.host.includes('5
 export const API_BASE = isDev ? '' : 'https://api-zakoweb.claive.uz';
 
 export default function App() {
-  const [activeTab, setActiveTab] = useState('party'); // 'party' or 'daily'
+  const [activeTab, setActiveTab] = useState('daily'); // DEFAULT MAIN PAGE IS DAILY
+  const [lang, setLang] = useState(() => localStorage.getItem('zakoweb_lang') || 'uz');
   const [isStatsOpen, setIsStatsOpen] = useState(false);
 
   const [sessionState, setSessionState] = useState(() => {
@@ -43,7 +44,7 @@ export default function App() {
     hostEndGame
   } = useRoomSocket(sessionState.roomCode, sessionState.sessionToken);
 
-  // Check URL params for code
+  // Check URL params for room code (if shared via link)
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const codeParam = params.get('code');
@@ -154,6 +155,8 @@ export default function App() {
         activeTab={activeTab}
         setActiveTab={setActiveTab}
         onOpenStats={() => setIsStatsOpen(true)}
+        lang={lang}
+        setLang={setLang}
       />
 
       <main style={{ flex: 1, padding: '1.5rem 1rem 6rem 1rem' }}>
@@ -162,12 +165,14 @@ export default function App() {
             <DailyChallenge
               apiBase={API_BASE}
               onOpenStats={() => setIsStatsOpen(true)}
+              lang={lang}
             />
           ) : (
-            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '75vh' }}>
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '70vh' }}>
               <JoinCard
                 onJoin={handleJoin}
                 onCreateOpen={() => setIsCreateModalOpen(true)}
+                lang={lang}
               />
             </div>
           )
@@ -226,6 +231,7 @@ export default function App() {
       <StatsModal
         isOpen={isStatsOpen}
         onClose={() => setIsStatsOpen(false)}
+        lang={lang}
       />
     </div>
   );

@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
-import { Sparkles, Gamepad2, ArrowRight, PlusCircle, Users } from 'lucide-react';
+import { ArrowRight, PlusCircle } from 'lucide-react';
 import { AVATAR_LIST, AvatarIcon } from '../utils/avatars';
+import { translations } from '../utils/i18n';
 
-export default function JoinCard({ onJoin, onCreateOpen }) {
+export default function JoinCard({ onJoin, onCreateOpen, lang = 'uz' }) {
   const [nickname, setNickname] = useState('');
   const [code, setCode] = useState('');
   const [selectedAvatarId, setSelectedAvatarId] = useState('brain');
   const [isLoading, setIsLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
+
+  const t = translations[lang] || translations.uz;
 
   const handleJoinSubmit = async (e) => {
     e.preventDefault();
@@ -22,43 +25,40 @@ export default function JoinCard({ onJoin, onCreateOpen }) {
         avatar: selectedAvatarId
       });
     } catch (err) {
-      setErrorMsg(err.message || 'Room not found or game already in progress');
+      setErrorMsg(err.message || 'Room not found');
     } finally {
       setIsLoading(false);
     }
   };
 
   return (
-    <div className="glass-panel glass-panel-glow animate-pop-in" style={{ width: '100%', maxWidth: '460px', padding: '2.25rem' }}>
+    <div className="wordle-card animate-pop-in" style={{ width: '100%', maxWidth: '440px', padding: '1.75rem' }}>
       
       {/* Title */}
-      <div style={{ textAlign: 'center', marginBottom: '1.75rem' }}>
-        <div style={{ display: 'inline-flex', padding: '0.4rem 0.9rem', borderRadius: '2rem', background: 'rgba(139, 92, 246, 0.2)', border: '1px solid rgba(139, 92, 246, 0.4)', color: '#c084fc', fontSize: '0.85rem', fontWeight: 700, gap: '0.4rem', alignItems: 'center', marginBottom: '0.75rem' }}>
-          <Sparkles size={16} /> Zakovat Party Arena
-        </div>
-        <h1 style={{ fontSize: '2.5rem', fontWeight: 800, color: '#ffffff', lineHeight: 1.1 }}>
-          Zakoweb Live
+      <div style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
+        <h1 style={{ fontSize: '2rem', fontWeight: 800, color: '#ffffff', lineHeight: 1.1 }}>
+          {t.joinRoom}
         </h1>
-        <p style={{ color: 'var(--text-muted)', fontSize: '0.92rem', marginTop: '0.4rem' }}>
-          Join your party room with code & guess answers live!
+        <p style={{ color: 'var(--text-muted)', fontSize: '0.88rem', marginTop: '0.35rem' }}>
+          Zakoweb Multiplayer Party Mode
         </p>
       </div>
 
       {errorMsg && (
-        <div style={{ padding: '0.75rem 1rem', borderRadius: '0.85rem', background: 'rgba(244, 63, 94, 0.15)', border: '1px solid rgba(244, 63, 94, 0.35)', color: '#fb7185', fontSize: '0.88rem', marginBottom: '1.25rem', textAlign: 'center', fontWeight: 600 }}>
+        <div style={{ padding: '0.65rem 0.85rem', borderRadius: '0.4rem', background: 'rgba(244, 63, 94, 0.15)', border: '1px solid rgba(244, 63, 94, 0.35)', color: '#fb7185', fontSize: '0.85rem', marginBottom: '1rem', textAlign: 'center', fontWeight: 600 }}>
           {errorMsg}
         </div>
       )}
 
       {/* Join Form */}
-      <form onSubmit={handleJoinSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+      <form onSubmit={handleJoinSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.15rem' }}>
         
         {/* Avatar Icon Selector */}
         <div>
-          <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: 700, color: 'var(--text-muted)', marginBottom: '0.5rem', letterSpacing: '0.5px' }}>
-            SELECT YOUR AVATAR
+          <label style={{ display: 'block', fontSize: '0.75rem', fontWeight: 700, color: 'var(--text-muted)', marginBottom: '0.4rem', letterSpacing: '0.5px' }}>
+            {t.avatar.toUpperCase()}
           </label>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', gap: '0.5rem' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', gap: '0.4rem' }}>
             {AVATAR_LIST.map((av) => (
               <button
                 key={av.id}
@@ -66,9 +66,9 @@ export default function JoinCard({ onJoin, onCreateOpen }) {
                 onClick={() => setSelectedAvatarId(av.id)}
                 style={{
                   padding: '0.35rem',
-                  borderRadius: '0.85rem',
-                  background: selectedAvatarId === av.id ? 'rgba(139, 92, 246, 0.35)' : 'rgba(255, 255, 255, 0.04)',
-                  border: selectedAvatarId === av.id ? '2px solid #a855f7' : '1px solid rgba(255, 255, 255, 0.08)',
+                  borderRadius: '0.4rem',
+                  background: selectedAvatarId === av.id ? '#3a3a3c' : '#121213',
+                  border: selectedAvatarId === av.id ? '2px solid #538d4e' : '1px solid #3a3a3c',
                   cursor: 'pointer',
                   display: 'flex',
                   alignItems: 'center',
@@ -77,7 +77,7 @@ export default function JoinCard({ onJoin, onCreateOpen }) {
                 }}
                 title={av.label}
               >
-                <AvatarIcon id={av.id} size={20} />
+                <AvatarIcon id={av.id} size={18} />
               </button>
             ))}
           </div>
@@ -85,13 +85,13 @@ export default function JoinCard({ onJoin, onCreateOpen }) {
 
         {/* Nickname Input */}
         <div>
-          <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: 700, color: 'var(--text-muted)', marginBottom: '0.4rem' }}>
-            YOUR NICKNAME
+          <label style={{ display: 'block', fontSize: '0.75rem', fontWeight: 700, color: 'var(--text-muted)', marginBottom: '0.35rem' }}>
+            {t.nickname.toUpperCase()}
           </label>
           <input
             type="text"
             placeholder="e.g. BrainMaster"
-            className="input-custom"
+            className="wordle-input"
             value={nickname}
             onChange={(e) => setNickname(e.target.value)}
             maxLength={18}
@@ -101,14 +101,14 @@ export default function JoinCard({ onJoin, onCreateOpen }) {
 
         {/* Room Code Input */}
         <div>
-          <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: 700, color: 'var(--text-muted)', marginBottom: '0.4rem' }}>
-            ROOM JOIN CODE
+          <label style={{ display: 'block', fontSize: '0.75rem', fontWeight: 700, color: 'var(--text-muted)', marginBottom: '0.35rem' }}>
+            {t.roomCode.toUpperCase()}
           </label>
           <input
             type="text"
             placeholder="e.g. X7K9A2"
-            className="input-custom"
-            style={{ fontFamily: 'var(--font-mono)', letterSpacing: '3px', textTransform: 'uppercase', fontWeight: 700, fontSize: '1.2rem', textAlign: 'center' }}
+            className="wordle-input"
+            style={{ fontFamily: 'var(--font-mono)', letterSpacing: '3px', textTransform: 'uppercase', fontWeight: 700, fontSize: '1.15rem', textAlign: 'center' }}
             value={code}
             onChange={(e) => setCode(e.target.value.toUpperCase())}
             maxLength={6}
@@ -119,28 +119,28 @@ export default function JoinCard({ onJoin, onCreateOpen }) {
         {/* Join Button */}
         <button
           type="submit"
-          className="btn-primary"
-          style={{ width: '100%', padding: '1rem', marginTop: '0.25rem' }}
+          className="wordle-btn-submit"
+          style={{ width: '100%', padding: '0.85rem' }}
           disabled={isLoading || !nickname.trim() || code.length < 4}
         >
-          {isLoading ? 'Joining Room...' : 'Enter Party Room'} <ArrowRight size={20} />
+          {isLoading ? '...' : t.enter} <ArrowRight size={18} />
         </button>
       </form>
 
       {/* Divider */}
-      <div style={{ display: 'flex', alignItems: 'center', margin: '1.5rem 0', color: 'var(--text-dim)' }}>
-        <div style={{ flex: 1, height: '1px', background: 'rgba(255, 255, 255, 0.08)' }} />
-        <span style={{ padding: '0 0.85rem', fontSize: '0.8rem', fontWeight: 700 }}>OR</span>
-        <div style={{ flex: 1, height: '1px', background: 'rgba(255, 255, 255, 0.08)' }} />
+      <div style={{ display: 'flex', alignItems: 'center', margin: '1.25rem 0', color: '#565758' }}>
+        <div style={{ flex: 1, height: '1px', background: '#3a3a3c' }} />
+        <span style={{ padding: '0 0.75rem', fontSize: '0.75rem', fontWeight: 700 }}>OR</span>
+        <div style={{ flex: 1, height: '1px', background: '#3a3a3c' }} />
       </div>
 
       {/* Host Room Launcher */}
       <button
         onClick={onCreateOpen}
         className="btn-secondary"
-        style={{ width: '100%', padding: '0.9rem', justifyContent: 'center' }}
+        style={{ width: '100%', padding: '0.85rem', justifyContent: 'center' }}
       >
-        <PlusCircle size={18} color="#c084fc" /> Host a New Room
+        <PlusCircle size={16} color="#6aaa64" /> {t.createRoom}
       </button>
     </div>
   );

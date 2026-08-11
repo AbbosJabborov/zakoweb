@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Sparkles, Trophy, Share2, Flame, HelpCircle, Check, X, Clock, Lightbulb, Copy } from 'lucide-react';
+import { Sparkles, Trophy, Share2, Clock, Lightbulb, Check, X } from 'lucide-react';
 import { sound } from '../utils/sound';
+import { translations } from '../utils/i18n';
 
-export default function DailyChallenge({ apiBase, onOpenStats }) {
+export default function DailyChallenge({ apiBase, onOpenStats, lang = 'uz' }) {
   const [dailyData, setDailyData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -13,15 +14,14 @@ export default function DailyChallenge({ apiBase, onOpenStats }) {
   const [copied, setCopied] = useState(false);
   const [timeUntilNext, setTimeUntilNext] = useState('');
 
+  const t = translations[lang] || translations.uz;
   const todayStr = new Date().toISOString().split('T')[0];
 
-  // Load Saved Daily State from LocalStorage
   useEffect(() => {
     fetchDailyQuestion();
     loadSavedProgress();
   }, []);
 
-  // Countdown timer to midnight
   useEffect(() => {
     const updateCountdown = () => {
       const now = new Date();
@@ -75,7 +75,6 @@ export default function DailyChallenge({ apiBase, onOpenStats }) {
       isFailed: failed
     }));
 
-    // Update Global Stats
     const statsRaw = localStorage.getItem('zakoweb_wordle_stats');
     let stats = statsRaw ? JSON.parse(statsRaw) : { played: 0, wins: 0, currentStreak: 0, maxStreak: 0, lastDate: '' };
 
@@ -83,7 +82,6 @@ export default function DailyChallenge({ apiBase, onOpenStats }) {
       stats.played += 1;
       if (solved) {
         stats.wins += 1;
-        // Check if consecutive day
         const yesterday = new Date();
         yesterday.setDate(yesterday.getDate() - 1);
         const yestStr = yesterday.toISOString().split('T')[0];
@@ -108,7 +106,6 @@ export default function DailyChallenge({ apiBase, onOpenStats }) {
     const currentText = userGuess.trim();
     const acceptedList = dailyData.accepted_answers || [];
 
-    // Check correctness (fuzzy string match)
     const normalizedInput = currentText.toLowerCase().replace(/['"`ʻʼ]/g, '').trim();
     const isCorrect = acceptedList.some(ans => {
       const normAns = String(ans).toLowerCase().replace(/['"`ʻʼ]/g, '').trim();
@@ -152,8 +149,8 @@ export default function DailyChallenge({ apiBase, onOpenStats }) {
   if (loading) {
     return (
       <div style={{ textAlign: 'center', padding: '4rem 1rem', color: 'var(--text-muted)' }}>
-        <Sparkles className="animate-spin" size={32} style={{ marginBottom: '1rem', color: '#6aaa64' }} />
-        <div>Bugungi Kun Savoli yuklanmoqda...</div>
+        <Sparkles className="animate-spin" size={28} style={{ marginBottom: '0.75rem', color: '#6aaa64' }} />
+        <div>{lang === 'uz' ? 'Bugungi savol yuklanmoqda...' : 'Loading today puzzle...'}</div>
       </div>
     );
   }
@@ -161,98 +158,95 @@ export default function DailyChallenge({ apiBase, onOpenStats }) {
   if (error || !dailyData) {
     return (
       <div style={{ textAlign: 'center', padding: '3rem 1rem', color: '#f43f5e' }}>
-        <div>Savol yuklashda xatolik yuz berdi. Metod qaytadan urinib ko'ring.</div>
+        <div>Error loading question. Please try again.</div>
       </div>
     );
   }
 
-  const primaryAnswer = dailyData.accepted_answers?.[0] || 'Javob';
+  const primaryAnswer = dailyData.accepted_answers?.[0] || '';
 
   return (
-    <div style={{ maxWidth: '640px', margin: '0 auto', padding: '0.5rem', display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+    <div style={{ maxWidth: '640px', margin: '0 auto', padding: '0.5rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
       
-      {/* Header Bar */}
-      <div className="wordle-card" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '1rem 1.25rem' }}>
+      {/* Wordle Top Info Card */}
+      <div className="wordle-card" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0.85rem 1.15rem' }}>
         <div>
-          <div style={{ fontSize: '0.75rem', fontWeight: 800, color: '#6aaa64', letterSpacing: '1.5px', textTransform: 'uppercase' }}>
-            KUN SAVOLI #{dailyData.question_number}
+          <div style={{ fontSize: '0.72rem', fontWeight: 800, color: '#6aaa64', letterSpacing: '1px', textTransform: 'uppercase' }}>
+            {t.dailyTab} #{dailyData.question_number}
           </div>
-          <h2 style={{ fontSize: '1.2rem', fontWeight: 800, color: '#ffffff', margin: 0 }}>
-            Daily Zakovat Challenge
+          <h2 style={{ fontSize: '1.15rem', fontWeight: 800, color: '#ffffff', margin: 0 }}>
+            {t.dailySub}
           </h2>
         </div>
 
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
           <button
             onClick={onOpenStats}
             className="wordle-icon-btn"
-            title="Statistika"
+            title={t.stats}
           >
-            <Trophy size={18} color="#c9b458" />
+            <Trophy size={16} color="#c9b458" />
           </button>
-          <div style={{ background: '#272729', padding: '0.4rem 0.75rem', borderRadius: '0.6rem', fontSize: '0.82rem', fontWeight: 700, color: '#d7dadc', border: '1px solid #3a3a3c' }}>
-            {new Date().toLocaleDateString('uz-UZ', { day: 'numeric', month: 'short' })}
+          <div style={{ background: '#272729', padding: '0.35rem 0.65rem', borderRadius: '0.4rem', fontSize: '0.8rem', fontWeight: 700, color: '#d7dadc', border: '1px solid #3a3a3c' }}>
+            {new Date().toLocaleDateString(lang === 'uz' ? 'uz-UZ' : 'en-US', { day: 'numeric', month: 'short' })}
           </div>
         </div>
       </div>
 
-      {/* Main Question Tile */}
-      <div className="wordle-card animate-pop-in" style={{ padding: '1.5rem', border: '1.5px solid #3a3a3c' }}>
+      {/* Main Question Card */}
+      <div className="wordle-card animate-pop-in" style={{ padding: '1.35rem' }}>
         
-        {/* Category Tag */}
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1rem' }}>
-          <span style={{ background: 'rgba(106, 170, 100, 0.15)', color: '#6aaa64', padding: '0.25rem 0.65rem', borderRadius: '0.4rem', fontSize: '0.78rem', fontWeight: 800, border: '1px solid rgba(106, 170, 100, 0.3)' }}>
-            • {dailyData.category || 'Mantiqiy savol'}
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.85rem' }}>
+          <span style={{ background: 'rgba(106, 170, 100, 0.15)', color: '#6aaa64', padding: '0.2rem 0.5rem', borderRadius: '0.35rem', fontSize: '0.75rem', fontWeight: 800, border: '1px solid rgba(106, 170, 100, 0.3)' }}>
+            • {dailyData.category || 'Zakovat'}
           </span>
-          <span style={{ fontSize: '0.8rem', color: '#818384', display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
-            <Clock size={14} /> Yangilanish: {timeUntilNext}
+          <span style={{ fontSize: '0.78rem', color: '#818384', display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
+            <Clock size={13} /> {t.nextIn}: {timeUntilNext}
           </span>
         </div>
 
         {/* Question Text */}
-        <h3 style={{ fontSize: '1.25rem', fontWeight: 700, lineHeight: 1.45, color: '#ffffff', marginBottom: '1.25rem' }}>
+        <h3 style={{ fontSize: '1.2rem', fontWeight: 700, lineHeight: 1.45, color: '#ffffff', marginBottom: '1.15rem' }}>
           {dailyData.text}
         </h3>
 
         {dailyData.media_url && (
           <div style={{ textAlign: 'center', marginBottom: '1rem' }}>
-            <img src={dailyData.media_url} alt="Savol rasmi" style={{ maxWidth: '100%', maxHeight: '200px', borderRadius: '0.6rem' }} />
+            <img src={dailyData.media_url} alt="Media" style={{ maxWidth: '100%', maxHeight: '200px', borderRadius: '0.5rem' }} />
           </div>
         )}
 
-        {/* Progressive Hints Unlocked on Guesses */}
-        {guesses.length > 0 && !isSolved && (
-          <div style={{ marginBottom: '1rem', padding: '0.85rem', borderRadius: '0.6rem', background: '#272729', border: '1px solid #3a3a3c', fontSize: '0.85rem', color: '#c9b458', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+        {/* Progressive Hints */}
+        {guesses.length > 0 && !isSolved && primaryAnswer && (
+          <div style={{ marginBottom: '0.85rem', padding: '0.75rem', borderRadius: '0.5rem', background: '#272729', border: '1px solid #3a3a3c', fontSize: '0.85rem', color: '#c9b458', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
             <Lightbulb size={16} />
             <span>
-              <strong>Yordam:</strong> Javob {primaryAnswer.length} ta harfdan iborat, bosh harfi: "{primaryAnswer[0].toUpperCase()}"
+              <strong>{t.hint}:</strong> {primaryAnswer.length} {lang === 'uz' ? 'ta harf' : 'letters'}, {lang === 'uz' ? 'bosh harf' : 'starts with'}: "{primaryAnswer[0].toUpperCase()}"
             </span>
           </div>
         )}
 
-        {/* Guesses Tile History (Wordle Style) */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem', marginBottom: '1.25rem' }}>
+        {/* Guesses History Grid */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', marginBottom: '1.15rem' }}>
           {[0, 1, 2].map((idx) => {
             const g = guesses[idx];
             return (
               <div
                 key={idx}
-                className={`wordle-tile ${g ? (g.isCorrect ? 'correct' : 'wrong') : 'empty'}`}
                 style={{
                   display: 'flex',
                   alignItems: 'center',
                   justify: 'space-between',
-                  padding: '0.75rem 1rem',
-                  borderRadius: '0.6rem',
+                  padding: '0.65rem 0.85rem',
+                  borderRadius: '0.4rem',
                   background: g ? (g.isCorrect ? '#538d4e' : '#3a3a3c') : '#121213',
                   border: g ? 'none' : '1.5px dashed #3a3a3c',
                   color: '#ffffff',
                   fontWeight: 700,
-                  fontSize: '0.95rem',
-                  transition: 'all 0.3s ease'
+                  fontSize: '0.9rem'
                 }}
               >
-                <span>{g ? `"${g.text}"` : `Urinish #${idx + 1}`}</span>
+                <span>{g ? `"${g.text}"` : `${t.attempts} #${idx + 1}`}</span>
                 {g && (
                   <span>{g.isCorrect ? <Check size={18} color="#ffffff" /> : <X size={18} color="#818384" />}</span>
                 )}
@@ -261,41 +255,40 @@ export default function DailyChallenge({ apiBase, onOpenStats }) {
           })}
         </div>
 
-        {/* Input Form */}
+        {/* Submission Input */}
         {!isSolved && !isFailed ? (
-          <form onSubmit={handleGuessSubmit} style={{ display: 'flex', gap: '0.6rem' }}>
+          <form onSubmit={handleGuessSubmit} style={{ display: 'flex', gap: '0.5rem' }}>
             <input
               type="text"
-              placeholder="Javobingizni yozing..."
+              placeholder={t.typeAnswer}
               className="wordle-input"
               value={userGuess}
               onChange={(e) => setUserGuess(e.target.value)}
               autoFocus
             />
             <button type="submit" className="wordle-btn-submit" disabled={!userGuess.trim()}>
-              TEKSHIRISH
+              {t.check}
             </button>
           </form>
         ) : (
-          /* Result & Lore Box */
-          <div className="animate-pop-in" style={{ padding: '1.25rem', borderRadius: '0.75rem', background: isSolved ? 'rgba(83, 141, 78, 0.2)' : 'rgba(244, 63, 94, 0.15)', border: `1.5px solid ${isSolved ? '#538d4e' : '#f43f5e'}` }}>
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.65rem' }}>
-              <div style={{ fontWeight: 800, fontSize: '1.05rem', color: isSolved ? '#6aaa64' : '#fb7185', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-                {isSolved ? '🎉 TABRIKLAYMIZ! SAVOLNI TOPDINGIZ' : '❌ UCHALA URINISH HAM TUGADI'}
+          <div className="animate-pop-in" style={{ padding: '1.15rem', borderRadius: '0.5rem', background: isSolved ? 'rgba(83, 141, 78, 0.2)' : 'rgba(244, 63, 94, 0.15)', border: `1.5px solid ${isSolved ? '#538d4e' : '#f43f5e'}` }}>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.6rem' }}>
+              <div style={{ fontWeight: 800, fontSize: '0.95rem', color: isSolved ? '#6aaa64' : '#fb7185' }}>
+                {isSolved ? t.solved : t.failed}
               </div>
 
               <button onClick={handleShare} className="wordle-btn-share">
-                <Share2 size={15} /> {copied ? 'NUSXALANDI!' : 'ULASHISH'}
+                <Share2 size={14} /> {copied ? t.copied : t.share}
               </button>
             </div>
 
-            <div style={{ fontSize: '0.92rem', color: '#ffffff', marginBottom: '0.75rem', borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '0.65rem' }}>
-              <strong>To'g'ri javob:</strong> <span style={{ color: '#6aaa64', fontWeight: 800 }}>{(dailyData.accepted_answers || []).join(' / ')}</span>
+            <div style={{ fontSize: '0.88rem', color: '#ffffff', marginBottom: '0.65rem', borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '0.5rem' }}>
+              <strong>{t.correctAnswer}:</strong> <span style={{ color: '#6aaa64', fontWeight: 800 }}>{(dailyData.accepted_answers || []).join(' / ')}</span>
             </div>
 
             {dailyData.explanation && (
-              <div style={{ fontSize: '0.88rem', color: '#d7dadc', lineHeight: 1.45 }}>
-                <strong>Izoh:</strong> {dailyData.explanation}
+              <div style={{ fontSize: '0.85rem', color: '#d7dadc', lineHeight: 1.45 }}>
+                <strong>{t.explanation}:</strong> {dailyData.explanation}
               </div>
             )}
           </div>

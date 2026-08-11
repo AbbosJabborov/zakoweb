@@ -5584,5 +5584,2005 @@
     "media_url": null,
     "created_at": "2026-08-11T16:13:40.291Z"
   }
+},
+{
+  "model": "questions.question",
+  "pk": 1914,
+  "fields": {
+    "pack": 6,
+    "text": "Qayta ishlash belgisi\n2. Qayta ishlash belgisi\n3. Qayta ishlash belgisi\nIzoh: Myobius tasmasi shaklidagi 3 ta strelkadan tashkil topgan uchburchak belgi hozirgi kunda xalqaro qayta ishlash belgisi sifatida keng foydalaniladi. U haqidagi ma'lumotlarni har bir savolda qayta ishlagan holatda berdik. Hozirda u turli ko'rinishlarda turni materiallarni belgilashda keng foydalaniladi. Siz ham bu savolni bemalol qayta ishlab boshqa turnirlarda foydalanishingiz mumkin, jamoamiz uni jamoat mulki deb e'lon qiladi.\nManba:\nhttps://en.wikipedia.org/wiki/Recycling_symbol\nhttps://www.rlabel.org/uz/geri-donusum/geri-donusum-sembolu-nedir/\nMuallif: Sardor Axmedov\n2-savol.\nAvstro-Vengriyalik rassom Oskar Kokoshka 1907-yilda Vena rassomchilik akademiyasiga konkurs asosida bir necha boshqa da'vogarlar orasidan tanlab olingan. Keyinchalik, Kokoshka bu yutug’idan afsuslangan.\nSavol! Kokoshka nima sababdan afsuslanganligini MAKSIMAL aniqlikda yozib bering.",
+    "accepted_answers": [
+      "konkursda Adolf Gitler akademiyaga qabul qilinmagan",
+      "konkursda  Gitler akademiyaga qabul qilinmagan",
+      "Adolf",
+      "Gitler familiyasi qatnashgan mantiqiy togri javoblar"
+    ],
+    "explanation": "Myobius tasmasi shaklidagi 3 ta strelkadan tashkil topgan uchburchak belgi hozirgi kunda xalqaro qayta ishlash belgisi sifatida keng foydalaniladi. U haqidagi ma'lumotlarni har bir savolda qayta ishlagan holatda berdik. Hozirda u turli ko'rinishlarda turni materiallarni belgilashda keng foydalaniladi. Siz ham bu savolni bemalol qayta ishlab boshqa turnirlarda foydalanishingiz mumkin, jamoamiz uni jamoat mulki deb e'lon qiladi.",
+    "category": "Zakovat #349",
+    "media_url": null,
+    "created_at": "2026-08-11T16:14:53.269Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 1915,
+  "fields": {
+    "pack": 6,
+    "text": "Yozuvchi Evgeniy Petrovning dunyoning turli mamlakatlariga, mavjud bo'lmagan manzillarga xatlar jo'natish odati bo'lgan. Sababi Petrov ateist edi. Oldingi jumlada bir so'zdan bir necha harflar tushirib qoldirilgan. Shu so'zni asl holida yozib bering.",
+    "accepted_answers": [
+      "Filatelist"
+    ],
+    "explanation": "Petrov haqiqiy mamlakatlarga, lekin mavjud bo'lmagan shaharlarga va o'zi o'ylab topgan manzillarga maktublar yozgan va yuborgan. Natijada, bir muddat o'tgach, uning xati chet el pochta bo'limlarining shtamplari, markalari va \"adres topilmadi\" yozuvi bilan qaytib kelgan. Aynan mana shu konvertlar yozuvchini qiziqtirgan va shu tariqa u o'z markalar kollektsiyasini to'ldirgan. Filateliya - bu pochta markalarini yig'ish.",
+    "category": "Zakovat #350",
+    "media_url": null,
+    "created_at": "2026-08-11T16:14:53.278Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 1916,
+  "fields": {
+    "pack": 6,
+    "text": "[Boshlovchi uchun: tarqatma material sifatli va rangli bo’lishi kerak]\n[Tarqatma material]\nQarshingizdagi gumbaz ostida 11-asrda tug’ilgan BU musulmon insonning ramziy maqbarasi joylashgan. Kimning?",
+    "accepted_answers": [
+      "Umar Hayyom",
+      "Hayyom; Gʻiyosiddin Abulfath Umar ibn Ibrohim Xayyom Nishopuriy; Gʻiyosiddin Nishopuriy"
+    ],
+    "explanation": "Savoldagi “gumbaz ostida” va “musulmon” so’zlari Umar Hayyomninig mashxur to’rtligiga ishora edi:\nBir qo'lda Qur'onu bittasida jom,Ba'zida halolmiz, ba'zida harom,Feruza gumbazli osmon ostidaNa chin musulmonmiz, na kofir tamom.\nGubazning feruza ranglarda ishlangani, qolaversa uning tashqi ko’rinishi ham chodirni eslatib yuborishi sizga yordam berishi kerak edi. Bilamizki, “Hayyom” tahallusi otasining chodir yasovchi usta ekanligi sabab tanlangan degan faraz mavjud.\nhttps://moya-planeta.ru/reports/view/mavzolej_omara_khajyama\nhttps://www.facebook.com/respublika.bolalar.kutubxonasi/photos/bir-qolda-quronu-bittasida-jom-bazida-halolmiz-bazida-harom-feruza-gumbazli-osmo/380998192405735/\nhttps://ru.wikipedia.org/wiki/Омар_Хайям",
+    "category": "Zakovat #351",
+    "media_url": "https://api-zakoweb.claive.uz/media/questions/q_9c50c4685ede.png",
+    "created_at": "2026-08-11T16:14:53.290Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 1917,
+  "fields": {
+    "pack": 6,
+    "text": "Savolda “U” so’zi bir necha so'zni almashtirib keladi.\nYangi tug'ilgan chaqaloqlarda U bo'lishi mumkin, chunki tokoferollar platsentaga yaxshi yetib bormaydi. U gemolitik anemiya, retinopatiya, ko'rish qobiliyatining buzilishi va lipofustsinozga olib kelishi ham mumkin. Savol muallifining haziliga ko'ra, 1969-yilda yozilgan horijiy romanda ham U bor deb aytish mumkin. Ushbu roman muallifini yozib bering.",
+    "accepted_answers": [
+      "Jorj Perek",
+      "Perek",
+      "Jorj",
+      "Famliya boyicha"
+    ],
+    "explanation": "U – “E vitamini etishmovchiligi / E vitamini defitsiti”. Savolning birinchi qismida gap E vitamini yetishmovchiligi va uning asoratlari haqida bormoqda. Jorj Perekning \"G'oyib bo'lish\" romanida ham biron marta \"e\" harfini uchratish mumkin emas, shu sababli unda ham \"E\"ning yetishmasligi/defetsiti bor desak bo'ladi. E vitaminida eng muhim birikmalar tokoferollar va tokotrienollar hisoblanadi.",
+    "category": "Zakovat #352",
+    "media_url": null,
+    "created_at": "2026-08-11T16:14:53.301Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 1918,
+  "fields": {
+    "pack": 6,
+    "text": "Savol muallifi 1906-yilda Nyu Yorkda tug'ilgan BU AYOLni Googlda qidirish chog'ida \"chigirtkalar\" bilan bog'liq ko'plab maqolalarga duch keldi. Buning sababi yozuvdagi xatolik edi, dasturdagi xatolik emas. BU AYOLNING ism va familiyasini yozib bering.",
+    "accepted_answers": [
+      "Greys Xopper",
+      "Grace Hopper; Grace Brewster Murray"
+    ],
+    "explanation": "“Grasshopper” so'zi ingiliz tilidan \"chigirtka\" deb tarjima qilinadi. Bu so'z Greys Hopper ism-familiyasi bilan o'xshash talaffuzga ega. Savoldagi \"dasturdagi xatolik\" so'zlari, dasturlashda ishlatiladigan \"bug\" [bag] terminiga ishora edi. Chunki, ba'zi versiyalarga ko'ra aynan Xopper bu terminni ilk bora 1947-yilda qo'llagan ekan.",
+    "category": "Zakovat #353",
+    "media_url": null,
+    "created_at": "2026-08-11T16:14:53.308Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 1919,
+  "fields": {
+    "pack": 6,
+    "text": "[Tarqatma material]\n[chap tarafdagi rasm birinchi savol uchun, o’ng tarafdagisi ikkinchi savol uchun]\n1-savol. [Boshlovchiga: asar nomi aynan “Z” harfi bilan yozilganligiga urg’u berish kerak]\nQarshingizda yurtimizda \"LiZon ut-tayr\" ga o'rnatilgan, hozirda mavjud bo’lmagan haykalning bir qismini ko'rib turibsiz. Savolda \"LiZon ut-tayr\" so'zlari bilan qaysi BIR so'zni almashtirdik?\n2-savol. Qarshingizda Karl Ulrix Nusning U deb ataluvchi ishi. UNING familiyasini yozib bering.",
+    "accepted_answers": [
+      "1) Hamza 2) Zamza",
+      "1) Xamza; Niyoziy; Nihoniy 2) Samsa"
+    ],
+    "explanation": "",
+    "category": "Zakovat #354",
+    "media_url": "https://api-zakoweb.claive.uz/media/questions/q_4dc2517828fc.jpeg",
+    "created_at": "2026-08-11T16:14:53.316Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 1920,
+  "fields": {
+    "pack": 6,
+    "text": "Savolda Alisher Navoiyning \"Lison ut-tayr\" asari nomida \"S\" harfi \"Z\" harfiga o'zgartirilgan holda berildi. \"Xamsa\" asari nomida ham shu harflarni almashtirish orqali adib ismiga ishorani aniqlash mumkin. Haykalda Hamzaning besh barmog'ini ko'rsatib turgani ham yordam bo'lishi kerak edi.\n2) Gregor Zamza – Frants Kafkaning “Evrilish” asari bosh qaxramoni. Haykaltarosh uning metamarfoza jarayonini tasvirlagan ko’rinadi.\nManba:\nhttps://uz.wikipedia.org/wiki/Hamza_Hakimzoda_Niyoziy\nhttps://vk.com/wall-949437_5696\nMuallif: Sardor Axmedov\n8-savol.\nBahodir Yo‘ldoshev, Hamzaning “Boy ila xizmatchi” asarini tahlil qilar ekan, bosh qaxramon G'ofir - ham cho‘tir, ham past bo‘yli bo'lsa-da, Jamila kambag‘al, xunuk erini xushsurat boyga alishmaganini ta'kidlab, bu haqiqiy muhabbat ekanini va Gʻofirning ko‘ngli azimning ko'ngli kabi go‘zaligini ta'kidlaydi. Savoldagi so’nggi jumlada harflari tushirib qoldirilgan atoqli otni asl holida yozib bering.",
+    "accepted_answers": [
+      "KvazimodoQabul: Aniq javob",
+      "Aniq javob"
+    ],
+    "explanation": "“Hamza ko‘nikmayu qoliplarga qarshi ijodkor. Boy deganda semiz, badjahl bashara deb tushuniladi. Hamza “Boy ila xizmatchi”da yozadiki, Solihboy ellikka kirgan, navqiron yigitday odam. Qilichdek o‘ktam, novcha. Gʻofirni barvasta, barno yigit deb o‘ylaymiz. Yo‘q, uni cho‘tir, past bo‘yli deb yozadi. Agar ko‘rkam yigit bo‘lsa, Jamila nega undan keta olmasligi tabiiy hol. Hayratlanarli joyi yo‘q. Lekin asl variantda Jamila kambag‘al, xunuk erini xushsurat boyga alishmaydi! Gʻofir ham kambag‘al, ham cho‘tir, ham past bo‘yli odam. Demak, bu yerda muhabbat bor. Kvazimoda kabi Gʻofirning ko‘ngli go‘zal.” deb aytadi rejisser.",
+    "category": "Zakovat #355",
+    "media_url": null,
+    "created_at": "2026-08-11T16:14:53.323Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 1921,
+  "fields": {
+    "pack": 6,
+    "text": "Oyina.uz maqolasida aytilishicha, \"Shum bola\" asari qaxramoni Qoravoyning sarguzashtlari orqali Toshkent va Toshkent viloyatining turli joylari haqidagi geografik va tarixiy ma’lumotlarni o'rganishimiz bilan birgalikda, bir bolakay nigohi bilan o‘sha davrni his qilgandek bo‘lamiz. Bu haqida o'qigan savol muallifi Nobel mukofoti sovrundorining 20-asr birinchi 10 yilligida yozilgan asarini esga oldi. Ushbu asarning bosh qaxramoni ISMINI yozib bering.",
+    "accepted_answers": [
+      "Nils",
+      "Nils Holgersson; Holgersson"
+    ],
+    "explanation": "Dastlab, Lagelyo'f \"Nils Xolgerssonning Shvetsiya bo’ylab yovvoyi g'ozlar bilan ajoyib sayohati\" kitobini birinchi sinf o'quvchilari uchun adabiy shakldagi Shvetsiya geografiyasi bo'yicha qo'llanma sifatida yaratgan edi. G’ofur G'ulom asari ham Toshkent geografiyasi haqida qiziq ma'lumotlarga to'la. Qizig’i ikkala asarda ham sarguzasht qaxramoni bolakay edi.",
+    "category": "Zakovat #356",
+    "media_url": null,
+    "created_at": "2026-08-11T16:14:53.331Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 1922,
+  "fields": {
+    "pack": 6,
+    "text": "Savolda almashtirilgan so'zlar mavjud.\n1997-yilda yaratilgan horijiy asar haqida savol muallifining yomon fikr bildirishga ko'zi qiymaydi va o'zini tiydi. Chunki, asarning har bir bobi muallifning ichki kechinmalariga to'la. Asar haqidagi maqolada “o'lim ummoniga cho'kib borayotgan ALFA” va uning ichida tirik qolishga harakat qilayotgan isyonkor IKS - ya'ni \"jon, ruh\" haqida majoziy fikr bildirilgan.\nSavol! ALFA va IKSNI unlilari bir hil bo'lgan so'zlar bilan yozib bering.",
+    "accepted_answers": [
+      "Skafandr, kapalak"
+    ],
+    "explanation": "So'z fransuz jurnalisti va yozuvchisi Jan-Dominik Bobi’ning \"Skafandr va kapalak\" asari haqida edi. Muallif insultga uchragandan so'ng butun tanasi falaj bo'lib qoladi va faqatgina chap ko'zi harakatlanar edi. Muallif maxsus imo-ishora alifbosi yordamida, ikki oy va 200 000 marotaba ko'zini qisishdan so'ng o'z bestsellerini \"yozib\" tugatgan. Savol muallifining u haqida yomon fikr bildirishga ko'zi qiymadi va u ham \"ko'zini qisdi\". Maqolada skafandr - falaj tanaga, kapalak esa – jonga, ruhga qiyoslangan. Skafandrlarning suvosti turlari ham mavjud. Ruhni kapalakka qiyoslash esa bizda ham bor. Masalan, \"Shum bolada\"gi epizodni eslash mumkin. Qolaversa, “asarning har bir bobi” soz’lari balki muallifga yo’naltirgandir.",
+    "category": "Zakovat #357",
+    "media_url": null,
+    "created_at": "2026-08-11T16:14:53.338Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 1923,
+  "fields": {
+    "pack": 6,
+    "text": "Diqqat, savolda almashtirilgan so'zlar bor!\n1937-yilda Valeriy Chkalov boshchiligidagi ekipaj a'zolari Moskvadan Amerikaga to'xtovsiz parvozni amalga oshirib, yerga qo'nishganda ularni yuqori darajada kutib olishgan. Samoletdan birinchi chiqib olgan Chkalov, hamrohlarini chorlab: \"Yigitlar! IKS IGREK bizni kutmoqda\" deb aytadi. Kabinadagi Baydukov buni eshitib, \"bizni IKS qarshi olyaptimi yoki IGREKmi?\" deb hayron bo'lar edi.\nDiqqat savol! Rejaga ko'ra uchuvchilarni AYNAN KIM kutib olishi kerak edi?",
+    "accepted_answers": [
+      "Jorj Marshall",
+      "Marshall; General Marshall"
+    ],
+    "explanation": "Keyinchalik AQSH mudofa vaziri bo'lgan Jorj Marshall Chkalov ekipajini kutib olgan. Baydukov kutib oluvchining unvoni generalmi yoki marshalmi deya hayron bo'lgan. Savoldagi \"rejaga ko'ra\" so'zlari sizga kerakli insonni tanlab olishga yordam berishi kerak edi.",
+    "category": "Zakovat #358",
+    "media_url": null,
+    "created_at": "2026-08-11T16:14:53.346Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 1924,
+  "fields": {
+    "pack": 6,
+    "text": "[Tarqatma material]\nUshbu olimning qo'lida basketbol to'pini berkitdik. Aytish mumkinki, oldingi jumlada bir mashxur inson familiyasini tushirib qoldirdik. O’sha familiyani yozib bering!",
+    "accepted_answers": [
+      "Ma"
+    ],
+    "explanation": "Aslida su’ratda biz basketbol to’pini berkitib qo’ymadik, balki rasm qanday bo’lsa shu holida berdik. BU olim mashxur Vantablack moddasi bilan eksperimentlar o’tkazib, basketbol to’pini shunday bo’yoq bilan qoplagan. Bilasiz, Vantablack qora rangi dunyodagi eng qora jizm hisoblanadi va 99.9% yorug’likni yuta oladi. Shu sababli rasmda huddi to’p berkitib qo’yilgandek ko’rinmoqda.",
+    "category": "Zakovat #359",
+    "media_url": "https://api-zakoweb.claive.uz/media/questions/q_2e20d1336f1d.jpeg",
+    "created_at": "2026-08-11T16:14:53.354Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 1925,
+  "fields": {
+    "pack": 6,
+    "text": "[Tarqatma material]\nMONO, MOS, SOMON, SOM, NOS, SON, OSON, NOM\nDiqqat, savolda SHUNDAY so'zi bilan boshqa ikki so'z almashtirilgan.\nAytish mumkinki, tarqatma materialda sizga SHUNDAY so'zlarni berdik. \"Plagiat va \"SHUNDAY\" maqolalar\" deb nomlangan maqolada, Tibbiyot akademiyasi professori Zarifboy Ibodullaev o'zbek ilm-fanidagi muammolar, hususan rektorlarning ortiqcha talablari sababli talabalar tomonidan yozilgan \"SHUNDAY\" tibbiy matnlar ko'payishini tanqid qiladi.\nDiqqat savol! \"SHUNDAY\" so'zi bilan almashtirilgan, bir hil harfdan boshlanuvchi IKKI so'zni yozib bering.",
+    "accepted_answers": [
+      "Osmondan olingan",
+      "Aniq javob"
+    ],
+    "explanation": "\"Osmondan olingan\" iborasi, aslida yoq' narsani to'qib aytilgan yoki yozilgan so'zlar va gaplarga nisbatan qo'llaniladi. Tarqatma materialda berilgan so'zlarni ham \"OSMON\" so’zidan olish mumkin. Umuman, savol g'oyasini ham \"osmondan olingan\" ligi ko’rinib turibdi.",
+    "category": "Zakovat #360",
+    "media_url": null,
+    "created_at": "2026-08-11T16:14:53.362Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 1926,
+  "fields": {
+    "pack": 6,
+    "text": "Unai Emeri haqidagi bir postda \"uchta turli ALFAlarni Chempionlar Ligasi kvalifikatsiyasiga olib chiqganligi\" haqida yozilgan va uchta nomdagi ALFA so'zi ajratib ko'rsatilgan. ALFA bilan almashtirilgan lotin tilidan kirib kelgan so'zni yozib bering.",
+    "accepted_answers": [
+      "Villa"
+    ],
+    "explanation": "Postdagi su'ratda Sevilla, Villareal va Aston Villa jamoalari nomlaridagi VILLA so'zi ajratib ko'rsatilgan edi. “Villa” so'zi lotin tilidan \"shaxar tashqarisidagi uy\" deb tarjima qilinadi.",
+    "category": "Zakovat #361",
+    "media_url": null,
+    "created_at": "2026-08-11T16:14:53.370Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 1927,
+  "fields": {
+    "pack": 6,
+    "text": "Diqqat, savolda almashtirilgan so’zlar bor.\nSavol muallifi javobi “RUDOLF” bo’lgan savolni DOLF qilmoqchi edi. Chunki RUDOLF so’zida DOLF borligi savol muallifiga qiziq tuyuldi.\nDiqqat savol! 1986-yilda “Jotto”ning boshqaruvi yo’qotilishiga sababchi bo’lgan RUDOLFning nomini yozib bering.",
+    "accepted_answers": [
+      "Galley kometasi",
+      "Galley",
+      "kometasi",
+      "1P/Halley; Halley"
+    ],
+    "explanation": "Savolda KOMETA so’zi RUDOLF so’zi bilan almashtirilgan edi. Almashtirish mantig’i shundaki, Santa-Klausning Rudolf va Kometa ismli bug’ulari bor. Kometa so’zida esa “meta” so’zini uchratish mumkin. Meta savollar ham ba’zi kometalar singari qaytib kelish hususiyatiga ega. “Jotto” (ing. Giotto) nomli kosmik zond Galley kometasini o’rganish maqsadida yaratilgan. Zond “Поклонение волхвов” kartinasida ushbu kometani tasvirlagan o’rta asrlar rassomi Jotto di Bondone sharafiga nomlangan. 1986-yilda kometaga 605 km masofaga yaqinlashgan zond kosmosdagi kometa parchalari sababli boshqaruvni yo’qotgan.",
+    "category": "Zakovat #362",
+    "media_url": null,
+    "created_at": "2026-08-11T16:14:53.377Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 1928,
+  "fields": {
+    "pack": 6,
+    "text": "DUPLET\nTilshunos Zuhriddin Isomiddinov BU ingilizchadan kirib kelgan so'z o'rnida \"chaqchaq\" so'zini muqobil sifatida ishlatish mumkin deb taklif beradi. Ushbu qisqa so’zni yozib bering.\nTilshunos Zuhriddin Isomiddinovning aytishicha, BU ingilizchadan kirib kelgan atamani eronliklar “robitai umumiy” deb oʻgirishgan ekan. Oʻzbekchada esa yangi qisqartma soʻz yasab, ijtal deyish taklifni bildirgan. Qaysi atama haqida so’z bormoqda?",
+    "accepted_answers": [
+      "1) Chat 2) Piar",
+      "1) Chatting 2) PR; Public Relations"
+    ],
+    "explanation": "1) chaqchaqlashmoq so’zi ham gurunglshish, suxbat qurish ma’nosini beradi.",
+    "category": "Zakovat #363",
+    "media_url": null,
+    "created_at": "2026-08-11T16:14:53.385Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 1929,
+  "fields": {
+    "pack": 6,
+    "text": "Robita so’zi ham aloqa deb tarjima qilinadi. Taklif etilgan “ijtal” so’zi ham piar kabi qisqartma bo’lib “ijtimoiy aloqalar” degan ma’noni anglatadi.\nManba: https://oyina.uz/uz/article/2746\nMuallif: Sardor Axmedov\n17-savol.\nYamata universiteti olimlari tomonidan 21 ta su'rat yordamida o'rgatilgan suniy intellekt yana 4 ta gifni aniqladi. Olimlar ularni oldin payqashmagan edi, vaholanki yangi topilmalardan biri mashxur \"kolibrining\" yonginasida bo'lgan. Savolning birinchi jumlasidagi biz bir so'zdan bir necha harflarni tushirib qoldirdik. O'sha SO'ZNI asl holida yozib bering.",
+    "accepted_answers": [
+      "Geoglif",
+      "Aniq javob"
+    ],
+    "explanation": "“Gif” emas balki “geoglif” – tekislikka o’yib chizilgan suratlar suniy intellekt tomonidan aniqlangan. Yaponiyalik arxeologlar Naska platosida ushbu taqdiqotlarni olib borishgan edi. Sun'iy intellekt baliq, qush, gumanoid va bir juft ulkan inson oyoqlarining noma'lum tasvirlarini topgan.",
+    "category": "Zakovat #364",
+    "media_url": null,
+    "created_at": "2026-08-11T16:14:53.392Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 1930,
+  "fields": {
+    "pack": 6,
+    "text": "Bir videoda samolet salonida ko’plab soch ekish mualajalarini amalga oshirgan insonlarni ko’rish mumkin. Bunday mualajalar asosan bir mamlakatda ko’plab o’tkazilishi va butun dunyodan odamlar shu sababdan kelishini inobatga olib, videoga SHUNDAY ikki so’zdan iborat hazil ingilizcha nom berilgan.\nDiqqat savol! Shu nomni yozib bering.",
+    "accepted_answers": [
+      "Turkish HairLines",
+      "Turkish HairPort"
+    ],
+    "explanation": "Bunday muolajalarni Turkiyada juda muvofaqiyatli amalga oshirishadi. Turkish Airlines kompaniyasi nomi hazil tariqasida o’zgartirilgan.",
+    "category": "Zakovat #365",
+    "media_url": null,
+    "created_at": "2026-08-11T16:14:53.399Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 1931,
+  "fields": {
+    "pack": 6,
+    "text": "Diqqat, savolda almashtirishlar bor!\nO'zbek tilida IKS so'zi teng qiymatli gap boʻlaklari yoki sodda gaplarni, shuningdek, toʻliqsiz gap qismlarini bogʻlash uchun xizmat qiladi, yuklama sifatida esa taʼkid, kuchaytirishni bildiradi. O'zbek tilidagi Wikipediyaga ko'ra, ilgari kanal, jar, soy va yoʻllar ustidan suv oʻtkazish maqsadida quriladigan maxsus gidrotexnik inshoot IGREK deb nomlangan. Masalan, charxpalakda chiqarilgan suv IGREK orqali ekinzorlarga yuborilgan. Aytish mumkinki, 38 yil o’tib, 2015-yilning 16-iyun kunidagi o'zgartirishdan so'ng, IKS o'rnini IGREK egalladi.\nDiqqat savol! IKS va IGREK bilan almashtirilgan qisqa so'zlarni yozib bering.",
+    "accepted_answers": [
+      "Ham, nov",
+      "Aniq javoblar"
+    ],
+    "explanation": "1977-yildan Hamza deb atalgan Toshkentdagi metro stantsiyasi nomini 2015-yilda Novza deb o'zgartirishgan. Ya'ni, bunda eski nomdagi faqatgina uchta harf o'zgargan.",
+    "category": "Zakovat #366",
+    "media_url": null,
+    "created_at": "2026-08-11T16:14:53.407Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 1932,
+  "fields": {
+    "pack": 6,
+    "text": "Diqqat, savolda almashtirishlar bor!\n1970-yillar boshlari haqida hikoya qiluvchi \"Taklif\" nomli amerika seriali epizodlaridan birida, bo'lajak film uchun poster tanlash saxnasi bor. Unda raxbarlardan biri TAKLIF QILINAYOTAN muqovani tushunmay, RAD ETADI va \"odamlar filmni natsistlar haqida deb o'ylashi mumkin\" deb aytadi. Bunga sabab, prodyuser TAKLIF QILGAN muqovada BU PREDMETNING tasviri borligi edi. BU PREDMETdan IKSlar o'z ish faoliyatida foydalanishgan. Savol! KIMLARNING 1986-yilda chiqgan ijod mahsuli \"IKS\" deb nomlangan?",
+    "accepted_answers": [
+      "\"Metallica\" guruhi",
+      "Jeyms Hetfild, Lars Ulrix, Klif Byorton, Kirk Hemmett – shu insonlardan kamida ikkitasi yozib berilgan bo’lsa."
+    ],
+    "explanation": "\"Taklif\" seriali \"Cho'qintirilgan ota\" filmining su'ratga olish jarayonlari haqida hikoya qiladi. Epizodlardan birida prodyuser Albert Raddi kitobning muqovasidan film uchun ham foydalanishni taklif qiladi. Muqovadagi qo'g'irchoqbozning dastchoʻpi raxbarga natsistlar svastikasini eslatib yuboradi. \"Metallika\" rok-guruhining mashxur \"Master of Puppets\" (\"Qo'g'irchoqboz\") nomli albomi 1986-yilda chiqarilgan.",
+    "category": "Zakovat #367",
+    "media_url": null,
+    "created_at": "2026-08-11T16:14:53.415Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 1933,
+  "fields": {
+    "pack": 6,
+    "text": "Stiven Blumberg o'z maqsadiga hujjatlarni qalbakilashtirish, kalitlar yasash va MUASSASA xodimlarining ishonchiga kirish orqali erishgan. Blumberg AQSH tarixidagi eng muvaffaqiyatli IKS hisoblanadi. \"IKS\" 2005-yilda yozilgan va 2013-yilda ekranlashtirilgan asar nomi. IKSni ikki so'zda yozib bering.",
+    "accepted_answers": [
+      "\"Kitob o'g'risi\""
+    ],
+    "explanation": "Book Bandit laqabini olgan Stiven Blumberg 20 yil davomida 30 000 dan ortiq nodir kitoblar va qadimiy qo‘lyozmalarni o‘g‘irlagan. O‘g‘irlangan nashrlarning umumiy qiymati 20 million dollardan oshgan. Savolda avstraliyalik yozuvchi Markus Zusakning \"Kitob o'g'risi\" asari haqida so'z bormoqda.",
+    "category": "Zakovat #368",
+    "media_url": null,
+    "created_at": "2026-08-11T16:14:53.423Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 1934,
+  "fields": {
+    "pack": 6,
+    "text": "Duplet\n[Tarqatma material]\nSavol muallifi ushbu savollarni dastavval 6-chi va 9-chi savollar sifatida bermoqchi edi.\n1. [chap tarafdagi su’rat] Qarshingizda 1915-yilda Illinoysda tug'ilgan insonning yoshlikdagi su'rati. Uning familiyasini yozib bering.\n2. [o’ng tarafdagi su’rat] Qarshingizda 1919-yilda Massachusetsda tug'ilgan insonning ancha to'lishgan paytidagi su'rati. Uning familiyasini yozib bering.",
+    "accepted_answers": [
+      "Javob berilmadi"
+    ],
+    "explanation": "",
+    "category": "Zakovat #369",
+    "media_url": "https://api-zakoweb.claive.uz/media/questions/q_b0cfb5867bf4.png",
+    "created_at": "2026-08-11T16:14:53.433Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 1935,
+  "fields": {
+    "pack": 6,
+    "text": "[Pol] Tibbets\n2. [Charlz] Suini (Sweeney)\nIzoh: Pol Tibbets 1945-yilning 6-avgust kuni Xirosima shaxriga \"Bolakay\" atom bombasini tashlagan \"Enola Gay\" samoletiga komandirlik qilgan. Ikkinchi savoldagi Charlz Suini esa 9-avgust kunidagi Nagasaki shaxriga \"Baqaloq\" atom bombasini tashlagan \"Bockscar\" samoletiga komandirlik qilgan. Suratlarda bolakay Pol va baqaloq Charlzni ko’rish mumkin.\nManba:\nhttps://ru.wikipedia.org/wiki/Тиббетс,_Пол\nhttps://ru.wikipedia.org/wiki/Суини,_Чарльз\nhttps://ru.wikipedia.org/wiki/Enola_Gay\nhttps://ru.wikipedia.org/wiki/Bockscar\nMuallif: Sardor Axmedov\n23-savol.\nAyollar o’rtasidagi UFC sporti jangchisi bo’lgan Treysi Kortez janglardan biridan oldin bir muammoga duch keladi va bu muammoni hal qilish uchun BU ISHNI QILADI. 1905-yilning dekabr oyida chop etilgan hikoyada BU ISH boshqa bir sababga ko’ra qilingan edi. Hikoya muallifini yozib bering.",
+    "accepted_answers": [
+      "O. Genri",
+      "O. Henry; Uilyam Sidni Porter"
+    ],
+    "explanation": "Pol Tibbets 1945-yilning 6-avgust kuni Xirosima shaxriga \"Bolakay\" atom bombasini tashlagan \"Enola Gay\" samoletiga komandirlik qilgan. Ikkinchi savoldagi Charlz Suini esa 9-avgust kunidagi Nagasaki shaxriga \"Baqaloq\" atom bombasini tashlagan \"Bockscar\" samoletiga komandirlik qilgan. Suratlarda bolakay Pol va baqaloq Charlzni ko’rish mumkin.",
+    "category": "Zakovat #370",
+    "media_url": null,
+    "created_at": "2026-08-11T16:14:53.444Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 1936,
+  "fields": {
+    "pack": 6,
+    "text": "[Tarqatma material]\nSavolda ALFA bilan bir so’z almashtirligan.\n2020-yilda Bolonya universiteti olimlari ALFAning tuzilishini Koinotdagi galaktikalar tarmog‘i bilan taqqoslab, ular o‘rtasida ko‘plab o‘xshashliklarni aniqlashgan. Reno daryosi o’qib o’tuvchi, pushti-qizig’ish rangli tomlar va chigal ko’chalardan iborat Bolonya shaxrini savol muallifi ALFAga qiyoslaydi.\nDiqqat savol! ALFA nima ekanlgini emas, balki 1543-yilda Bolonyada tug’ilgan, Rim Papasi Grigoriy XIII ning shaxsiy shifokori familiyasini yozib bering.",
+    "accepted_answers": [
+      "Konstantso Varoliy",
+      "Varoliy",
+      "Konstantso"
+    ],
+    "explanation": "Savolda “ALFA” so’zi bilan “miya” so’zi almashtirilgan. Varoliy o'z zamonasining eng yaxshi shifokori, miyadagi mexanizmini o'rganuvchi olim sifatida mashhur bo'lgan. Miya poyasining bir qismi bo'lgan \"varoliy ko'prigi\" uning sharafiga nomlangan. Reno daryosi ustidagi birorta ko’prik Varoliy sharafiga nomlanmagan ekan.",
+    "category": "Zakovat #371",
+    "media_url": "https://api-zakoweb.claive.uz/media/questions/q_edf872da8217.jpeg",
+    "created_at": "2026-08-11T16:14:53.452Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 1937,
+  "fields": {
+    "pack": 6,
+    "text": "Diqqat, savolda ALFA va ULAR so’zlari bilan boshqa so’zlar almashtirilgan.\nKofe maxsulotini reklama qiluvchi bir rolikda ALFAGA ishora qiluvchi allyuziyani ko’rish mumkin. Rolikda bir tajriba amalga oshiriladi. Unga ko’ra, bir xonada o’nlab (10 lab) kofemashinalar va bir nechta ULARni ko’rish mumkin. Rolik syujetiga ko’ra ULAR ijobiy natijaga erisha olmaydilar, chunki mualliflar fikriga ko’ra kofe tayyorlash bu – san’at.\nDiqqat savol! ALFANI uch yoki to’rt so’z bilan yozib bering.",
+    "accepted_answers": [
+      "Cheksiz maymunlar haqidagi teorema",
+      "Abstrakt/mavhum maymunlar haqidagi teorema/teoriya/nazariya"
+    ],
+    "explanation": "Cheksiz maymunlar haqidagi teoremaga ko’ra mavhum maymun noma'lum vaqt davomida yozuv mashinkasi tugmachalarini tasodifiy urib, ertami-kechmi oldindan belgilangan matnni teradi. Ko’pincha, bu matn sifatida Shekspirning “Gamlet” asari keltiriladi.",
+    "category": "Zakovat #372",
+    "media_url": null,
+    "created_at": "2026-08-11T16:14:53.460Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 1938,
+  "fields": {
+    "pack": 6,
+    "text": "1928-yilda Filadelfiyada tug'ilgan BU professor \"Biz qanday va nima uchun keksayamiz\" kitobining muallifi hisoblanadi. U bir necha yildan so’ng 100 yoshga to'lishi mumkin edi, ammo 96 yosh UNGA CHEGARA bo’ldi. UNING familiyasini yozib bering.",
+    "accepted_answers": [
+      "Heyflik",
+      "Hayflick"
+    ],
+    "explanation": "Heyflik chegarasi - somatik hujayralarning bo'linish sonining chegarasi bo’lib, uning kashfiyotchisi Leonard Heyflik nomi bilan atalgan. 1961 yilda Heyflik hujayra madaniyatida bo'linadigan inson hujayralari taxminan 50 ta bo'linishdan keyin o'lishini va bu chegaraga yaqinlashganda qarish belgilari namoyon bo’lishini kuzatgan va ta’riflagan. U 2024-yil 1-avgust kuni vafot etgan va bu kun aytish mumkinki Heyflik chegarasiga aylandi.",
+    "category": "Zakovat #373",
+    "media_url": null,
+    "created_at": "2026-08-11T16:14:53.468Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 1939,
+  "fields": {
+    "pack": 6,
+    "text": "Usmon Azim bir she'rida \"nazmbozlarni, safsatabozlarni va tizmabozlarni po'stakday savalash\" uchun Tangridan UNI so'raydi. Katta ehtimol, shoir bu she'rini Pushkinning \"О муза пламенной сатиры!\" she'ridan ilhomlanib yozgan. UNING nomida boshqa bir yozuvchi nomini uchratish mumkin.\nUNI ikki so’zda yozib bering.",
+    "accepted_answers": [
+      "Yuvenal qamchisi",
+      "“qamchi” so’zi o’rniga sinonim javoblar, misol uchun “kaltak”"
+    ],
+    "explanation": "“Yuvenal qamchisi” iborasi Rim satirik shoiri Yuvenal nomiga borib taqaladi. Yuvenalning asarlari ayblov xarakteriga ega bo'lib, unda muallif Rim fuqarolarining turli illatlarini mohirona qoralagan.\nPushkinning she'ri quyidagicha boshlanadi:\nО муза пламенной сатиры! // Приди на мой призывный клич! // Не нужно мне гремящей лиры, // Вручи мне Ювеналов бич! // Не подражателям холодным, // Не переводчикам голодным, // Не безответным рифмачам // Готовлю язвы эпиграмм!.\nUsmon Azimda esa:\nЮвенал қамчисин бер менга, Тангрим!\nПўстакдай савалай назмбозларни,\nСафсатабоз, чучмал, тизмабозларни,\nҚофиябоз, сўзбоз, чизмабозларни...",
+    "category": "Zakovat #374",
+    "media_url": null,
+    "created_at": "2026-08-11T16:14:53.476Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 1940,
+  "fields": {
+    "pack": 6,
+    "text": "[Tarqatma material]\nMutahassislarning hisobiga ko’ra ULARNING umumiy soni 39 ta ekan. ULARNING birinchisi 1927-yilga, so’nggisi 1976-yilga to’g’ri keladi. Tarqatma materialda ham 1944-yilga oid noodatiy ULARDAN birini ko’rishingiz mumkin.\nULAR so’zi bilan almashtirilgan so’zlarni FAMILIYA ishlatgan holda yozib bering.",
+    "accepted_answers": [
+      "Alfred Hichkok kameolari",
+      "Hichkok kameolari",
+      "Alfred"
+    ],
+    "explanation": "Mashxur rejisser Alfred Hichkok ko’plab kameolari bilan mashxur. Birinchi kameo 1927-yildagi “Ijarachi” filmida, so’nggisi esa 1976-yildagi “Oilaviy suhbat” filmida yuz bergan. Tarqatma materialda esa, 1944-yildagi “Qutqaruv qayg’i” filmidan epizod bo’lib, unda Hichkok gazetadagi reklamada tasvirlangan.",
+    "category": "Zakovat #375",
+    "media_url": "https://api-zakoweb.claive.uz/media/questions/q_71bf2ed114dd.jpeg",
+    "created_at": "2026-08-11T16:14:53.485Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 1941,
+  "fields": {
+    "pack": 6,
+    "text": "Yuriy Valentinovich o’z ishi uchun “piramidalar bo’ylab sakrab yurish shart emas” deb aytgan. 1992-yilda Yuriy ilk bor QAYSI DAVLATGA tashrif buyurgan?",
+    "accepted_answers": [
+      "Meksika",
+      "Gvatemala"
+    ],
+    "explanation": "Mayya qabilasi tadqiqitchisi Yuriy Knorozov o’zining mashxur kashfiyotidan ancha yillar o’tibgina Meksikaga tashrif buyurgan. U har doim ilmiy ish uchun \"piramidalar bo'ylab sakrash\" shart emasligini, o'rganish mavzusidan minglab kilometr uzoqlikdagi oddiy kichik ofisda ishlashingiz va undanda samaraliroq bo'lishingiz mumkinligini ta’kidlagan.",
+    "category": "Zakovat #376",
+    "media_url": null,
+    "created_at": "2026-08-11T16:14:53.492Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 1942,
+  "fields": {
+    "pack": 6,
+    "text": "Kemaning yomon ahvoli haqida aytaverib kapitanni hunob qilgan bo'lsada, keyinchalik U haq bo'lib chiqgan. Chunki, shtromlardan biriga dosh bera olmagan \"Senk Por\" kemasi cho'kib ketadi. Buni qaranggki, UNGA nisbatan qo'llanilgan maroning jazosi aslida UNI qutqarib qolgan.\nUNING kimligini yozib bering.",
+    "accepted_answers": [
+      "Aleksandr Selkirk",
+      "Selkirk",
+      "Aleksandr"
+    ],
+    "explanation": "Maroning - biror kimsani atayin uzoq joyda, masalan kimsasiz orolda qoldirib ketish. Aleksandr Selkirk Mas-a-Tyerra oroliga tashlab ketilgan va u yerda 4 yil yashagan. Keyinchalik Robinzon Kruzoning prototipiga aylanadi.",
+    "category": "Zakovat #377",
+    "media_url": null,
+    "created_at": "2026-08-11T16:14:53.499Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 1943,
+  "fields": {
+    "pack": 6,
+    "text": "Diqqat, savol matnida ikki turli so’zdan harflar tushirib qoldirilgan. Ushbu so’zlardan biri  fransuz tilidan kelib chiqgan.\nHazil karikaturada bir ksenomorf ikkinchi ksenomorfni fotosuratga olayotganini ko’rish mumkin. Ammo, odatdagidan farqli o’laroq ARKAdagi ESHIK qorin qismida joylashgan edi.\nHarflari tushirib qoldirilgan, bir hil harfdan boshlanuvchi ikki so’zni asl holida yozib bering.",
+    "accepted_answers": [
+      "Tantamreskadagi teshik",
+      "aniq javob"
+    ],
+    "explanation": "Tantamareska – bu yuz uchun teshik qoldirilgan, suratga olish uchun mo’ljallangan stend. Lekin “Begona” filmidagi ksenomorflar inson ichiga kirib uni yorib chiqish hususiyatiga ega edilar. Ksenomorf so’zi ham “begona shakl” so’zlaridan hosil bo’lgan.",
+    "category": "Zakovat #378",
+    "media_url": "https://api-zakoweb.claive.uz/media/questions/q_f2d855ad078f.jpeg",
+    "created_at": "2026-08-11T16:14:53.508Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 1944,
+  "fields": {
+    "pack": 6,
+    "text": "Amerikada olingan bir tarixiy su'ratda yirik aylana shaklga ega obyektga turli hil voqealar va ularning bo'lib o'tgan yillari yozilganini ko'rish mumkin. Eng chekkadagi yozuvda esa yil va BU YOZUVNI o'qish mumkin. BU YOZUV ma'no jihatdan mashxur iboradagi uchtadan birining ma'nosiga zid hisoblanadi.\nDiqqat savol! Yozuvga zid ma'no kasb qiluvchi, o’sha mashxur iboradagi IKKI so'zni yozib bering.",
+    "accepted_answers": [
+      "Daraxt ekish"
+    ],
+    "explanation": "Tarxiy su'ratda yirik sekvoya daraxtining kesilgan qismidagi yil xalqalarida turli hil voqealarning bo'lib o'tgan yilini ko'rish mumkin. Misol uchun, birinchi markazdagi yozuvda \"daraxt o'sishni boshlagan\" degan yozuv bo'lsa, uning eng chekka qismida \"1891 - Daraxt kesib tashlangan\" degan yozuvni ko'rish mumkin. Mashxur iboraga ko'ra “erkak kishi uy qurishi, daraxt ekishi va o'gil o'stirishi kerak\".",
+    "category": "Zakovat #379",
+    "media_url": null,
+    "created_at": "2026-08-11T16:14:53.515Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 1945,
+  "fields": {
+    "pack": 6,
+    "text": "https://tito0107.livejournal.com/tag/%D0%B8%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%8F\n2) https://tm-canyon.ru/otzyvy-o-nashei-rabote/posadit-derevo-vospitat-syna-postroit-dom\nMuallif: Sardor Axmedov\n33-savol.\nTarixchi Mariya Kichaning yozishicha, qadimda afg'on qishloqlarida dalak deb ataluvchi odam bo'lib, ular diniy lavozimga ega bo'lmaganlar, lekin ular bolalarni xatna qilish, tish sug'urish, soch olish, qon chiqarish kabi boshqa shaxsiy xarakterga ega ishlarni ham bajarishgan. Xonadon ichki sirlaridan voqif bo'lganliklari uchun dalaklar ULAR vazifasini ham bajarishgan. Bir o’zbek maqolida ULARNING “tili tiyronligi” aytiladi.\nULARNI biz so’z bilan yozib bering.",
+    "accepted_answers": [
+      "Sovchilar",
+      "Aniq javob"
+    ],
+    "explanation": "An'anaviy afg'on qishlog'i hayoti ikki olamga: hususiy (ayollar va erkaklar yashaydigan) va ommaviy (faqat erkaklar uchun). Dalaklar bu ikki olam o'rtasida sayohat qilishgan deyish mumkin. Ular xonadonning sirlaridan voqif bo'lib, mish-mishlar tarqatishgan. Bundan tashqari, ular qaysi uylarda voyaga yetgan qizlar borligini bilishgan. Shu sababli sovchilik va to'y marosimlarini tashkillashtirish bilan ham shug'ullanishgan. Maqol “Qizli uyning tili biyron, Sovchilarning tili tiyron”.",
+    "category": "Zakovat #380",
+    "media_url": null,
+    "created_at": "2026-08-11T16:14:53.522Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 1946,
+  "fields": {
+    "pack": 6,
+    "text": "[audio lavxaning birinchi 15 soniyasi qo’yib eshittiriladi]\nhttps://www.youtube.com/watch?v=sdnCkH6fKbQ\n1960-yillarda Ennio Morrikone zamonaviy musiqa yaratishda turli predmetlardan foydalangan. Hususan, Janni MechchAning \"Il Barattolo\" nomli ushbu kompozitsiyasini yaratishda Morrikkone ALFANING ovozidan foydalangan. Boshqa san'atkor, ALFALARDAN foydalanib 1960-yillar boshida o'zining mashxur seriyasini yaratgan. ALFANI lotinchadan kirib kelgan so’z ishlatib ikki so’zda yozib bering.",
+    "accepted_answers": [
+      "Konserva bankasi",
+      "Konserva qutisi; konserva idishi"
+    ],
+    "explanation": "Morrikone o'z aranjirovkalarida konserva qutisi, yozuv mashinkasi kabi predmetlardan foydalangan va musiqada yangiliklar qilgan. Endi Uorxoll esa tasviriy san'atda shunday o'ziga xos usullardan foydalangan deyish mumkin.",
+    "category": "Zakovat #381",
+    "media_url": "https://api-zakoweb.claive.uz/media/questions/q_b954af9629e3.jpeg",
+    "created_at": "2026-08-11T16:14:53.531Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 1947,
+  "fields": {
+    "pack": 6,
+    "text": "[Tarqatma material]\nRUSH ‘N’ ********\n1981-yilda Rush [rash] rok-guruhi chegaralangan miqdorda promo-plastinka chiqaradi. Unga 6 ta trek joylangan bo'lib, plastinkadagi chiziqlar shunday ediki, proigravatel yoqilishi bilan treklardan biri doim tasodifiy ravishda boshlanar edi. Ushbu plastinka nomidagi berkitilgan, fransuzchadan kelib chiqgan so’zni yozib bering.",
+    "accepted_answers": [
+      "roulette",
+      "sezilarni xatolarsiz yozilgan “roulette” so’zi bo’yicha"
+    ],
+    "explanation": "Albom nomi “rus ruletkasi”ga ishora edi. Rus ruletkasida ham revolverga bitta oʻq joylanadi va silindr aylantiriladi va tepki bosiladi. Rus ruletkasida revolver barabanidagi 6 ta teshikdan birida joylashgan o’q ham tasodifiy tarzda stvolga tushishi mumkin.",
+    "category": "Zakovat #382",
+    "media_url": "https://api-zakoweb.claive.uz/media/questions/q_1767ba542bf5.jpeg",
+    "created_at": "2026-08-11T16:14:53.539Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 1948,
+  "fields": {
+    "pack": 6,
+    "text": "[Tarqatma material]\nBU inson 1965-yilda Manxettenda, nutq so’zlashi kerak bo’lgan muassasalardan birida otib o’ldirilgan. Suratda o’qlar tekkan joylarni AYLANA shaklda belgilab qo’yilganligini ko’rishingiz mumkin. Savol muallfining QORA haziliga ko’ra, o’sha kuni U mag’lub bo’lgan. UNING kim ekanligini yozib bering.",
+    "accepted_answers": [
+      "Malkolm Iks",
+      "Iks; Malcolm X; el-Haj Malik ash-Shabazz; Malkolm Littl"
+    ],
+    "explanation": "Afro-amerikalik islomiy ruhoniy yetakchi va qora tanlilar huquqi himoyachisi bo’lgan Malkolm Iks 21-fevral kuni Manxettendagi “Odyubon” raqs zalida o’ldirib ketilgan. Aytish mumkinki, devorda 5 ta “nol” tasvirlangan. X va 0 o’yinida esa 5-chi yurish odatda kimdirning g’alabasi bilan yakunlanadi.",
+    "category": "Zakovat #383",
+    "media_url": "https://api-zakoweb.claive.uz/media/questions/q_63667046f69f.png",
+    "created_at": "2026-08-11T16:14:53.549Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 1949,
+  "fields": {
+    "pack": 6,
+    "text": "Savol matnida bir hil harfdan boshlanuvchi ISM va atoqli otdan harflar tushirib qoldirilgan.\nMashxur yulduz va millioner Robbi Uilyams odatda AQSHda yirik kontsertlar berishdan bosh tortadi. Uning aytishicha, AQSHda uni tanishmagani yaxshi, chunki bu unga anonimlik va erkinlik hissini beradi. Qo'shiqchi so’zlarining davomida UNI va MENI eslab o'tadi. Harflari tushirib qoldirilgan so'zlarni asl holida yozib bering.",
+    "accepted_answers": [
+      "Bryus, Betmen",
+      "Aniq javob"
+    ],
+    "explanation": "\"Men AQSHda Bryus Ueyn, butun dunyoda esa Betmen bo'lishim mumkin\" deydi Robbi Uilyams. Millioner va anonimlik so’zlari sizga yordam berishi kerak edi.",
+    "category": "Zakovat #384",
+    "media_url": null,
+    "created_at": "2026-08-11T16:14:53.558Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 1950,
+  "fields": {
+    "pack": 6,
+    "text": "[Tarqatma material]\nSavol matnida bir so'zdan bir necha harflar tushirib qoldirilgan.\nFacebook foydalanuvchisi Alyona Churbanova Buratino haqidagi filmning bu personajlarini \"eng zo'r KADRLAR\" deb atagan. 2024-yilning 11-oktyabr kuni Toshkentda KADRlardan biri yo'lovchiga hujm qilib, bir bolani qo’rqitib yuborgani haqida xabar berildi. Savol matnida ikki marta harflari tushirib qoldirilgan so’zni ASL holida yozib bering.",
+    "accepted_answers": [
+      "kvadrober",
+      "kvadrobist; kvadrobingchi"
+    ],
+    "explanation": "Kvadroberlar - asosan o'smirlar orasida tarqalgan, hayvonlar ko’rinishida kiyinib, ularning harakatlari va odatlariga taqlid qiluvchilardir. Mushuk Bazilio va tulki Alisa obrazlari ham antropomorf hayvonlar ko’rinishida talqin qilingan.",
+    "category": "Zakovat #385",
+    "media_url": "https://api-zakoweb.claive.uz/media/questions/q_41b617e10e6b.jpeg",
+    "created_at": "2026-08-11T16:14:53.567Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 1951,
+  "fields": {
+    "pack": 6,
+    "text": "Facebookdagi bir ingilizcha postda yozilishicha, agar ikkita quloqni bir-biriga teskari qilib, yonma-yon qo'yilsa, ular yurak shaklini hosil qilar ekan. Muallifning aytishicha, quloq bu yurakka eltuvchi yo'l. Qolaversa, yana bir qiziq holat deya, muallif … nimaga ahamiyat qaratgan?",
+    "accepted_answers": [
+      "\"heart\" so'zi ichida \"ear\" so'zining borligiga",
+      "ingilizcha yurak sozninig ichida quloq sozini topish mumkinligiga ishora qiluvchi javoblar, misol uchun H-EAR-T"
+    ],
+    "explanation": "ingilizcha yurak so'zninig ichida quloq so'zini ham topish mumkin",
+    "category": "Zakovat #386",
+    "media_url": null,
+    "created_at": "2026-08-11T16:14:53.575Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 1952,
+  "fields": {
+    "pack": 6,
+    "text": "[Tarqatma material]\n«When the Guilt Fell»\nSavolda almashtirish bor.\nTarqatma materialda, Jeremi Merser kitobi nomidagi bir so'z qisqartirilgan. Bu kitob Hamid Jandubiy ismli fransiyalik jinoyatchi haqida hikoya qiladi. 1977-yilda Jandubiy OMEGAga aylangan. Tarqatma materialda qaysi so'z qisqartitilganligini topgan bo'lsangiz, OMEGA so'zi bilan almashtirilgan so'zlarni MAKSIMAL aniqlikda yozib bering.",
+    "accepted_answers": [
+      "Gilyotinada qatl qilingan so'nggi odam/jinoyatchi",
+      "Yevropada/dunyoda gilyotina orqali qatl etilgan songgi odam;"
+    ],
+    "explanation": "Asar nomini “Gilyotina qulaganda” deb tarjima qilish mumkin. Ya’ni \"Guillotine\" so'zi \"guilt\" ya'ni \"ayb\" ko'rinishida qisqartirilgan edi. Aytish mumkinki, gilyotina ham odamlarni biroz qisqartiruvchi uskuna. OMEGA esa yunon alifbosining so’nggi harfi.",
+    "category": "Zakovat #387",
+    "media_url": null,
+    "created_at": "2026-08-11T16:14:53.582Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 1953,
+  "fields": {
+    "pack": 6,
+    "text": "[Tarqatma material]\nAytish mumkinki, ushbu su’ratda 2015-yilgi ruscha roman nomiga zid ish qilinmoqda. Qaysi roman?",
+    "accepted_answers": [
+      "“Zulayxo ko’zlarini ochmoqda”",
+      "“Zulayxo ko’zini ochmoqda”; “Zuleyxa ko’zlarini ochmoqda”; “Zuleyxa ko’zini ochmoqda”"
+    ],
+    "explanation": "Su’ratda qo’shiqchi Zulayxo Boyxonova ko’zlarini yopmoqda. Rossiyalik yozuvchi Guzel’ Yaxinaning 1930-yillarda tatar qishloqlaridan birida quloqlarni surgun qilishga bag’ishlangan romani “Zuleyxa ko’zlarini ochmoqda” deb nomlanadi. 2019-yilda asar asosida shu nomdagi serial ham su’ratga olingan.",
+    "category": "Zakovat #388",
+    "media_url": "https://api-zakoweb.claive.uz/media/questions/q_7ebc1cf64e80.jpeg",
+    "created_at": "2026-08-11T16:14:53.590Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 1954,
+  "fields": {
+    "pack": 6,
+    "text": "[Tarqatma material]\n***kid*****\nToshkentlik ishbilarmonlar tomonidan ochilgan ushbu bolalar kiyim do’koni U deb nomlangan. Tarqatma materialda U so’zidan harflar tushirib qoldirilgan. Do’kon nomini to’liq yozib bering.",
+    "accepted_answers": [
+      "Obakidondon",
+      "Obakidandon"
+    ],
+    "explanation": "Obakidandon - shakar qiyomidan tayyorlangan shirinlik turi. Suratda ham do’kon oldida shirinliklar to’dirilgan savatni ko’rish mumkin. Savoldagi “ishbilarmonlar” so’zi “Ishbilarmon kishilar” filmiga ishora edi. Undagi “hey bola, obakidandondan yeb, bizni aravada aylanib kelishni hohlamaysanmi?” frazasi mashxur.",
+    "category": "Zakovat #389",
+    "media_url": "https://api-zakoweb.claive.uz/media/questions/q_6a2cc71c0745.jpeg",
+    "created_at": "2026-08-11T16:14:53.598Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 1955,
+  "fields": {
+    "pack": 6,
+    "text": "Hayoti davomida uch marta mamlakatdan quvg'in qilingan Gretsiya qiroli Georg II, \"qirol uchun eng yaxshi narsa bu - OMAD\" deb aytgan. Savolda qaysi so'zdan 3 ta harf tushirib qoldirilgan?",
+    "accepted_answers": [
+      "Jomadon"
+    ],
+    "explanation": "bir necha bor ko'chishga majbur bo'lgan qirol uchun jomadon albatta muhim narsa.\nJamoalarga bugungi o’yinda omad!",
+    "category": "Zakovat #390",
+    "media_url": null,
+    "created_at": "2026-08-11T16:14:53.606Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 1956,
+  "fields": {
+    "pack": 6,
+    "text": "\"G'alati ishlar\" nomli AQSH serialining 3-mavsumida bosh qaxramonlar KO’PLAB QISMLARDAN tashkil topadigan BIR maxluq bilan kurashishadi. Epizodlaridan biri esa AYNAN SHU lotincha SHIOR bilan nomlangan. Ushbu shiorni yozib bering?",
+    "accepted_answers": [
+      "E pluribus unum",
+      "Pluribus unum; Koplikdan - bir butun, Из многих — единое"
+    ],
+    "explanation": "Bu qadimgi ibora zamonaviy talqinda millatning birligini anglatadi. Bu iborani AQSH katta tamg'asi va tangalarida ham uchratish mumkin va u AQSHning shiorlaridan biri hisoblanadi.",
+    "category": "Zakovat #391",
+    "media_url": null,
+    "created_at": "2026-08-11T16:14:53.614Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 1957,
+  "fields": {
+    "pack": 6,
+    "text": "Pokistonlik qo'shiqchi Kandil Baloch ijtimoiy tarmoqlarga roliklari va fotosu'ratlarini joylab borgan. Oqibatda, 2016-yilda Vosimning toqati toq bo’ladi. 1929-yilda esa shunga o’xshash holatda Solixo’ja chidab tura olmagan edi. Kim haqidagi Wikipedia maqolasida Kandil Baloch haqidagi maqolaga ham havola berilgan?",
+    "accepted_answers": [
+      "Nurxon",
+      "Nurxon Yoldoshxojaeva; Yoldosheva"
+    ],
+    "explanation": "Vosim Kandil Balochning akasi edi. 2016-yilda singlisini o’ldirgan. 1929-yil yuzi ochiq holda omma oldida raqsga tushgani uchun Nurxonning akasi Solixo'ja uni pichoqlab o'ldiradi.",
+    "category": "Zakovat #392",
+    "media_url": null,
+    "created_at": "2026-08-11T16:14:53.622Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 1958,
+  "fields": {
+    "pack": 6,
+    "text": "1992-yilda tug'ilgan Yangi Orleanlik rejisser Edvard Baklzning yoshlik chog’ida o'zi va tengdoshlari hayotida yuz bergan voqealar va hotiralari haqidagi hujjatli filmi \"KAPPANING BETTALARI\" deb nomlangan. Boshqa bir KAPPANING BETTALARI haqida ma'lumot izlagan savol muallifi, hindustantimes.com saytida 2024-yil May oyida chiqgan habarga duch keldi. Oradan sakkiz oydan ko'p vaqt o'tgan bo'lsa ham, KAPPANING BETTASI haqida yangi ma'lumot topa olmadi. KAPPANING BETTALARI so'zlari bilan almashtirilgan IKKI so'zni yozib bering.",
+    "accepted_answers": [
+      "Katrinaning bolalari",
+      "Katrinaning farzandlari; Katrinaning og’illari"
+    ],
+    "explanation": "2005-yilning yozida Yangi Orlean va uning atroflariga \"Katrina\" to'foni katta zarar bergan. Shu davrda hali bola bo'lgan rejisser filmda o'zi va tengdoshlarining hotiralari bilan o'rtoqlashgan. Boshqa hindistonlik Katrina - Katrina Kaifning farzandlari bor yoki yo'qligi haqida aniq ma'lumot topishning imkoni bo'lmadi.",
+    "category": "Zakovat #393",
+    "media_url": null,
+    "created_at": "2026-08-11T16:14:53.630Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 1959,
+  "fields": {
+    "pack": 6,
+    "text": "https://rezka.ag/films/documentary/51170-deti-katriny-2022.html\n2)  https://www.hindustantimes.com/entertainment/bollywood/katrina-kaif-is-pregnant-first-baby-delivery-in-london-like-anushka-sharma-report-viral-video-vicky-kaushal-101716350277748.html\nMuallif: Sardor Axmedov\n48-savol\n[Tarqatma material]\nQarshingizda IKS deb nomlanuvchi mehmonxonalarni bron qilish servisining logotipi. Servis nomini eshitgan odam uning asoschisi klassik adabiyotga ham qiziqishini tahmin qilishi mumkin. IKS bilan almashgan so'zni yozib bering.",
+    "accepted_answers": [
+      "Otello",
+      "Aniq javob"
+    ],
+    "explanation": "Kalit ko'rinishidagi logotip odatda srvis nomidagi O va T harflari vazifasini ham bajaradi. Nomda Otel' so'zi va Shekspir personaji nomi o'ziga xos ravishda uyg'unlashtirilgan.",
+    "category": "Zakovat #394",
+    "media_url": "https://api-zakoweb.claive.uz/media/questions/q_8b61713247cd.png",
+    "created_at": "2026-08-11T16:14:53.638Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 1960,
+  "fields": {
+    "pack": 6,
+    "text": "Bolalikda Jul' Vern asarlarini ko'p o'qigan savol muallifi, hozirda uning biron asarini o'qisa butun yoshligi esiga tushib ketar va bolalik hotiralari qamrab olardi. Buni qarangki, Jul' Vern nasroniylar uchun muqaddas sanalgan aynan SHU INSON nomi bilan ataladigan qabristonga dafn etilgan. Kimning?",
+    "accepted_answers": [
+      "Muqaddas Madlen",
+      "Madlen; Muqaddas Magdalina; Mariya Magdalina; Magdalina; Mariya"
+    ],
+    "explanation": "Boshqa fransuz yozuvchisi Marsel Prustning asarida madlen nomli pechenyelar asar qaxramonini uzoq hotiralar olamiga tushirib qo'yar edi.",
+    "category": "Zakovat #395",
+    "media_url": null,
+    "created_at": "2026-08-11T16:14:53.646Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 1961,
+  "fields": {
+    "pack": 6,
+    "text": "O'zining noodatiy fikrlari bilan mashxur bo'lgan Muammar Qaddafi UNI Shayx Zubayr ismli arab muxojiri va shoiri deb hisoblagan ekan. UNING mashxur qaxramoni ham mavritaniyalik arab zobiti bo’lgan. UNING kimligini yozib bering.",
+    "accepted_answers": [
+      "Uilyam Shekspir",
+      "Shekspir",
+      "Uilyam",
+      "Aniq javob"
+    ],
+    "explanation": "“Shekspir” familiyasini – “Shayx Zubayr” tariqasida talqin qilgan. Shekspirning qaxramoni Otello ham shimoliy afrika arablaridan edi.",
+    "category": "Zakovat #396",
+    "media_url": null,
+    "created_at": "2026-08-11T16:14:53.653Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 1962,
+  "fields": {
+    "pack": 6,
+    "text": "[Tarqatma material]\nMasjid ichida bir imom tomonidan uyushtirilgan bolalar bilan basketbol o'yini videosi ostidagi kommentariylaridan birida ikki so'zli terminga bir harf qo'shish orqali hazil izoh qoldirilgan. Hosil bo'lgan ikki so'zni yozib bering.",
+    "accepted_answers": [
+      "Islam Dunk islam dank",
+      "Islam Dunk",
+      "islam dank"
+    ],
+    "explanation": "Slam dunk [slem dank] termini basketbolda yuqoridan to'rga to'pni sakrab kiritishni ifodalaydi",
+    "category": "Zakovat #397",
+    "media_url": "https://api-zakoweb.claive.uz/media/questions/q_06e5a1e636ed.png",
+    "created_at": "2026-08-11T16:14:53.662Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 1963,
+  "fields": {
+    "pack": 6,
+    "text": "«Qadimgi AURA» deb nomlangan bir karikaturada, bir mamont bo'ynidagi og'riq birdan to'xtaganini aytmoqda. Uning ortida esa bir nechta nayza uloqtirayotgan ibtidoiy ovchilarni ko'rish mumkin. Biz karikatura nomida qisqartirgan so’zni ASL HOLIDA yozib bering.",
+    "accepted_answers": [
+      "Akupunktura"
+    ],
+    "explanation": "Nayzalar mamont uchun huddi ignalardek ta'sir qilgan va kerakli tomirlarga sanchilgan shekilli, og’riqdan halos bo’lmoqda.",
+    "category": "Zakovat #398",
+    "media_url": null,
+    "created_at": "2026-08-11T16:14:53.670Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 1964,
+  "fields": {
+    "pack": 6,
+    "text": "19-asr boshlarida Yevropada qabrlardan o'liklarni kavlab oluvchilarning aksariyati tibbiyot talabalari bo'lgan. Ular tanalarning qismlarini o'z ustozlariga anatomiya darslari uchun sotishgan. Shu davrga oid BIR ASRNING bosh qaxramoni ham student-medik edi. O’sha ASAR NOMIDA qatnashgan ikki atoqlni otni yozib bering.",
+    "accepted_answers": [
+      "Frankenshteyn, Prometey",
+      "aniq javob"
+    ],
+    "explanation": "\"Frankenshteyn yoxud zamonaviy Prometey\" asari Merri Shelliga tegishli roman.",
+    "category": "Zakovat #399",
+    "media_url": null,
+    "created_at": "2026-08-11T16:14:53.678Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 1965,
+  "fields": {
+    "pack": 6,
+    "text": "Qashqadaryo viloyatida 2010-yilda topilgan gaz konini qidirish chog'ida \"G'issorneftegaz\" kompaniyasi hodimlarida aniq ma'lumotlar bo'lmagan ko'rinadi. Gaz koniga ular IKS deb nom berishgan. Boshqa bir IKS, 1926-yilda Farg’onaning Quva tumanida tug’ilgan. IKS bilan almashtirilgan so’zni yozib bering.",
+    "accepted_answers": [
+      "Tavakkal"
+    ],
+    "explanation": "Tavakkal qilib burg'ulashgan ko'rinadi. Tavakkal Qodirov Farg’onada tug’ilgan.",
+    "category": "Zakovat #400",
+    "media_url": null,
+    "created_at": "2026-08-11T16:14:53.687Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 1966,
+  "fields": {
+    "pack": 6,
+    "text": "Bir latifada aqlli bolakay direktorning “ULARNING soni nechta?” degan savoliga - \"6 ta\" deb, bir qarashda noto'g'ri javob beradi, ammo keyinchalik bolakay Gaydn, PyatsOla, LusyE, Chaykovskiy, GlazunOv va YANA BIR INSONNI esga olib direktorni hayratda qoldilardi. Diqqat, ULARNI ikki so'z bilan va nomi sanalmagan so’nggi INSON kimligini yozib bering.",
+    "accepted_answers": [
+      "Yil fasllari, Antonio Vivaldi",
+      "Yil fasllari,  Vivaldi",
+      "Antonio",
+      "Vivaldi o’rniga Juzeppe Archimboldo; yoki “Yil fasllari” nomli asarlar to’plamiga ega boshqa bir san’atkor"
+    ],
+    "explanation": "Yil fasllari 4 ta bo’lishini ham bilmagandek ko’ringan bolakay aslida juda aqlli edi va 6 tadan ko'p \"Yil fasllarini\" eslay olmaganligini aytgan.",
+    "category": "Zakovat #401",
+    "media_url": null,
+    "created_at": "2026-08-11T16:14:53.695Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 1967,
+  "fields": {
+    "pack": 6,
+    "text": "[Tarqatma material]\nJurnalistning savollariga javob berar ekan, Zlatan Ibragimovich barcha pozitsiyalarda eng yaxshi o'yinchi tariqasida o'zini tanlaydi va ohirida MO’JIZAVIY tarzda ideal o'yinchi hosil bo'lganini aytar ekan, tarqatma materialda siz ko’rib turgan so'zni ham ishlatadi. BU so’zni asl holida yozib bering.",
+    "accepted_answers": [
+      "Ibrakadabra",
+      "Aniq javob"
+    ],
+    "explanation": "“Ibrakadabra, ideal futbolchi hosil bo’ldi” deb hazillashadi kamtar Ibragimovich. Abrakadabra odatda sexrgarlar ishlatadigan so’z. Mo’jizaviy so’zi shunga ishora edi.",
+    "category": "Zakovat #402",
+    "media_url": "https://api-zakoweb.claive.uz/media/questions/q_d3c79642fe8c.png",
+    "created_at": "2026-08-11T16:14:53.703Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 1968,
+  "fields": {
+    "pack": 6,
+    "text": "1948-yilda sodir bo’lgan Nakba deb ataluvchi voqealar natijasida minglab Falastin aholisi o'z uylaridan haydab chiqarilgan va ko'chishga majbur bo'lishgan. Bu insonlar va ularning avlodlari hali-hanuz uylariga qaytishga umid bilan yashashadi. Shu sababli, Nakba kunining asosiy ramzi TILAK hisoblanadi. Savol matnidagi so’nggi jumlada almashtirilgan so’zni yozib bering.",
+    "accepted_answers": [
+      "Kalit"
+    ],
+    "explanation": "Ko'plab oilalar o'z uylarining kalitlarini qaytish ramzi sifatida saqlab qo'yishgan. Kalit va tilak so’zlari bir biriga anagramma.",
+    "category": "Zakovat #403",
+    "media_url": null,
+    "created_at": "2026-08-11T16:14:53.710Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 1969,
+  "fields": {
+    "pack": 6,
+    "text": "Shaxnoza Oyxo'jaevaning Abdurauf  Fitratning boshqa sohalar bilan bir qatorda, musiqa san’ati bobida ham zakiy olim bo'lgani va 1921-yili “Sharq musiqa maktabi”ni tashkil qilganligi haqidagi maqola \"IKSning yuksak IKSi\" deb nomlangan. IKSni bir so’z bilan yozib bering.",
+    "accepted_answers": [
+      "Maqom"
+    ],
+    "explanation": "Maqom so’zining ikki hil ma’nosidan foydalanilgan.",
+    "category": "Zakovat #404",
+    "media_url": null,
+    "created_at": "2026-08-11T16:14:53.718Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 1970,
+  "fields": {
+    "pack": 6,
+    "text": "Savolda IKS bilan unli harflardan boshlanuvchi IKKI so'z almashtirilgan.\nAnnett Baumeysterning XX-asrdagi AQSHning mashxur qo'shiqchisi haqidagi hujjatli filmi \"Frenk Sinatra. IKS\" deb nomlangan. Boshqa bir IKS ilk bor 1942-yil 24-fevralda o'z faoliyatini Gebbels propogandasiga qarshi o'laroq boshlagan. IKSni ikki so’z bilan yozib bering.",
+    "accepted_answers": [
+      "Amerika Ovozi"
+    ],
+    "explanation": "Savolning ikkinchi qismida so'z radiokompaniya haqida bormoqda.",
+    "category": "Zakovat #405",
+    "media_url": null,
+    "created_at": "2026-08-11T16:14:53.725Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 1971,
+  "fields": {
+    "pack": 6,
+    "text": "O’zbek rassomi Furqat Bozorovning yunon mifologik syujetiga allyuziya qilib ishlangan kartinasida ham buqani ko'rish mumkin, ammo uning shoxida SHARQONA uslubda ishlangan ayollar sumkasi osilgan xolos. Kartina nomini ikki so'zda yozib bering.",
+    "accepted_answers": [
+      "\"Osiyoning o'g'irlanishi\""
+    ],
+    "explanation": "Yevropaning o'girlanishiga allyuziya.",
+    "category": "Zakovat #406",
+    "media_url": null,
+    "created_at": "2026-08-11T16:14:53.732Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 1972,
+  "fields": {
+    "pack": 6,
+    "text": "Savol muallifining fikricha, bu savol javobini topish JUDA OG’IR.\nSavol! Varzob daryosi qaysi poytaxt shaxar hududidan oqib o'tadi?",
+    "accepted_answers": [
+      "Dushanbe"
+    ],
+    "explanation": "savol preambulasi “Dushanba - og'ir kun!” iborasiga ishora edi. Oylaymizki Dushanbeni topish sizga og’ir bo’lmadi.",
+    "category": "Zakovat #407",
+    "media_url": null,
+    "created_at": "2026-08-11T16:14:53.740Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 1973,
+  "fields": {
+    "pack": 6,
+    "text": "[Tarqatma material]\nDiqqat, savolda U so’zi bilan IKKI SO’Z almashtirilgan.\nVyetnamda joylashgan bu mashxur Oltin ko’prikni ULAR deb ham atashadi. “U” deb nomlangan Wikipediya maqolasida 1986-yil yoz oyida olingan fotosu’ratni ham ko’rish mumkin. Ushbu fotosu’rat olingan JOY NOMINI bir hil harfdan boshlanib, bir hil harf bilan tugaydigan horijiy so’z ishlatgan holda yozib bering.",
+    "accepted_answers": [
+      "Atsteka",
+      "“Atsteka” stadioni; Estadio Azteca"
+    ],
+    "explanation": "ULAR – “Hudoning qo’llari”. “Hudoning qo’li” deb nomlangan voqea 1986-yilning 22-iyun kuni Mexikoning “Atsteka” stadionida o’tkazilgan Argentina va Angliya o’rtasidagi matchda sodir bo’lgan.",
+    "category": "Zakovat #408",
+    "media_url": "https://api-zakoweb.claive.uz/media/questions/q_4b7fe501576a.jpeg",
+    "created_at": "2026-08-11T16:14:53.748Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 1974,
+  "fields": {
+    "pack": 6,
+    "text": "Aktrisa Fey Rey karyerasining ENG YUQORI nuqtasi deb 1933-yildagi ro'li tan olinadi. Bu ro'l uni kino tarixidagi eng esda qolarli personajlarlardan biri - \"BONDning ayoliga\" aylantirdi. Savol matnida biz bir so'zda IKKI harfni boshqa IKKI harfga almashtirdik.\nDiqqat savol! O'sha so'zni asl holida yozib bering.",
+    "accepted_answers": [
+      "Kong",
+      "Aniq javob"
+    ],
+    "explanation": "Fey Rey mashxur \"King-Kong\" filmida \"Kongning qizi\" Enn Derrou ro'lini ijro etgan. \"yuqori nuqtasi\" so'zlari balki filmning Empire State Building bilan bog'liq epizodini eslatishi mumkin.",
+    "category": "Zakovat #409",
+    "media_url": null,
+    "created_at": "2026-08-11T16:14:53.755Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 1975,
+  "fields": {
+    "pack": 6,
+    "text": "1644-yilda BU INSON hamkasbi Alessandro Richchiga yozgan xatida: \"Biz havo okeanining tubida yashaymiz\" degan hulosani bildirgan. BU OLIMNING kimligini yozib bering.",
+    "accepted_answers": [
+      "Evanjelista Torichelli",
+      "Torichelli",
+      "Evanjelista"
+    ],
+    "explanation": "Atmosfera bosimini o'rgangan olim, havoninig ham og'irligi borligi haqidagi fikrni ilgari sugan. O’zining tajribalari natijasida simobli barometrni ixtiro qilgan. Undan tashqari tajribalar natijasida aniqlangan vakuum “Torichelli bo’shlig’i” deb atala boshlagan.",
+    "category": "Zakovat #410",
+    "media_url": null,
+    "created_at": "2026-08-11T16:14:53.763Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 1976,
+  "fields": {
+    "pack": 6,
+    "text": "Niderlandiyadagi bir muassasaning o'n millioninchi bo'lgan tashrif buyuruvchisiga Rembrandtning \"Tungi qo'riq\" kartinasi oldida BIR ISHNI qilishga ruxsat berishgan. Bu haqida o'qigan savol muallifi 2006-yildagi BU gollivud FILMINI esga oladi. FILM nomini yozib bering.",
+    "accepted_answers": [
+      "\"Muzeydagi tun\""
+    ],
+    "explanation": "Muzeyda bir kun tunab qolishga ruhsat berishgan.",
+    "category": "Zakovat #411",
+    "media_url": null,
+    "created_at": "2026-08-11T16:14:53.770Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 1977,
+  "fields": {
+    "pack": 6,
+    "text": "Solros deb nomlangan musiqiy kolonka (dinamik) ning bir hususiyati sababli, tinglovchi xonaning qayerida harakatlanmasin, ovoz yaxshi eshtiladi. Maqolada qurilma IKS-kolonkalar deb atalgan. IKSni ikki o'zakli so'z bilan yozib bering.",
+    "accepted_answers": [
+      "Kungaboqar",
+      "Sunflower; подслонух; подсолнечник"
+    ],
+    "explanation": "Eshituvchi qayerga harakatlansa, kolonkalar ham o'sha tomonga buriladi, huddi kungaboqar quyosh tomonga burilgani singari. Kolonka nomidagi Sol – quyoshni anglatadi.",
+    "category": "Zakovat #412",
+    "media_url": null,
+    "created_at": "2026-08-11T16:14:53.777Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 1978,
+  "fields": {
+    "pack": 6,
+    "text": "Eramizdan avvalgi 200-yilarda xitoyliklar IKSlarni qayd etish maqsadida manfiy sonlarni o'ylab topishgan ekan. Bir maqolda aytilishicha, IKS tovush chiqarmasa ham, uxlagani qo‘ymaydi. IKSNI bir bo'g'inli so'z bilan yozib bering.",
+    "accepted_answers": [
+      "Qarz"
+    ],
+    "explanation": "--",
+    "category": "Zakovat #413",
+    "media_url": null,
+    "created_at": "2026-08-11T16:14:53.784Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 1979,
+  "fields": {
+    "pack": 6,
+    "text": "Artur Shopengauerning qarindoshlari uning vasiyatining barcha bandlarini bekami-ko'st bajarishgan, natijada faylasufning dafn marosimida tanadan chiqayotgan badbo'y hid odamlarni bezovta qilgan. Gap shundaki, Shopengauerda U bor edi. UNI yunoncha bir so'z bilan yoki o’zbekchada bir necha so’zlar bilan yozib bering.",
+    "accepted_answers": [
+      "Tafofobiya",
+      "Tiriklayin komilishdan qorqish"
+    ],
+    "explanation": "Artur Shopengauer tapofobiyadan, tiriklayin ko‘milish qo‘rquvidan aziyat chekgan va o‘limidan keyin besh kun o‘tib, dafn marosimini o'tkazishni vasiyat qilgan.",
+    "category": "Zakovat #414",
+    "media_url": null,
+    "created_at": "2026-08-11T16:14:53.792Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 1980,
+  "fields": {
+    "pack": 6,
+    "text": "[boshlovchi savolni biroz sekinroq o’qishi tavsiya etiladi]\nSavolda BO'SHLIQ so’zi bilan IKKI so’z almashtirilgan.\nJon Le Karre, Somerset Moem, Yulian Semenov va Yan Fleming asarlarini BO'SHLIQ eng yaxshi kitoblar ro'yxatida uchratish mumkin. 1984-yildagi manbada esa, kechki suxbatning mazmuni aslida BO'SHLIQ emas, balki psixologiya edi. BO'SHLIQ o'rnidagi IKKI so'zni yozib bering.",
+    "accepted_answers": [
+      "Shpionlar to'g'risida",
+      "Shpionlar haqida; josuslar to’g’risida/haqida"
+    ],
+    "explanation": "\"Kelinlar qo'zg'oloni\" filmida ovsinlar aslida psixologlarning oila mustahkamligi to'g'risidagi maslahati haqida gaplashishayotgan edi, ammo \"shpion\" Sottining savoliga \"shpionlar to'g'risida\" deb javob beriladi.",
+    "category": "Zakovat #415",
+    "media_url": null,
+    "created_at": "2026-08-11T16:14:53.799Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 1981,
+  "fields": {
+    "pack": 6,
+    "text": "Napoleonning buyurtmasiga asosan Sharl' BarbyE askarlar kechqurun ovoz chiqarmay va chiroqsiz ma'lumot almashishlari uchun yangilik o'ylab topadi. Ammo, elementlar soni ko'p bo'lgani sababli u o'rganish uchun qiyin bo'lgan va amaliyotda foydalanilmagan. Boshqa bir fransuz esa Barbyening ishi bilan tanishgach, uni takomillashtirgan. Qaysi fransuz haqida so’z bormoqda?",
+    "accepted_answers": [
+      "Lui Brayl'",
+      "Brayl'",
+      "Lui"
+    ],
+    "explanation": "Barbyening variantidagi shriftda nuqtalar soni 12 ta bo'lganligi uchun o'rganish qiyin bo'lgan. Brayl' esa ularni 6 tagacha qisqartirgan.",
+    "category": "Zakovat #416",
+    "media_url": null,
+    "created_at": "2026-08-11T16:14:53.807Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 1982,
+  "fields": {
+    "pack": 6,
+    "text": "“Nima? Qayerda? Qachon?” boshlovchisi Boris Kryuk, ketma-ket uchta o'yindan beri hech qaysi jamoaga tushmagan va oxir-oqibat to'rtinchi jamoaga tushgan savolni UNGA o'xshatadi. UNING ruscha nomida bir nechta “o” harfini ko’rish mumkin. UNI bir so’zda yozib bering.",
+    "accepted_answers": [
+      "Bo'g'irsoq",
+      "Колобок"
+    ],
+    "explanation": "O’yindagi savol ham bo’g’irsoq kabi qochib-qochib bir jamoaga “yem” bo’lgan. “O” harfi ham bo’g’irsoq singari dumaloq shaklda.",
+    "category": "Zakovat #417",
+    "media_url": null,
+    "created_at": "2026-08-11T16:14:53.815Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 1983,
+  "fields": {
+    "pack": 6,
+    "text": "[Tarqatma material]\nUshbu intervyudagi epizodni savol muallifi DUXORO QO’ZG’OLONI deb atagan. Qaysi ikki so’z DUXORO QO’ZG’OLONI so’zlari bilan almashtirdik?",
+    "accepted_answers": [
+      "Doston choyxo’rligi"
+    ],
+    "explanation": "“Boston choyxo’rligi” so’zlari “Duxoro qo’zg’oloni” so’zlariga almshtirilgan. Bunda ikkala shaxar nomida ham birinchi harf o’zgartirilgan. Suratda Doston Ubaydullaev choyxo’rlik qilayotganini ko’rish mumkin.",
+    "category": "Zakovat #418",
+    "media_url": "https://api-zakoweb.claive.uz/media/questions/q_90fd9b5e3321.png",
+    "created_at": "2026-08-11T16:14:53.825Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 1984,
+  "fields": {
+    "pack": 6,
+    "text": "Bir ARAB rivoyatida nevara bobosiga insonning umri haqida savol beradi. Bobo unga: \"insonning umri IKSsiz IGREK va IGREKsiz IKS oralig'idagi vaqtdir\" deb javob beradi. IGREKNI IKSDAN hosil qilish mumkin. IKS VA IKREK bilan almashtirilgan so’zlarni yozib bering.",
+    "accepted_answers": [
+      "Namoz, azon"
+    ],
+    "explanation": "Musulmon chaqaloq tug'ilganda uning qulog'iga azon aytishadi, lekin namoz o'qilmaydi. Musulmon odam qazo qilganida esa janoza namozi o'qiladi, lekin unga azon aytilmaydi.",
+    "category": "Zakovat #419",
+    "media_url": null,
+    "created_at": "2026-08-11T16:14:53.835Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 1985,
+  "fields": {
+    "pack": 6,
+    "text": "[Boshlovchiga: savol formasida “muallifini” so’zi atayin ikki marta yozilgan, uni ikki marta, oddiy ohang bilan o’qish lozim]\n[Tarqatma material]\nVyetnam urushi tugaganidan keyin, siz su'ratda ko'rib turgan amerika samolyotlarining cho'zinchoq yonilg'i baklariga biroz ishlov berib, mahalliy aholi U sifatida foydalana boshlagan. \"U\" so'zi 1889-yilda yozilgan asar nomida ham bor. BU SO'ZNI va artiklni hisobga olmaganda, asarning original nomida yana 3 ta so'zni ko'rish mumkin.\nDiqqat savol! BU SO'ZNI emas, balki tilga olingan asar muallifini muallifini yozib bering.",
+    "accepted_answers": [
+      "Jerom Klapka Jerom",
+      "Jerom",
+      "Jerom Klapka",
+      "Kerom K. Jerom; Jerom Jerom"
+    ],
+    "explanation": "Mazkur yonilg'i baklariga ishlov berilib, ulardan qayiqlar (kanoelar) yasalgan. \"Itni hisobga olmaganda qayiqda uch kishi\" nomli yumoristik povestning muallifi Jerom K. Jerom hisoblanadi. Savol matnidagi \"hisobga olmaganda\" va \"3 ta\" so'zlari asar nomiga ishora edi. Savol formasidagi \"muallifini\" so'zining ikki marta takrorlanishi ham bejiz emas.\nManba(lar):\nhttps://bugaga.ru/interesting/1146742120-samodelnye-kanoe-iz-toplivnyh-bakov-4-foto.html\nhttps://ru.wikipedia.org/wiki/Подвесной_топливный_бак#/media/Файл:Drop_tank.jpg\nhttps://ru.wikipedia.org/wiki/Трое_в_лодке,_не_считая_собаки",
+    "category": "Zakovat #420",
+    "media_url": "https://api-zakoweb.claive.uz/media/questions/q_c84c7ab75aa2.png",
+    "created_at": "2026-08-11T16:14:53.848Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 1986,
+  "fields": {
+    "pack": 6,
+    "text": "[Boshlovchiga: kichkina harflar bilan yozilgan so’zlar odatiy, hotirjam ohanga o’qilishi kerak. Ular orasida katta harflar bilan yozilgan, mazmunan savol tekstiga to’g’ri kelmaydigan so’zlar esa, tezkorlik bilan, imkon qadar nooadatiy va boshqacha intonatsiya bilan o’qilishi kerak, va shu tarzda normal o’qish bilan tez o’qish ketma-ketligi bo’lishi kerak. Bunda katta harfda yozilgan so’zlar ga’lati eshtilishiga harakat qilish kerak]\nDiqqat savol! 1904-yilda … MESSI-RONALDO… Lozannada shaxrida vafot etgan … COCA-COLA PEPSI … Jan Marten Sharkoning …MASXARABOZ… shogirdi familiyasini yozib bering! …BERING... BERING… Vaqt ketti!",
+    "accepted_answers": [
+      "TurettQabul: de la Turett; Sezilarli imloviy xatolarsiz yozilgan holdaIzoh: Turett sindromi - markaziy asab tizimining buzilishi bo'lib, bunda bemorda kun davomida ko'p marta paydo bo'ladigan bir nechta \"harakatli tiklardan\" va kamida bitta ovozli (\"tovush\") tikdan iborat bo'ladi. Ya'ni, bemor o'z-o'zidan biror ovoz chiqarishi, tushunarsiz yoki suxbat kontekstiga bog'liq bo'lmagan so'zlarni aytishi, so’kinishi va bu holatlar turli tana harakatlari bilan birga kuzatilishi ham mumkin. Ushbu kasallikni mashxur psixolog Jan Marten Sharko o'zining shogirdi, fransuz shifokori va nevrologi Jorj' Jil' de la Turett sharafiga nomlashni taklif qilgan. Turett 1885-yilda ushbu sindrom bilan kasallangan 9 bemor haqida hisobotni nashr etgan. Savolni o’qish chog’idagi aytinlgan tushunarsiz va g’alati so’zlar aynan shu sindromga ishora edi.\nManba(lar):\nhttps://ru.wikipedia.org/wiki/Синдром_Туретта\nhttps://ru.wikipedia.org/wiki/Туретт,_Жорж_Жиль_де_ла",
+      "de la Turett; Sezilarli imloviy xatolarsiz yozilgan holdaIzoh: Turett sindromi - markaziy asab tizimining buzilishi bolib, bunda bemorda kun davomida kop marta paydo boladigan bir nechta harakatli tiklardan va kamida bitta ovozli (tovush) tikdan iborat boladi. Yani, bemor oz-ozidan biror ovoz chiqarishi, tushunarsiz yoki suxbat kontekstiga bogliq bolmagan sozlarni aytishi, so’kinishi va bu holatlar turli tana harakatlari bilan birga kuzatilishi ham mumkin. Ushbu kasallikni mashxur psixolog Jan Marten Sharko ozining shogirdi, fransuz shifokori va nevrologi Jorj Jil de la Turett sharafiga nomlashni taklif qilgan. Turett 1885-yilda ushbu sindrom bilan kasallangan 9 bemor haqida hisobotni nashr etgan. Savolni o’qish chog’idagi aytinlgan tushunarsiz va g’alati so’zlar aynan shu sindromga ishora edi.\nManba(lar):\nhttps://ru.wikipedia.org/wiki/Синдром_Туретта\nhttps://ru.wikipedia.org/wiki/Туретт,_Жорж_Жиль_де_ла"
+    ],
+    "explanation": "Turett sindromi - markaziy asab tizimining buzilishi bo'lib, bunda bemorda kun davomida ko'p marta paydo bo'ladigan bir nechta \"harakatli tiklardan\" va kamida bitta ovozli (\"tovush\") tikdan iborat bo'ladi. Ya'ni, bemor o'z-o'zidan biror ovoz chiqarishi, tushunarsiz yoki suxbat kontekstiga bog'liq bo'lmagan so'zlarni aytishi, so’kinishi va bu holatlar turli tana harakatlari bilan birga kuzatilishi ham mumkin. Ushbu kasallikni mashxur psixolog Jan Marten Sharko o'zining shogirdi, fransuz shifokori va nevrologi Jorj' Jil' de la Turett sharafiga nomlashni taklif qilgan. Turett 1885-yilda ushbu sindrom bilan kasallangan 9 bemor haqida hisobotni nashr etgan. Savolni o’qish chog’idagi aytinlgan tushunarsiz va g’alati so’zlar aynan shu sindromga ishora edi.\nManba(lar):\nhttps://ru.wikipedia.org/wiki/Синдром_Туретта\nhttps://ru.wikipedia.org/wiki/Туретт,_Жорж_Жиль_де_ла",
+    "category": "Zakovat #421",
+    "media_url": null,
+    "created_at": "2026-08-11T16:14:53.859Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 1987,
+  "fields": {
+    "pack": 6,
+    "text": "[Tarqatma material]\nEslatma: Tarqatma materialning o’zi tayyor javob varaqasi, shuni javob varaqasi sifatida topshirish kerak.\nBu fransuzning 1919-yilda QILGAN ISHI ko'pchilik san'atshunoslarning jig'iga tekkan bo'lsa ajabmas, ammo ba’zilarda tabassum uyg'otgandir.\nDiqqat savol! Siz ham tarqatma materialda SHU ISHNI qilib bering.",
+    "accepted_answers": [
+      "tarqatma materialda tasvirlangan insonga mo’ylov va/yoki soqol chizib berish kerak"
+    ],
+    "explanation": "Tarqatma materialda tasvirlangan inson mashxur fransuz rassomi, dadaizm va surrelaizm asoschilaridan biri Marsel Dyushan. 1919-yilda u Da Vinchining shedevrlaridan biri “Mona liza”ning replikasiga mo’ylov va soqol chizib qo’yadi va “L.H.O.O.Q.” nomli ready-made [redi-meyd] san’at asari sifatida namoyish qiladi. Tarqatmada uning yana bir mashxur ready-made [redi-meyd] ishi bo’lgan “Velosiped g’ildiragi” asarini ko’rish mumkin. Savoldagi boshidagi “tayyor javob varaqasi” jumlasi “ready-made” [redi-meyd] terminiga, matnidagi “tabassum” so’zi Mona Liza tabassumiga ishora edi.\nManba(lar):",
+    "category": "Zakovat #422",
+    "media_url": "https://api-zakoweb.claive.uz/media/questions/q_d927d46bf46f.jpeg",
+    "created_at": "2026-08-11T16:14:53.868Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 1988,
+  "fields": {
+    "pack": 6,
+    "text": "https://ru.wikipedia.org/wiki/Дюшан,_Марсель\n2) https://en.wikipedia.org/wiki/L.H.O.O.Q.#/media/File:Marcel_Duchamp,_1919,_L.H.O.O.Q.jpg\n3) https://ru.wikipedia.org/wiki/Велосипедное_колесо_(Дюшан)\n4) https://www.rma.ru/art/news/37277/\n77-savol\n“fan” haqidagi maqolada O'rta Osiyo hududidagi ko'plab shaxar xarobalaridan topilgan, naqsh va bezaksiz bo'lgan konussimon idishlar eslab o'tilgan. Misol uchun, arxeolog Vyatkin Afrosiyob xarobasidan topgan idish ustiga \"fatx\" so'zi yozilgan edi. Savolning birinchi jumlasidagi bir so’zda biz yettita harfni tushurib qoldirdik.\nDiqqat savol! O’sha so’zni asl holida yozib bering.",
+    "accepted_answers": [
+      "Naftandoz"
+    ],
+    "explanation": "\"Naft\" - neft va \"andoz\" - otmoq so'zlaridan hosil bo'lgan, neft to'dirilgan idishlarni ulqtirish uchun foydalanilgan harbiy qurol turi haqida so’z bormoqda.\nManba(lar):\nhttps://n.ziyouz.com/books/uzbekiston_milliy_ensiklopediyasi/O'zbekiston%20Milliy%20Ensiklopediyasi%20-%20N%20harfi.pdf",
+    "category": "Zakovat #423",
+    "media_url": "https://api-zakoweb.claive.uz/media/questions/q_80fa8fd2f0a7.jpeg",
+    "created_at": "2026-08-11T16:14:53.877Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 1989,
+  "fields": {
+    "pack": 6,
+    "text": "Agar 1939-yilda qura tashlash Devidning foydasiga hal bo’lganda edi, hozir biz suvli eritmalarning kislotaliligini aniqlash uchun o'lchov nomi bilan bir hil nomni ishlatayotgan bo’lar edik.\nDiqqat savol! Qanday nomni ishlatayotgan bo’lar edik?",
+    "accepted_answers": [
+      "PH"
+    ],
+    "explanation": "Hewlett-Packard ya’ni HP kompaniyasi asoschilari Uilyam Hyullett va Devid Pakkardlar qura tashlab kimning familiyasi kompaniya nomida birinchi turishini aniqlashgan. Agar Pakkard g’olib chiqganda kompaniy PH [pi eych] deb atalgan bo’lardi. Bu esa suvli eritmalarning kislotaliligini aniqlash uchun qo’llaniladigan vodorod ko’rsatkichi, ya’ni PH bilan bir hil bo’lgan bo’lardi. PH qisqartmasi aslida lotincha “pondus Hydrogenii” ya’ni “vodorodning og’irligi” degan so’zlardan hosil bo’ladi va “pe ash” deb o’qiladi.\nManba(lar):",
+    "category": "Zakovat #424",
+    "media_url": null,
+    "created_at": "2026-08-11T16:14:53.885Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 1990,
+  "fields": {
+    "pack": 6,
+    "text": "https://ru.wikipedia.org/wiki/Hewlett-Packard\n2)  https://ru.wikipedia.org/wiki/Водородный_показатель\nMuallif: Sardor Axmedov (Toshkent)\n79-savol\nYaxshi savol bilan yomon savolni farqiga boradiganlar uchun maxsus!\nDiqqat, savolda \"Sug'ur Fill\" so'zlari boshqa ikki so'zga almashtirilgan.\nKondicionerlar bilan savdo qiluvchi Ukrainadagi bir internet-do'koni orignal tarzda \"Sug'ur Fill\" deb nomlangan.\n\"Sug'ur\" so'zi boshqa Yevropa tillariga saam va norveg tillaridan tarqalgan. Qidiruv tizimiga \"Fill\" so'zini kiritsangiz, variantlar orasida barchasi bir millatga mansub bo'lgan insonlarni: qotilni, rejisserni, yozuvchi erkak va ayolni, kompozitorni va  siyosatchini uchratishingiz mumkin.\nDiqqat savol: \"Sug'ur Fill\" so'zlari bilan almashtirilgan ikkita so'zni yozib bering!",
+    "accepted_answers": [
+      "Morj Jorj\nIzox: Mashxur \"Uchrashuv\" filmida Jo'raqulning hamqishlog'i Jorj va morjni farqiga bormasligi haqida eshitganmiz. Savolning kirish qismi shunga ishora edi. Qidiruv tizimiga Jorj ismini kiritsangiz, Google sizga avtomatik tarzda Jorj Dantes, Jorj Melyes, Jorj Sand, Jorj Simenon, Jorj Bize va Jorj Klemansolarni taklif qiladi."
+    ],
+    "explanation": "",
+    "category": "Zakovat #425",
+    "media_url": null,
+    "created_at": "2026-08-11T16:14:53.892Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 1991,
+  "fields": {
+    "pack": 6,
+    "text": "https://ru.wikipedia.org/wiki/%D0%9C%D0%BE%D1%80%D0%B6\n2) https://morzh.com.ua/\n3) https://www.youtube.com/watch?v=xrGI6FyLTuI  (6:34)\nMuallif: Sardor Axmedov (Toshkent)\n80-savol\n[Tarqatma material]\nSiz ko’rib turgan palankinlar, odam tashish uchun mo’ljallangan o’rindiqlar bo’lib, 17-19 asrlarda boy yevropaliklar orasida juda mashxur bo’lgan. Boshqa transport vositalari paydo bo’lgandan so’ng urfdan chiqgan palankinlar, 20-asr boshlariga kelib boy xonadonlarda yana moda bo’la boshlagan.\nDiqqat savol!  Palankinlardan boy xonadonlarda nima maqsadda foydalanishganligini IKKI SO’Z bilan yozib bering?",
+    "accepted_answers": [
+      "Telefon budkasi",
+      "Telefon xonasi"
+    ],
+    "explanation": "Unda telefonda suxbatlashayotgan odam alohida qolishi mumkin bo’lgan. Palankinlarning hashamatli naqshlari boy xonadonlar interyeriga mos tushgan. 20-asr boshlarida hamma xonadon;arda ham telefon bo’lmagan.\nManba(lar): https://t.me/ACCOPTI/3068",
+    "category": "Zakovat #426",
+    "media_url": "https://api-zakoweb.claive.uz/media/questions/q_ca081a2a1d65.png",
+    "created_at": "2026-08-11T16:14:53.902Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 1992,
+  "fields": {
+    "pack": 6,
+    "text": "[Tarqatma material]\nInternet sarxadlarida mashxurlikka erishgan qutqaruv hizmati hodimi Roman Burtsevni U deb atash mumkin. Ruxoniy, dinshunos, faylasuf, shoir, olim va muxandis bo’lgan Pavel Florenskiy haqidagi film nomi ham “U”.\nDiqqat savol! UNI ikki so’z bilan yozib bering.",
+    "accepted_answers": [
+      "Rus Leonardosi",
+      "Rossiyalik Leonardo"
+    ],
+    "explanation": "Roman Burtsev mashxur gollivud yulduzi Leonardo di Kaprioning qiyofadoshi sifatida mashxurlikka erishgan. Pavel Florenskiy ham Uyg’onish davrining mashxur namoyondasi Leonardo da Vinchi singari ko’p qirrali inson bo’lgan.\nManba(lar):",
+    "category": "Zakovat #427",
+    "media_url": "https://api-zakoweb.claive.uz/media/questions/q_f6ec7059c204.jpeg",
+    "created_at": "2026-08-11T16:14:53.909Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 1993,
+  "fields": {
+    "pack": 6,
+    "text": "https://russian.rt.com/russia/news/695475-dvoinik-di-kaprio-karera\n2) https://smotrim.ru/brand/28092\n3) https://ru.wikipedia.org/wiki/Флоренский,_Павел_Александрович\nMuallif: Sardor Axmedov (Toshkent)\n82-savol\nKaliforniya texnologik Universiteti astronomiya professori Maykl Braunni 2006-yildan buyon \"uni o'ldirgan odam\" deb atashadi. Savol matnidagi bir so'zda biz 5 ta harfni tushirib qoldirdik.\nDiqqat savol! O'sha so'zni asl holida yozib bering.",
+    "accepted_answers": [
+      "Plutonni",
+      "Pluton"
+    ],
+    "explanation": "Maykl Braun \"Plutonni o'ldirgan odam\" deb nomlanadi, chunki uning tashabbusi bilan Pluton sayyora maqomidan mahrum bo'lgan.\nManba(lar):  https://ru.wikipedia.org/wiki/Браун,_Майкл_(астроном)",
+    "category": "Zakovat #428",
+    "media_url": null,
+    "created_at": "2026-08-11T16:14:53.917Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 1994,
+  "fields": {
+    "pack": 6,
+    "text": "Afsonalardan biriga ko'ra, bir qabila ayollari qabila boshlig'iga tegishli kitni o'ldirgan Kae ismli odamni izlashadi. Ayollar uning tashqi ko'rinishini bilishmasdi, lekin uning tishlari egriligini bilishardi. Kae boshqa odamlar orasida edi va uni olomon orasida aniqlash uchun ayollar BIR ISH QILISHADI. Buni ko'rgan Kae kulib yubordi va uni tanib qolishadi. Bu afsona UNING kelib chiqishi haqida edi.\nDiqqat savol! UNI bir so’z bilan yozib bering.",
+    "accepted_answers": [
+      "Haka raqsi",
+      "Haka",
+      "raqsi",
+      "Ka-mate"
+    ],
+    "explanation": "Kaeni kuldirish uchun ayollar turli harakatlar bilan kulgili raqsga tushishadi. Xaka - Yangi Zelandiya maorilarining mashhur ritual raqsi bo'lib, jangari imo-ishoralar, oyoq urish va yuz ifodalaridan iborat. Ushbu raqs har bir o'yin oldidan Yangi Zelandiya regbi jamoasi tomonidan ijro etilishi tufayli keng mashxurlikka erishdi.\nManba(lar):  https://ru.wikipedia.org/wiki/Хака",
+    "category": "Zakovat #429",
+    "media_url": null,
+    "created_at": "2026-08-11T16:14:53.924Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 1995,
+  "fields": {
+    "pack": 6,
+    "text": "1850-yillarda Shimoliy Amerikadan kelib qolgan filloksera hasharoti ko'plab fransuz uzumzorlarining nobud bo'lishiga olib kelgan. Ba'zi fikrlarga ko'ra, UNING ixtiro qilinishi kasallikning tarqalishiga sababchi bo’lgan ekan.\nDiqqat savol! UNI ANIQ ayting.",
+    "accepted_answers": [
+      "Paroxod",
+      "Bugda harakatlanuvchi kema; bug bilan ishlaydigan kema (transport)"
+    ],
+    "explanation": "Bu ixtiro Atlantika okeani bo'ylab sayohatni tezlashtirgan va fillokseraga sayohatdan omon qolishga imkon bergan.\nManba(lar):  https://ru.wikipedia.org/wiki/Гибель_французских_виноградников_в_XIX_веке",
+    "category": "Zakovat #430",
+    "media_url": null,
+    "created_at": "2026-08-11T16:14:53.944Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 1996,
+  "fields": {
+    "pack": 6,
+    "text": "1957-yilda U Oregon shtatida AQSH qishloq xo'jaligi departamenti tomonidan o'tkazilayotgan, cho'lning harakatlanishini maxsus o'tlar yordamida nazorat qilish bilan bog'liq tajribaga guvoh bo'ladi. Keyinchalik, shu tajribaga bag'ishlangan \"Ular harakatlanuvchi qumlarni to'xtatdi\" degan maqola ham yozadi.\nDiqqat savol!  So'z kim haqida bormoqda?",
+    "accepted_answers": [
+      "Frenk Gerbert",
+      "Gerbert",
+      "Frenk",
+      "Franklin Patrik Gerbert-kichik (Franklin Patrick Herbert, Jr)"
+    ],
+    "explanation": "Gerbert keyingi besh yil davomida mavjud materiallarni tadqiq qilish bilan shug'ullandi va bu oxir-oqibat \"Duna\"ning yaratilishiga olib keladi. Bilamizki, “Dyuna” nomli fantastik romanlar seriyasida asosiy voqealar Arrakis nomli, to’liq qum bilan qoplangan, cho’l planetada kechadi.\nManba(lar):\nhttps://ru.wikipedia.org/wiki/Герберт,_Фрэнк",
+    "category": "Zakovat #431",
+    "media_url": null,
+    "created_at": "2026-08-11T16:14:53.951Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 1997,
+  "fields": {
+    "pack": 6,
+    "text": "Adabiyotshunos Vyacheslav Nedoshivinning aytshicha, U kunlarning birida qishloqda bir bolakayni kichkina kaltak bilan katta otni haydab ketayotganini ko‘rib qoladi. Bu holatdan hayratlangan U o'z esdaliklarida \"Agar hayvonlar o'z kuchini anglab yetsalar edi, biz ular ustidan hukmronlik qila olmasdik\" deb yozib qoldirgan. Barselona shaxri markazida joylashgan kichik maydonlardan biri UNING sharafiga nomlangan.\nDiqqat savol!  1903-yilda Motixari shaxrida tug'ilgan ushbu insonning kimligini yozib bering.",
+    "accepted_answers": [
+      "Jorj Oruell",
+      "Oruell",
+      "Jorj",
+      "Erik Artur Bler"
+    ],
+    "explanation": "Vyacheslav Nedoshivin yozishicha, aynan shu holat ta'sirida \"Hayvonlar fermasi\" (\"Molxona\") hikoyasi yaratilgan ekan.\nManba(lar):\nhttps://ru.wikipedia.org/wiki/Джордж_Оруэлл",
+    "category": "Zakovat #432",
+    "media_url": null,
+    "created_at": "2026-08-11T16:14:53.959Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 1998,
+  "fields": {
+    "pack": 6,
+    "text": "Sayohatchi va blogger Anton Ptushkin o'z IKSlariga nom beradi. Misol uchun, u IKSlaridan birini Kojedub, ikkinchisini esa Gastello deb nomlagan.\nDiqqat savol! IKSlar nima ekanligini yozib bering",
+    "accepted_answers": [
+      "Dron",
+      "kvadrokopter; kopter; uchuvchisiz uchish apparati"
+    ],
+    "explanation": "Bloggerlar ko'pincha sur’atga olish uchun dronlardan foydalanadilar. Kojedub va Gastello mashxur sovet uchuvchilarining familiyalari. Ptushkin nafaqat dronlarga nom bergan, balki o’zining mitti Smart avtomobiliga ham “Mikrob” deb nom bergan.\nManba(lar):\nhttps://www.youtube.com/watch?v=recHRnwvAaY&t=2356s\nhttps://ru.wikipedia.org/wiki/Гастелло,_Николай_Францевич\nhttps://ru.wikipedia.org/wiki/Кожедуб,_Иван_Никитович",
+    "category": "Zakovat #433",
+    "media_url": null,
+    "created_at": "2026-08-11T16:14:53.966Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 1999,
+  "fields": {
+    "pack": 6,
+    "text": "[Tarqatma material]\nTo put\nAQSH dialektologiya jamiyati mazkur fe’lni 2006-yilning yangi so’zi deb tan oladi. Uning ma’nosi “kimdir yoki nimadirnining mavqeini yoki qardini tushurish” degan ma’noni anglatadi. Ushbu fe’lda biz IKKI harfni tushirib qoldirdik.\nDiqqat savol! O’sha IKKI HARFNI yozib bering.",
+    "accepted_answers": [
+      "L, O"
+    ],
+    "explanation": "Bu fe’l “to pluto” bo’lib, 2006-yilda jahon astronomlari tomonidan Pluton sayyorasi mavqei o’zgartirilgandan keyin paydo bo’lgan.\nManba(lar): https://www.lingvolive.com/ru-ru/community/posts/59818",
+    "category": "Zakovat #434",
+    "media_url": null,
+    "created_at": "2026-08-11T16:14:53.973Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 2000,
+  "fields": {
+    "pack": 6,
+    "text": "\"Politsiya befarq edi, o't o'chirish brigadalari esa birorta ham yonayotgan uyga yaqinlashishmadi. Ko'chalar va trotuarlar yong'in va chiroqlar nurida yaltirab turgan oyna parchalari bilan qoplangan edi\". Mazkur iqtiboz 20-asr birinchi yarmida yuz bergan bir voqeaga bag'ishlangan maqoladan olingan.\nDiqqat savol! Ta'riflangan voqealar tarixga qanday nom ostida kirganligini ikki yoki uch so'z bilan yozib bering",
+    "accepted_answers": [
+      "\"Singan vitrinalar tuni\"",
+      "Billur tun; “Billur kecha”; Singan vitrinalar kechasi"
+    ],
+    "explanation": "1938-yilning Noyabr oyida natsistlar tomonidan yahudiylar yashaydigan uylar va ishlaydigan joylarga uyushtirilgan bir qator bosqinchiliklar oqibatida ko'plab joylar vayron qilingan.\nManba(lar): https://diletant.media/articles/25215695/",
+    "category": "Zakovat #435",
+    "media_url": null,
+    "created_at": "2026-08-11T16:14:53.982Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 2001,
+  "fields": {
+    "pack": 6,
+    "text": "[Tarqatma material]\n1988-yildagi sovet multfilmidagi bir epizodda aslida Vaynerlar tilga olinadi. Ammo, multfilmning o’zbekcha variantida savol muallifiga yoshligidan ULAR jumlasi aytilgandek tuyulgan. Siz ham tarqatma materialdagi fotografiyada ayoldan tashqari ULARNI ko’rib turibsiz.\nDiqqat savol! ULARNI bir yoki ikki so’z bilan yozib bering.",
+    "accepted_answers": [
+      "Aka-uka Baydenlar",
+      "Baydenlar"
+    ],
+    "explanation": "1988-yilda su’ratga olingan “Daydi to’tining qaytishi” multserialining 3-sonida to’tiqush kesha kolxozdagi jonivorlarga eksprompt kontsert uyushtirib beradi. Bu epizodning o’zbekcha dublyajida savol muallifiga, Mirzabek Xolmedov “aka-uka Vaynerlar” emas, balki “…talablaringizga binoan, Modern Toking digan qo’shiqni aka-uka Baydenlar kuylaydi” deb eshtilar edi. Fotosuratda siz Jo (markazda), Jeyms va Frensis Baydenlar va ularning onasi Ketrin Jin Finneganni ko’rib turibsiz.\nManba(lar):\nhttps://www.youtube.com/watch?v=WBKIbHPTTN4 (4:23)\nhttps://ru.wikipedia.org/wiki/Возвращение_блудного_попугая_(третий_выпуск)\nhttps://www.youtube.com/watch?v=e8z3WtoMVe8 (23:46)\nhttps://uznayvse.ru/znamenitosti/biografiya-dzho-bayden.html\nhttps://ru.wikipedia.org/wiki/Байден,_Джо#Биография",
+    "category": "Zakovat #436",
+    "media_url": "https://api-zakoweb.claive.uz/media/questions/q_ebb224f5d139.png",
+    "created_at": "2026-08-11T16:14:53.992Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 2002,
+  "fields": {
+    "pack": 6,
+    "text": "[Tarqatma material]\nQarshingizda BU ROMANning muqovasi.\nDiqqat savol! Ushbu asar MUALLIFI kimligini yozib bering.",
+    "accepted_answers": [
+      "Hulio KortAsar",
+      "KortAsar",
+      "Hulio",
+      "Jyul’ FlorEnsio KortAsar; Hulio Kortazar"
+    ],
+    "explanation": "Mashxur argentinalik yozuvchi Hulio KortAsarning “Klassiki o’yini” (“Игра в классики”) romani ispan tilida “Rayuela” deb nomlanadi. Amazon.com saytidagi kitob muqovasida RAYUELA so’zi huddi o’indagi elementlar joylashuvi kabi chizilgan, A harfi ustida esa toshni ham ko’rish mumkin.\nManba(lar):\nhttps://www.amazon.com.mx/Rayuela-Edici%C3%B3n-conmemorativa-Julio-Cort%C3%A1zar/dp/607112655X\nhttps://ru.wikipedia.org/wiki/Игра_в_классики_(роман)\nhttps://ru.wikipetdia.org/wiki/Кортасар,_Хулио",
+    "category": "Zakovat #437",
+    "media_url": "https://api-zakoweb.claive.uz/media/questions/q_8b72400cf458.jpeg",
+    "created_at": "2026-08-11T16:14:54.000Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 2003,
+  "fields": {
+    "pack": 6,
+    "text": "[Tarqatma material]\nEkskursiyachi Aziz Xalmuradovning ta’kidlashicha siz ko’rib turgan doriycha uslubidagi ustunlar bir guruh sovet arxitektorlarini ilhomlantirgan ekan. Natijada 1964-yilda BU bino hozirgi ko’rinishiga ega bo’lgan.\nDiqqat savol! Bu bino hozirda qanday nomlanadi?",
+    "accepted_answers": [
+      "Respublika Kinochilar uyi",
+      "Alisher Navoiy nomidagi kino saroyi; Panorama; «Панорамный»"
+    ],
+    "explanation": "Doriycha ustunning bir bo’lagini olib qarasak, haqiqatdan ham kinoteatr binosining doira shaklidagi asosiy korpusiga juda o’xshab ketadi.\nManba(lar):\nhttps://www.instagram.com/reel/CmeF9hBJyiB/?igshid=MWMzM2Q4ZmE=\nhttps://yep.uz/2021/04/panoramnyj-ili-dvorec-kino-imeni-alishera-navoi/\nhttps://archi.ru/russia/image_large.html?id=135338\nhttps://ru.wikipedia.org/wiki/Дорический_ордер\nhttps://topfacade.ru/catalog/kolonny/doricheskogo-ordera/",
+    "category": "Zakovat #438",
+    "media_url": "https://api-zakoweb.claive.uz/media/questions/q_3adc22d8d0c2.jpeg",
+    "created_at": "2026-08-11T16:14:54.008Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 2004,
+  "fields": {
+    "pack": 6,
+    "text": "Duplet. Ikkita savol. O’ylash uchun 30 soniyadan muhlat. Ikkala to’g’ri javob uchun bir ball beriladi.\n1. Denis Luis de Souza - 20 yildan ortiq, Vey Tszyan'go 12 yildan ortiq, Deo Xasabumutima esa 148 kun BU ISHNI QILISHGAN. 18 yil BU ISHNI qilgan Mexran Nasseri esa 2004-yildagi BIR FILM qaxramoniga prototip bo'lgan.\nSavol: FILM nomini yozib bering.\n2. BU ASAR 1913-yilda Al'ber Kapellani tomonidan, 1962-yilda Iv Allegre va 1993-yilda Klod Berri tomonidan ekranlashtirilgan. Savol muallifi mazkur filmlarning premyerasi qaysi oyda bo'lganligi haqida ma'lumot topa olmadi. Savol: ASAR nomini yozib bering.",
+    "accepted_answers": [
+      "1. \"Terminal\" 2. \"Jerminal\""
+    ],
+    "explanation": "1. Yuqorida nomi keltirilgan inosnlar turli sabablarga ko'ra aeroportda yashashga majbur bo'lishgan. Stiven Spilbergning \"Terminal\" filmi ham shunday qaxramon haqida hikoya qiladi. 2. Turli davrlarda fransuz rejisserlari tomonidan ularning vatandoshi Emil Zolyaning \"Jerminal\" nomli romani ekranlashtirilgan. \"Jerminal\" bu fransuz inqilobiy kalendaridagi yettinchi oy hisoblanadi. Ahamiyat berganingizdek javoblar bir biridan faqat bir harfga farq qiladi, bu esa odatda duplet savollarini topishda qo’l keladi.",
+    "category": "Zakovat #439",
+    "media_url": null,
+    "created_at": "2026-08-11T16:14:54.017Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 2005,
+  "fields": {
+    "pack": 6,
+    "text": "https://www.youtube.com/watch?v=9E3hQIfSo50\n2. https://ru.wikipedia.org/wiki/Жерминаль_(роман)\nMuallif: Sardor Axmedov (Toshkent)\n94-savol\nOynasoz Vinchentzo Perudjia keyinchalik tan olishicha, ayolning tabassumi yoshligidagi dugonasini eslatib yuborgan ekan. Boshqa versiyaga ko'ra esa, Perudjia BU ISHNI vatanparvarlik hissiyotlari ostida amalga oshirgan deyiladi. BU ISH deganda nima nazarda tutilmoqda?",
+    "accepted_answers": [
+      "\"Mona Liza\"ni Luvr muzeyidan og'irlash",
+      "\"Mona Liza\"ni  og'irlash",
+      "Luvr muzeyidan",
+      "Jakondani ogrilash"
+    ],
+    "explanation": "Oynasoz Vinchentzo Perudjia 1911-yilnig 21-avgust kuni \"Mona Liza\" kartinasini o'g'rilab ketgan. Holbuki u kartinani vatani Italiyaga qaytarmoqchi bo'lgan.",
+    "category": "Zakovat #440",
+    "media_url": null,
+    "created_at": "2026-08-11T16:14:54.024Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 2006,
+  "fields": {
+    "pack": 6,
+    "text": "Shaxmatchi va siyosatchi Garri Kasparov so'nggi o'n yillikda ko'plab mamlakatlarda, turli auditoriya oldida lektsiyalar o'qigan. Ba'zi kompaniyalar bunday lektsiyalar oldidan tuziladigan shartnomada Vladimir Putin haqida so'z ochmaslik haqidagi punktni kiritishganligi haqida eslarkan, Kasparov o'zini IKSGA, Putinni esa IGREKGA qiyoslab hazil qiladi.\nDiqqat savol! IKS va IGREKning kimligini yozib bering.",
+    "accepted_answers": [
+      "IKS - Garri Potter; IGREK - Voldemort (Volan-de-mort)",
+      "IGREK - Lord Volan-de-Mort; Lord Voldemort; Tom [Marvolo] Reddl; Tom [Marvolo] Riddle; Reddl; Riddl."
+    ],
+    "explanation": "Huddi Voldemortning ismi tilga olinmasligi kerakligi singari turli kompaniyalar ham siyosiy sabablarga ko'ra Putinning ismini tilga olinishini hohlashmagan. Qizig'i Garri Kasparov o'zining adashi bo'lgan adabiy personajga o'xshatgan, Vladimir ismi ham Voldemort ismiga juda o'xshash. Garri Potter filmlarida ham bosh qaxramonning shaxmat o’ynashini ko’rish mumkin.",
+    "category": "Zakovat #441",
+    "media_url": null,
+    "created_at": "2026-08-11T16:14:54.032Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 2007,
+  "fields": {
+    "pack": 6,
+    "text": "Savolda matnida IKSLAR SHUNDAY QILISHADI so'zlari bilan boshqa bir nechta so'zlar almashtirilgan.\n19-asr oxirlarida Robert Afrikadagi harbiy xizmati chog’ida, qo’lida nayza va qalqon ushlagan qabila jangchilarining bir odatiga guvoh bo’lgan. Bu harakat bilan ular boshqa odamga bo’lgan ishonchni namoyish qilishgan. Shu sababli hozirda IKSLAR SHUNDAY QILISHADI.\nDiqqat savol! IKSLAR SHUNDAY QILISHADI so’zlari o’rnidagi so’zlarni ingilizcha so’z ishlatgan holda yozib bering.",
+    "accepted_answers": [
+      "Skautlar chap qo’l berib/bilan salomlashishadi",
+      "Boyskautlar chap qo’l berib/bilan salomlashishadi/ko’rishishadi/so’rashishadi (Sinonimik javoblar)"
+    ],
+    "explanation": "Skautlarda bu o’ziga xos do’stlik va ishonch belgisidir. Skauting harakatining asoschisi Robert Baden-Pauell Afrikada mahalliy aholining salomlashish paytida o’ng qo’lidagi nayzani yerga sanchib, chap qo’lidagi qalqonni o’ng qo’liga o’tkazishini guvohi bo’lgan. Bu bilan ular salomlashayotgan odamlariga ishonishlarini namoyish qilganlar.",
+    "category": "Zakovat #442",
+    "media_url": null,
+    "created_at": "2026-08-11T16:14:54.040Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 2008,
+  "fields": {
+    "pack": 6,
+    "text": "[Boshlovchiga: Savol va izoh matnidagi «EL'-AL'» aviakompaniyasi nomiga biroz urg’u berib ketish kerak]\nO'tgan asr 60-yillarida «EL'-AL'» aviakompaniyasi Buenos-Ayres bilan doimiy aviaqatnovga ega emas edi. Shu sababli \"FINAL\" uchun mamlakat mustaqilligining 150-yilligi bayramiga delegatsiyaning tashrifi kuni tanlangan.\nDiqqat savol! 1975-yilda su'ratga olingan \"Shisha budkadagi odam\" filmida Maksimilian Shell KIMNING ro'lini ijro etishga tayyorlanish uchun Hanna Arendt maqolalarini o'rganib chiqgan?",
+    "accepted_answers": [
+      "Otto Adolf Eyxman",
+      "Eyxman",
+      "Otto Adolf"
+    ],
+    "explanation": "1960-yil May oyida Isroil razvedkasi \"Mossad\" tomonidan Argentinadan maxfiy ravishda Adolf Eyxmanni olib chiqib ketish uchun \"FINAL\" deb nomlangan maxsus operatsiya norasmiy ravishda amalaga oshirilgan. Keyinchalik Eyxmanni Ikkinchi Jaxon Urushi davrida yahudiy xalqiga nisbatan qilgan jinoyatlari uchun Isroilda o'lim jazosiga hukm qilishgan. Argentina dastavval o'z suverinitetining qo'pol buzilganligi haqida bong urgan bo'lsada, 40 yil o'tgach natsistlarni berkitgani uchun uzur so'rab chiqgan. «EL'-AL'» aviakompaniyasi Isroil milliy aviakompaniyasi hisoblanadi. Faylasuf ayol Hanna Arendt The New Yorker [ze nyU yorker] jurnali korrespondenti sifatida ushbu voqealarga va Eyxmanning sud jarayoniga bag'ishlangan \"Yovuzlikning oddiyligi. Eyxman Quddusda\" deb nomlangan kitob yozgan.\nManba(lar):",
+    "category": "Zakovat #443",
+    "media_url": null,
+    "created_at": "2026-08-11T16:14:54.048Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 2009,
+  "fields": {
+    "pack": 6,
+    "text": "https://ru.wikipedia.org/wiki/Эйхман,_Адольф\n2) https://ru.wikipedia.org/wiki/Похищение_Эйхмана\n3) https://ru.wikipedia.org/wiki/Эль_Аль\nMuallif: Sardor Axmedov (Toshkent)\n98-savol\nUshbu savolga JAVOB QAYTARASIZ degan umiddamiz.\n1915-yilda, SyurEn kommUnasida o'lim to'shagida yotar ekan, U tinmay zobit Albert Pinson ismini takrorlar edi.\nDiqqat savol! UNING ism va familiyasini yozib bering.",
+    "accepted_answers": [
+      "Adel' Gyugo",
+      "Aniq javob"
+    ],
+    "explanation": "Adel' Gyugo sindromi yoki Adel' sindromi deb javobsiz qolgan sevgidan uzoq muddat davomida azob chekish tushuniladi. Sindrom o'z nomi taniqli fransuz yozuvchisi Viktor Gyugoning qizi Adel’ Gyugo bilan bog'liq bo'lib, u o'limiga qadar ingliz zobiti Albert Pinsonga bo'lgan javobsiz his-tuyg'ularidan aziyat chekkan. Savol muallifi ham savolning javobsiz qolmasligiga umid qilgan edi.\nManba(lar):",
+    "category": "Zakovat #444",
+    "media_url": null,
+    "created_at": "2026-08-11T16:14:54.057Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 2010,
+  "fields": {
+    "pack": 6,
+    "text": "https://ru.wikipedia.org/wiki/Гюго,_Адель\n2) https://ru.wikipedia.org/wiki/Синдром_Адель_Гюго\nMuallif: Sardor Axmedov (Toshkent)\n99-savol\n[Tarqatma material]\nGarn’yE Operasidagi plafon 21 metr balandlikda shiftga o’rnatilgan.\nDiqqat savol! KIM 1964-yilda Madaniyat vaziri AndrE MalrO’ taklifiga binoan ushbu shiftga su’ratlar chizib bergan?",
+    "accepted_answers": [
+      "Mark Shagal",
+      "Shagal",
+      "Mark",
+      "Moisey (Movsha) Xatskelevich Shagal"
+    ],
+    "explanation": "Umrining so’ngini Fransiyada o’tkazgan Mark Shagal kartinalarining aksariyat qaxramonlari juda balandda, parvoz etayotgan holda tavirlangan. Ammo, Shagalning o'zi plafonga chizish uchun balandga ko'tarilmagan. Butun shift 24 qismga bo'lingan va yerda chizib olingan. Plafonda ham ko’plab uchib yurgan qaxramonlarni ko’rish mumkin.\nManba(lar):\nhttps://ru.wikipedia.org/wiki/Шагал,_Марк_Захарович\nhttps://izbrannoe.com/news/iskusstvo/kak-mark-shagal-raspisal-plafon-parizhskoy-opery/",
+    "category": "Zakovat #445",
+    "media_url": "https://api-zakoweb.claive.uz/media/questions/q_4ba27c1c748c.jpeg",
+    "created_at": "2026-08-11T16:14:54.066Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 2011,
+  "fields": {
+    "pack": 6,
+    "text": "[Tarqatma material]\nDiqqat, savolda BU ISHNI QILISH so’zlari bilan boshqa bir nechta so’zlar almashtirilgan.\nQadimdan turk gilamlariga BU ISHNI QILISH maqsadida siz ko’rib turgan shunday naqshlarni tasvirlashgan. Aytish mumkinki, mashxur o’yinlar seriyasida ham Kuan Chi va boshqalar BU ISHNI QILISHGA majbur bo’lishadi.\nDiqqat savol! BU ISHNI QILISH so’zlari o’rnidagi ikki yoki uch so’zni yozib bering.",
+    "accepted_answers": [
+      "Chayondan himoyalanish",
+      "Chayon hujumidan himoyalanish; Chayon chaqishidan himoyalanish; “chayon” so’zi o’rniga “skorpion” so’zi qatnshgan javoblar."
+    ],
+    "explanation": "Naqshlarda chayon dumiga o’xshash elementlarni ko’rish mumkin. Bu naqshlar yerda yurgan chayonlar chaqib olishidan himoyalaydi deb ishonishgan. “Mortal Combat” o’yinlar seriyasida esa Sab-Ziro singari Kuan Chi ham Skorpionning ashaddiy dushmani bo’lgan, shu sababli u bilan bo’lgan janglarda nafaqat hujum qilishga, balki himoyalanishga ham to’g’ri keladi.\nManba(lar):\nhttps://en.wikipedia.org/wiki/Human_uses_of_scorpions\nhttps://mortalkombat.fandom.com/ru/wiki/Скорпион#История_персонажа\nhttps://ru.wikipedia.org/wiki/Скорпион_(Mortal_Kombat)",
+    "category": "Zakovat #446",
+    "media_url": "https://api-zakoweb.claive.uz/media/questions/q_3fc20b93bfc4.jpeg",
+    "created_at": "2026-08-11T16:14:54.074Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 2012,
+  "fields": {
+    "pack": 6,
+    "text": "“U” haqidagi Wikipedia maqolasida “Salomon” operatsiyasi doirasida Efiopiyadan olib chiqib ketilgan 14 500 nafar qochoqlar va 1122 soni bilan bog’liq dunyo rekordi haqida ma’lumot berilgan. “UNING” nomi ikki hil tilda ham “yuqoriga, osmonga” degan ma’noni anglatadi.\nDiqqat savol! “UNING” nomini yozib bering.",
+    "accepted_answers": [
+      "«EL’-AL’»",
+      "«EL’-AL’» aviakompaniyasi; «Эль-Аль»; qo’pol xatolarsiz, aviakompaniya nomini tanib olish mumkin bo’lgan javoblar."
+    ],
+    "explanation": "«EL’-AL’» Isroilning eng yirik aviakompaniyasi hisoblanadi. 1991-yilda Efiopiyadagi qo’zg’olonlar natijasida yuzaga kelgan holatdan havotir olgan Isroil hukumati, mamlakatdagi yahudiylarni evokuatsiya qilish maqsadida “Solomon” deb nomlangan operatsiyani amalga oshiradi. 1991-yilning 24-may kuni amalga oshirilgan reyslardan birida jaxon rekordi o’rnatilgan – aviakompaniyaga tegishli Boeing-747 havo kemasida bir varakayiga 1122 kishining tashuvi amalga oshirilgan. «EL’-AL’» aviakompaniyasining boshqa mashxur operatsiyada ham qatnashganligi haqida oldingi savollardan birida bilib olgan edingiz. Bu nom arab va ivrit tilida ham bir hil ma’noni anglatar ekan.\nManba(lar):\nhttps://ru.wikipedia.org/wiki/Эль_Аль\nhttps://ru.wikipedia.org/wiki/Операция_«Соломон»",
+    "category": "Zakovat #447",
+    "media_url": null,
+    "created_at": "2026-08-11T16:14:54.082Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 2013,
+  "fields": {
+    "pack": 6,
+    "text": "2020-yilda chiqgan bir karikaturada kalamushlar shaxar ko’chalarida yoyilib yotgan, tekin ULARGA ega bo'lganliklari uchun hursand bo'lishayotganligini ko'rish mumkin.\nDiqqat savol! UNI aravAklar qabilasi tilidan kirib kelgan unlilari bir hil bo’lgan BIR SO'Z bilan yozib bering.",
+    "accepted_answers": [
+      "Gamak"
+    ],
+    "explanation": "2020-yil koronovirus pandemiyasi avj olgan payt edi. Karikaturada tibbiyot niqoblari kalamushlar uchun o'ziga xos gamak bo'lib hizmat qilgan. \"Gamak\" so'zi karib orollari hindulari tilidan kelib chiqgan, va ikki uchi ikki ustunga bog'lanadigan, osma yotoq vazivasini bajaruvchi mato hisoblanadi.\nManba(lar):",
+    "category": "Zakovat #448",
+    "media_url": null,
+    "created_at": "2026-08-11T16:14:54.089Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 2014,
+  "fields": {
+    "pack": 6,
+    "text": "https://t.me/stream_my/3223\n2) https://ru.wikipedia.org/wiki/Гамак\nMuallif: Sardor Axmedov (Toshkent)\n103-savol\nDiqqat, savolda almashtirishlar bor!\nNARRATIO kanali muallifining yozishicha, 1911-yil 21-avgustda bir oynasozning sharofati bilan yuz bergan voqeadan so'ng, hosil bo'lgan ПРОПУСК \"ALFA\"ning o’zidan ko’ra ko'proq odamlarning e'tiborini jalb qila boshlagan. ПРОПУСК ni ko'rish uchun xatto navbatda turishgan.\nDiqqat savol! \"ALFA\" nima ekanligini emas, balki “ПРОПУСК” o'rnidagi BIR yoki IKKI SO'ZNI yozib bering.",
+    "accepted_answers": [
+      "Bo'shliq",
+      "Bosh joy; Kartinaning orni; Kartinaning izi; Bosh ilgichlar"
+    ],
+    "explanation": "ALFA so’zi bilan “Mona Liza” so’zlari almashtirilgan edi. Oynasoz Vinchentzo Perudjia 1911-yilning 21-avgust kuni \"Mona Liza\" kartinasini Luvr muzeyidan o'g'rilab ketgan. Natijada kartina o'rnida bo'sh joy hosil bo'ladi. Uni ko'rish uchun ko'plab odamlar muzeyga tashrif buyura boshlashgan. Odatda, ruschada \"ПРОПУСК\" deb ataladigan va so'zlar tashlab ketilganligini anglatadigan so'z o'rnida bizda BO'SHLIQ so'zini ishlatish odat bo'lgan. Bu so'z tarjimasiz holda savolda ishlatilgani balki sizga almashtirilgan so'zni topishga yordam bergandir.\nManba(lar): https://t.me/narratio/1740",
+    "category": "Zakovat #449",
+    "media_url": "https://api-zakoweb.claive.uz/media/questions/q_d582f874401a.png",
+    "created_at": "2026-08-11T16:14:54.099Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 2015,
+  "fields": {
+    "pack": 6,
+    "text": "[Tarqatma material]\nto put\nAQSH dialektologiya jamiyati mazkur fe’lni 2006-yilning yangi so’zi deb tan oladi. Uning ma’nosi “kimdir yoki nimadirnining mavqeini yoki qardini tushurish” degan ma’noni anglatadi. Ushbu fe’lda biz IKKI harfni tushirib qoldirdik.\nDiqqat savol! O’sha IKKI HARFNI yozib bering.",
+    "accepted_answers": [
+      "L, O"
+    ],
+    "explanation": "Bu fe’l “to pluto” bo’lib, 2006-yilda jahon astronomlari tomonidan Pluton sayyorasi mavqei o’zgartirilgandan keyin paydo bo’lgan.\nManba(lar): https://www.lingvolive.com/ru-ru/community/posts/59818",
+    "category": "Zakovat #450",
+    "media_url": null,
+    "created_at": "2026-08-11T16:14:54.107Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 2016,
+  "fields": {
+    "pack": 6,
+    "text": "[Tarqatma material]\nTarqatma materialda UNI ko’rishingiz mumkin. UNI juft undoshlar bilan boshlanuvchi IKKI SO’Z bilan yozib bering.",
+    "accepted_answers": [
+      "Kolumb gerbi",
+      "Aniq javob"
+    ],
+    "explanation": "Mazkur gerb 1493-yilda monarxlar tomonidan berilgan. Unda Kastiliya qasri va Leon sherini, Kolumb tomonidan kashf qilingan orollarni, va admirallik unvoni ramzi bo’lgan langarlarni ko’rish mumkin. Kastiliya va Leon so’zlari mos ravishda “qasr” va “sher” so’zlaridan kelib chiqgan. Bilamiz, Kastiliya qiroli Ferdinand II va Kastiliya va Leon qirolichasi Izabella I Kolumbning asosiy homiylari bo’lishgan.\nManba(lar):\nhttps://ru.wikipedia.org/wiki/Колумб,_Христофор#Герб_Колумба",
+    "category": "Zakovat #451",
+    "media_url": "https://api-zakoweb.claive.uz/media/questions/q_43cbb52fd264.png",
+    "created_at": "2026-08-11T16:14:54.116Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 2017,
+  "fields": {
+    "pack": 6,
+    "text": "[Tarqatma material]\nDiqqat savol! 1903-yilda Italiyaga sayohati paytida BU INSON Ravennadagi San-Vitale bazilikasiga tashrif buyuradi va VI-asrga oid shu kabi Vizantiya mozaikalarini tomosha qiladi. Misol uchun ushbu mozaikada qirolicha Feodora tasvirlangan. 1907-yilda esa U buyurtmani yakunlagan.\nDiqqat savol! UNING kimligini yozib bering.",
+    "accepted_answers": [
+      "Gustav Klimt",
+      "Klimt",
+      "Gustav",
+      "Aniq javob"
+    ],
+    "explanation": "Klimt ikonaga o'xshash \"Adel' Blox-Bauer portreti\"ni yaratishda ba'zi tahminlarga ko'ra aynan shu moziakalardan ilhom olgan ekan.\nManba(lar):",
+    "category": "Zakovat #452",
+    "media_url": "https://api-zakoweb.claive.uz/media/questions/q_189977b04e56.jpeg",
+    "created_at": "2026-08-11T16:14:54.124Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 2018,
+  "fields": {
+    "pack": 6,
+    "text": "https://ru.wikipedia.org/wiki/Феодора\n2) https://ru.wikipedia.org/wiki/Портрет_Адели_Блох-Бауэр_I\nMuallif: Sardor Axmedov (Toshkent)\n107-savol\n\"Po'lat alkimyogar\" mangasini o'qigan internet foydalanuvchisi haqiqatdan ham IKSDAN IGREK yasash g'oyasini nazariy hisob-kitob qilib ko'radi. Bu hisob-kitoblarga ko'ra 1200 kishining barcha IKSI kerak bo'lar ekan. Cho'lponning 1924-yilda chop etilgan \"Buloqlar\" she'riy to'plamida \"IKREK va IKS\" nomli to'rtligini o'qish mumkin.\nDiqqat savol! IKS va IGREK bilan almashtirilgan bir hil harflar bilan boshlanuvchi so'zlarni yozib bering.",
+    "accepted_answers": [
+      "Qon, Qilich",
+      "Aniq javob"
+    ],
+    "explanation": "Internet foydalanuvchisi qon tarkibidagi temir moddasidan qilich yasash g’oyasining hisob-kitobini qilgan.\n[izohni o’qish shart emas]\nBir gemoglobin molekulasining massasi 66,8 kilodalton. Temir atomi 55,8 daltondir. Gemoglobinning bir molekulasida 4 ta temir atomi mavjud. Hisoblash uchun, keling, erkak qonini olaylik, uning o'rtacha gemoglobin miqdori 145 g / litrni tashkil qiladi. Biz tarkibida 0,6% uglerod va 7,5% aralashmalar bo'lgan po'latni olamiz. Qilichning massasini 2,95 kg deb olamiz. Shunda qilichda 2950 * 0,919 = 2711,05 g toza temir borligi ma'lum bo'ladi. Gemoglobindagi temir ulushi: 55,8 * 4 / 66,8 / 10 ^ (3) \\u003d 3,34 * 10 ^ (-3) 1-dan. Shunda bir litr qonda taxminan 145*3,34/1000=0,4843 g toza temir bo'ladi. Ma'lum bo'lishicha, ushbu qiymatlar bilan bitta qilichni yaratish uchun ishlab chiqarishdagi xatolar va yo'qotishlarni hisobga olmagan holda 2711,05 / 0,4843 = 5597,87 litr qon (yoki 5,6 kubometr) kerak bo'ladi. Bir odamning qon hajmi taxminan 5 litrni tashkil qiladi. Natijada, bitta qilich ishlab chiqarish uchun 1200 kishining barcha qoni kerak bo'ladi.",
+    "category": "Zakovat #453",
+    "media_url": null,
+    "created_at": "2026-08-11T16:14:54.132Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 2019,
+  "fields": {
+    "pack": 6,
+    "text": "[Tarqatma material]\nFransuz akademist rassomi Jan-Leon Jeromening “Ikki oliy xazrat” asarida san’atshunos Elen Lafon-Kutur’ye UNGA ishora bor deb hisoblaydi. Tadqiqotchilarning fikricha rassom shu tariqa Ikkinchi imperiya buyukligiga bo’lgan qayg'u va nostalgiyani ifodalamoqchi bo’lgan. FransuA JerArning 1810-yilda bataliya janrida chizilgan kartinasida esa UNING namoyon bo’layotganini kartinaning chap burchagida ko’rish mumkin.\nDiqqat savol! UNI toponim ishlatgan holda ikki so’z bilan yozib bering.",
+    "accepted_answers": [
+      "Austerlitz quyoshi",
+      "Austerlitz oftobi"
+    ],
+    "explanation": "Savolda fransuz imperatori Napoleon I ga tegishli deb qaraladigan \"Austerlitz quyoshi\" degan mashhur iboraga ishora qilinayotgan edi. Uning kelib chiqishi 1805-yil 20-noyabrda (2-dekabr) boʻlib oʻtgan va tarixdagi harbiy sanʼatning eng mashhur namunalaridan biri hisoblangan Austerlitz jangi bilan bogʻliq. Ushbu idioma so'zsiz g'alaba, zafar, yangi davrning boshlanishi degan ma'noni anglatadi. Bu idiomani Napoleon keyingi yurishlarida, hususan Borodino jangidan oldin ishlatgan deb hisoblanadi. Jan-Leon Jeromening kartinasida quyoshni va unga tikilayotgan sherni ko’rish mumkin. Napoleon ismida “leon” ya’ni she’r so’zining borligi ham bu gipotezga sabab bo’lgandir. Fransua Jerarning kartinasi esa “\"Austerlitz jangi. 1805 yil 2-dekabr\" deb nomlanadi.",
+    "category": "Zakovat #454",
+    "media_url": "https://api-zakoweb.claive.uz/media/questions/q_21afebaff19b.jpeg",
+    "created_at": "2026-08-11T16:14:54.139Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 2020,
+  "fields": {
+    "pack": 6,
+    "text": "O'z nutqlaridan birida BU INSON 1997-yildagi tarixiy VOQEA haqida eslar ekan, Jon Genri haqidagi afsonani keltirib o’tgan.",
+    "accepted_answers": [
+      "Garri Kasparov"
+    ],
+    "explanation": "Kasparov Deep Bleu kompyuteriga qarshi o'yini haqida gapirar ekan, AQShning mifologik xalq qahramoni, qora tanli temiryo'lchi Jon Genri haqidagi afsonani eslatib o'tdi/ U bug' bolg'asi bilan musobaqada g'olib bo'lgan, ammo kuchli charchoqdan vafot etgan.",
+    "category": "Zakovat #455",
+    "media_url": null,
+    "created_at": "2026-08-11T16:14:54.147Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 2021,
+  "fields": {
+    "pack": 6,
+    "text": "[Tarqatma material]\nNOMANISAN\n1980-yilda Merilend shtatida joylashgan Kittamakundi sun’iy ko’lidagi orolga siz tarqatma materialda ko’rib turgan nom berishadi. Qizig’i, bir necha yillar o’tib, bu orol ko’lning qirg’oqlaridan biri bilan bog’langan.\nOrolga nom tanlashda UNDAN foydalanishgan ekan.\nDiqqat savol! UNING muallifini yozib bering.",
+    "accepted_answers": [
+      "Jon Donn",
+      "Donn",
+      "Jon",
+      "John Donne; Familiya bo’yicha"
+    ],
+    "explanation": "Orol mashxur ingiliz shoiri Jon Donning “Hech bir inson yo’qki, bir orol kabi bo’lsa, o’z o’zidan har bir inson Materikning , Quruqlikning bir bo’lagidir” iqtibozidagi “No Man Is An Island” so’zlari sharafiga nomlangan. Huddi Jon Donning so’zlarini oqlagandek, ushbu orol keyinchalik yarimorolga aylantirilgan.",
+    "category": "Zakovat #456",
+    "media_url": null,
+    "created_at": "2026-08-11T16:14:54.155Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 2022,
+  "fields": {
+    "pack": 6,
+    "text": "1634-yilda BU INSON o'zining ikki traktatdan iborat \"Dunyo\" nomli ishini yozib tugatadi. Ammo, bundan bir yil avval inkvitsiya Galileyni sud qilgani sababli kitobni chop etish uchun qulay vaziyat emas edi. Agar U kitobni chop qilganda balki yaxshi gonorar olgan bo'lar edi. Agar chop etmaslikka qaror qilganda, hech kim bu haqida bilmas edi ham. Lekin, agar U kitobni chop etganda, balki UNI ham inkvitsiya ta'qib qilgan bo'lar va ozodlikdan mahrum qilgan bo'lar edi. Ammo, boshqa tomondan o’ylab qarasak, agar chop qilmaganda hech narsa yo'qotmagan bo'lar edi. So’z kim haqida bormoqda?",
+    "accepted_answers": [
+      "Rene Dekart",
+      "Dekart",
+      "Rene",
+      "Renatus Cartesius"
+    ],
+    "explanation": "Savoldagi qaror qabul qilish bilan bog'liq fikrlar \"Dekart kvadrati\" deb ataluvchi qaror qabul qilishning oddiy texnikasi printsiplariga asosan tuzilgan edi. Unga ko'ra, biror qaror qabul qilishdan oldin 4 ta savol berish kerak: 1) BU qarorni qabul qilsam NIMA TOPAMAN? 2) BU qarorni qabul qilmasam NIMA TOPAMAN? 3) BU qarorni qabul qilsam NIMA YO'QOTAMAN? 4) BU qarorni qabul qilmasam NIMA YO'QOTAMAN?. Dekartning o’zi bu texnikadan foydalanganmi yoki foydalanmaganmi, bu haqida ma’lumot topa olmadik.",
+    "category": "Zakovat #457",
+    "media_url": null,
+    "created_at": "2026-08-11T16:14:54.164Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 2023,
+  "fields": {
+    "pack": 6,
+    "text": "Red Dead Redemption [red ded redempshn] o’yinini GTAning Yovvoyi G’arbdagi analogi deb hisoblashadi. Ba’zi geymerlar bu o’yinni “Buyuk U” deb atashadi. O’rolboy Qobilning “U” nomli hikoyasi boshida Norboy chavandoz besh o‘g‘lini besh tarafga quvalagani, shu orada folchi-romchilarga ham borib kelishgani aytiladi.\nDiqqat savol!  “U” bilan almashtirilgan IKKI so’zni yozib bering.",
+    "accepted_answers": [
+      "Ot o’g’risi",
+      "Ot o’g’riligi"
+    ],
+    "explanation": "Grand Theft Auto [grand seft auto] o’yini nomini “buyuk avtomobil o’g’risi” deb ham tarjima qilish mumkin, lekin Yovvoyi G’arbda avtomobillar ro’lini otlar bajarishgan. Hikoya qaxramoni bo’lgan chavandozning esa otini o’g’irlab ketishadi. Shu sababli u o’z farzandlarini otni qidirish uchun turli taraflarga jo’natadi va hatto folbinlarga ham murojaat qiladi.",
+    "category": "Zakovat #458",
+    "media_url": null,
+    "created_at": "2026-08-11T16:14:54.171Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 2024,
+  "fields": {
+    "pack": 6,
+    "text": "Tokio shaxrida hech narsa qilmaslik bo'yicha (Space Out Competition nomli) musobaqa o'tkazildi. Unda 90 daqiqa davomida hech narsa qilish mumkin emas. Suxbatlashish, kulish va hatto ko'zni yopganligi uchun ishtirokchi chetlatilishi mumkin edi. G'olibni esa eng past va bir maromdagi IKSga qarab aniqlashgan.\nIKSni lotinchadan kirib kelgan so'zda yozib bering.",
+    "accepted_answers": [
+      "Puls",
+      "Pulsatsiya"
+    ],
+    "explanation": "Puls so'zi lotinchadan \"zarba, turtki\" deb tarjima qilinadi.",
+    "category": "Zakovat #459",
+    "media_url": null,
+    "created_at": "2026-08-11T16:14:54.178Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 2025,
+  "fields": {
+    "pack": 6,
+    "text": "Toshkentning markaziy ko'chalaridan birida joylashgan \"Shom\" nomli restoran nomi \"Falafel\" deb o'zgartirilganini ko'rgan savol muallifining fikricha, restoran ma'muriyati ham boykotga tushishdan qo'rqqan ko'rinadi.\nSavol matnida harflari tushib qolgan so'zni asl holida yozib bering.",
+    "accepted_answers": [
+      "Shalom"
+    ],
+    "explanation": "“Shalom” nomli restoranda yahudiy milliy taomlari taklif qilinar edi. Falafel esa Yaqin sharqda keng tarqalgan taom bo'lib, hususan Isroilda milliy taom deb tan olingan.",
+    "category": "Zakovat #460",
+    "media_url": null,
+    "created_at": "2026-08-11T16:14:54.186Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 2026,
+  "fields": {
+    "pack": 6,
+    "text": "[Tarqatma material]\nAirvault\n\"Verlan\" deb nomlangan Wikipedia maqolasida 17-asr oxirida Ervo' shaxrida tug'ilgan BU inson ham eslab o'tilgan. UNING kimligini yozib bering.",
+    "accepted_answers": [
+      "Volter",
+      "Fransua-Mari Arue"
+    ],
+    "explanation": "Verlan - fransuz yoshlar slenglaridan biri bo'lib, undagi so'zlar asosan bo'g'inlar almashinuvidan hosil bo'ladi. Verlanning ilk namunalari sifatida shu yo'sinda o'z tahallusini ona shaxri Ervo' nomidagi bo'g'inlarni almashtirish orqali hosil qilgan Volter ham eslab o'tilgan.",
+    "category": "Zakovat #461",
+    "media_url": null,
+    "created_at": "2026-08-11T16:14:54.193Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 2027,
+  "fields": {
+    "pack": 6,
+    "text": "Duplet. 2 ta savol. O'ylash uchun 30 soniyadan vaqt.\n1. 1902-yilda Santyagoda tug'ilgan David Arel'yano IKSNING asoschilaridan biri hisoblanadi. IKSNI defis qatnashgan so'z ishlatggan holda yozib bering.\n2. 1851-yilda tug'ilgan amerikalik tadbirkor Eyza Kendler Atlanta shahri meri ham bo'lgan. Eyza Kendler IGREKNING asoschisi hisoblanadi. IGREKNI defis qatnashgan so'z ishlatgan holda yozib bering.",
+    "accepted_answers": [
+      "Javob berilmadi"
+    ],
+    "explanation": "",
+    "category": "Zakovat #462",
+    "media_url": null,
+    "created_at": "2026-08-11T16:14:54.201Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 2028,
+  "fields": {
+    "pack": 6,
+    "text": "\"Kolo-Kolo\" [futbol klubi]\n2. \"Koka-Kola\" [kompaniyasi]\nIzoh:\n1. \"Kolo-Kolo\" Chilining Santyago shaxridan bo'lgan eng nomdor futbol klubi hisoblanadi. Uning asoschilaridan biri David Arel'yano sharafiga xatto klub satadioni bo'lgan \"Estadio Monumental David Arellano\" nom olgan. Klubning o’zi esa Chilining tarixida muhim ro'l o'ynagan qabila sardori Kolokolo sharafiga nomlangan.\n2. \"Koka-Kola\" kompaniyasi asoschisi Eyza Kendler 2300 dollar evaziga Jon Stit Pembertondan \"Coca-Cola\" ichimligining retseptini sotib olgan va o'z kompaniyasiga asos solgan. Hozirda kompaniya shtab-kvartirasi Jorjiya shtatining Atlanta shaxrida joylashgan.\nManba:\n1) https://ru.wikipedia.org/wiki/Арельяно,_Давид\n2) https://ru.wikipedia.org/wiki/Коло-Коло\n3) https://ru.wikipedia.org/wiki/Кэндлер,_Эйза\n4) https://ru.wikipedia.org/wiki/The_Coca-Cola_Company\nMuallif: Sardor Axmedov (Toshkent)\n117-savol\nBU fransuz ruhshunosi 1873-yil 23-avgust kuni Verden-Syur-Garonna kommunasida tug'ilgan. 1950-yilda Parijda vafot etgan. UNING familiyasini ayting.\nKechirasizlar, savolni ALMASHTIRAMIZ.\nBU fransuz ruhshunosi 1873-yil 23-avgust kuni Verden-Syur-Garonna kommunasida tug'ilgan. 1950-yilda Parijda vafot etgan. UNING familiyasini ayting.",
+    "accepted_answers": [
+      "Jan Mari Jozef Kapgra",
+      "Kapgra",
+      "Jan Mari Jozef",
+      "Kapgras"
+    ],
+    "explanation": "1. \"Kolo-Kolo\" Chilining Santyago shaxridan bo'lgan eng nomdor futbol klubi hisoblanadi. Uning asoschilaridan biri David Arel'yano sharafiga xatto klub satadioni bo'lgan \"Estadio Monumental David Arellano\" nom olgan. Klubning o’zi esa Chilining tarixida muhim ro'l o'ynagan qabila sardori Kolokolo sharafiga nomlangan.\n2. \"Koka-Kola\" kompaniyasi asoschisi Eyza Kendler 2300 dollar evaziga Jon Stit Pembertondan \"Coca-Cola\" ichimligining retseptini sotib olgan va o'z kompaniyasiga asos solgan. Hozirda kompaniya shtab-kvartirasi Jorjiya shtatining Atlanta shaxrida joylashgan.",
+    "category": "Zakovat #463",
+    "media_url": null,
+    "created_at": "2026-08-11T16:14:54.209Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 2029,
+  "fields": {
+    "pack": 6,
+    "text": "https://en.wikipedia.org/wiki/Joseph_Capgras\n2) https://ru.wikipedia.org/wiki/Синдром_Капгра\nMuallif: Sardor Axmedov (Toshkent)\n118-savol\nO’ylaymizki, ushbu savolni topish uchun jamoadagi barchangiz birdek jonbozlik ko’rsatasiz!\nOy va quyosh sayyoramizning qarama-qarshi tarafida bo’ladigan payt haqida tushuntirilar ekan, bir hujjatli filmda bu holatda “o’ziga xos astronomik U” yuz beradi deyilgan. UNING Polshada o'tkaziladigan bir turida qayiqlardan foydalaniladi. O’tgan asr boshida Maksimilian ham o’z g’oyasini asoslash uchun hususan UNI ham o’z tajribalarida o’rgangan.\nSavol! Istasangiz IKKI so’z bilan U nima ekanligini, yoki Maksimilianning familiyasini yozib bering.",
+    "accepted_answers": [
+      "Arqon tortish",
+      "Ringelman"
+    ],
+    "explanation": "Oy va quyosh sayyoramizning qarama-qarshi tarafida bo’ladigan payt ularning gravitatsiyalari yerni ikki tarafga torta boshlaydi. Polshada o'tkaziladigan musobaqada 6-8 kishilik jamoalardan iborat qayiqchilar qarama-qarshi tomonga eshib harakat qilishadi. Savolda eslab o’tilgan inson fransuz muhandisi Maksimilian Ringelman bo’lib, u “Ringelman effekti” deb nomlanuvchi hodisani ilk bor ta’riflagan. Bunda biror guruhning ishtirokchilari soni oshishi bilan, uning alohida a’zolarining shaxsiy unumdorligi pasayishi tendentsiyasi kuzatilishi ifodalanadi. Misol uchun, arqon tortish o’yinida jamoa ishtirolchilari soni qancha ko’p bo’lsa, ularning o’rtacha foydaliligi pasayadi, chunki har bir ishtirokchi o’zining sayi-harakatlarini hal qiluvchi deb hisoblamasligi mumkin. Savol preambulasida ham shunga ishora qilingan edi.\nManba(lar):\nhttps://www.youtube.com/watch?v=dMzKM_OgW6I\nhttps://en.wikipedia.org/wiki/Tug_of_war\nhttps://ru.wikipedia.org/wiki/Эффект_Рингельмана",
+    "category": "Zakovat #464",
+    "media_url": null,
+    "created_at": "2026-08-11T16:14:54.216Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 2030,
+  "fields": {
+    "pack": 6,
+    "text": "[Tarqatma material]\nBir voqeadan so’ng, so’rovnoma o’tkazgan Ford kompaniyasi parallel ravishda ushbu o’ziga hos parfyumni ham taqdim etgan. ANIQ qanday voqeadan so’ng yoki nima maqsadda bu parfyum chiqarilganligini yozib bering?",
+    "accepted_answers": [
+      "Yangi elektromobilni taqdim etganidan so’ngQabul: Benzinli avtomobildan elektrokarga o’tish oson bo’lishi uchunIzoh: Ford Mustang Mach-E GT nomli elektrokarni chiqargandan keyin, bu tipdagi avtomobilga o’tgan odamlarda nima qo’rquvlar borligi haqida so’rovnoma qiladi. Aksariyat insonlar ularga benzin hidi yetishmasligini aytishgan. Parfyum qadog’i ham yoqilg’i quyish apparati ko’rinishida ishlangan.",
+      "Benzinli avtomobildan elektrokarga o’tish oson bo’lishi uchunIzoh: Ford Mustang Mach-E GT nomli elektrokarni chiqargandan keyin, bu tipdagi avtomobilga o’tgan odamlarda nima qo’rquvlar borligi haqida so’rovnoma qiladi. Aksariyat insonlar ularga benzin hidi yetishmasligini aytishgan. Parfyum qadog’i ham yoqilg’i quyish apparati ko’rinishida ishlangan."
+    ],
+    "explanation": "Ford Mustang Mach-E GT nomli elektrokarni chiqargandan keyin, bu tipdagi avtomobilga o’tgan odamlarda nima qo’rquvlar borligi haqida so’rovnoma qiladi. Aksariyat insonlar ularga benzin hidi yetishmasligini aytishgan. Parfyum qadog’i ham yoqilg’i quyish apparati ko’rinishida ishlangan.",
+    "category": "Zakovat #465",
+    "media_url": "https://api-zakoweb.claive.uz/media/questions/q_a8dd8827192a.jpeg",
+    "created_at": "2026-08-11T16:14:54.225Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 2031,
+  "fields": {
+    "pack": 6,
+    "text": "Diqqat, savolda ikki so’z IKS bilan almashtirilgan.\nSuniy IKS tarixi 1946-yilda kimyogar Bernard Vonnegutning kumush yodidning suvning kristallanishiga taʼsirini aniqlashi bilan bog'liq. Islom dunyosida IKS uchun maxsus Istisqo deb nomlangan namoz ham mavjud. Afsonalarda esa IKS uchun maxsus predmet mavjud bo'lganligi va 14-asrda bu predmet taraflardan biriga katta muvofaqiyatsizlik olib kelganligi ma'lum.\nDiqqat savol! IKS ni emas balki eslab o'tilgan predmetni IKKI SO'Z bilan yozib bering.",
+    "accepted_answers": [
+      "Yada toshi",
+      "Jada toshi"
+    ],
+    "explanation": "IKS – yomg’ir yog’dirish/chaqirish. Yada yoki Jada toshining paydo boʻlishi Nuh paygʻambar bilan bogʻlanadi. Ushbu toshda katta sehr bor deb ishonilgan. Yozilishicha, yada toshiga maxsus duo oʻqilib, suvga tashlansa yomgʻir va qor yogʻishi yuz bergan. Sharafiddin Ali Yazdiyning “Zafarnoma” asarida yozilishicha, mashhur “Loy jangi”da Amir Temurning raqibi Ilyosxoʻja yengilishi mumkinligini bilib, shunday tosh yordamida «yadachi» (yomgʻir yogʻish) marosimini oʻtkazgan. Va ertasi kuni Amir Temur magʻlubiyatiga sabab boʻlgan yomgʻir yogʻgan.",
+    "category": "Zakovat #466",
+    "media_url": null,
+    "created_at": "2026-08-11T16:14:54.233Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 2032,
+  "fields": {
+    "pack": 6,
+    "text": "Avstro-Vengriyalik rassom Oskar Kokoshka 1907-yilda Vena rassomchilik akademiyasiga konkurs asosida bir necha boshqa da'vogarlar orasidan tanlab olingan. Keyinchalik, Kokoshka bu yutug’idan afsuslangan.\nSavol! Kokoshka nima sababdan afsuslanganligini MAKSIMAL aniqlikda yozib bering.",
+    "accepted_answers": [
+      "konkursda [Adolf] Gitler akademiyaga qabul qilinmagan",
+      "konkursda Adolf Gitler akademiyaga qabul qilinmagan",
+      "konkursda Gitler akademiyaga qabul qilinmagan",
+      "Gitler akademiyaga qabul qilinmagan",
+      "Gitler o'qishga kirmay qolgan"
+    ],
+    "explanation": "Izoh: Konkursda Kokoshka Gitlerdan yaxshi natija ko'rsatadi, boz ustiga Kokoshka va Egon Shile Gustav Klimt haspo’shlashi natijasida kirishgan edi. \"Hammasi boshqacha bo'lishi mumkin edi...\" deya ko'p bora afsus bilan gapirgan ekan Kokoshka.\nManba: https://little-histories.org/2017/03/01/kak-kokoshka-obstavil-gitlera/\nMuallif: Sardor Axmedov",
+    "category": "Zakovat #467",
+    "media_url": null,
+    "created_at": "2026-08-11T16:55:16.965Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 2033,
+  "fields": {
+    "pack": 6,
+    "text": "Yozuvchi Evgeniy Petrovning dunyoning turli mamlakatlariga, mavjud bo'lmagan manzillarga xatlar jo'natish odati bo'lgan. Sababi Petrov ateist edi. Oldingi jumlada bir so'zdan bir necha harflar tushirib qoldirilgan. Shu so'zni asl holida yozib bering.",
+    "accepted_answers": [
+      "Filatelist"
+    ],
+    "explanation": "Petrov haqiqiy mamlakatlarga, lekin mavjud bo'lmagan shaharlarga va o'zi o'ylab topgan manzillarga maktublar yozgan va yuborgan. Natijada, bir muddat o'tgach, uning xati chet el pochta bo'limlarining shtamplari, markalari va \"adres topilmadi\" yozuvi bilan qaytib kelgan. Aynan mana shu konvertlar yozuvchini qiziqtirgan va shu tariqa u o'z markalar kollektsiyasini to'ldirgan. Filateliya - bu pochta markalarini yig'ish.\nManba: https://www.shkolazhizni.ru/culture/articles/61171/\nMuallif: Sardor Axmedov",
+    "category": "Zakovat #468",
+    "media_url": null,
+    "created_at": "2026-08-11T16:55:22.667Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 2034,
+  "fields": {
+    "pack": 6,
+    "text": "[Boshlovchi uchun: tarqatma material sifatli va rangli bo’lishi kerak]\n[Tarqatma material]\nQarshingizdagi gumbaz ostida 11-asrda tug’ilgan BU musulmon insonning ramziy maqbarasi joylashgan. Kimning?",
+    "accepted_answers": [
+      "Umar Hayyom",
+      "Hayyom",
+      "Gʻiyosiddin Abulfath Umar ibn Ibrohim Xayyom Nishopuriy",
+      "Gʻiyosiddin Nishopuriy"
+    ],
+    "explanation": "Savoldagi “gumbaz ostida” va “musulmon” so’zlari Umar Hayyomninig mashxur to’rtligiga ishora edi:\nBir qo'lda Qur'onu bittasida jom,Ba'zida halolmiz, ba'zida harom,Feruza gumbazli osmon ostidaNa chin musulmonmiz, na kofir tamom.\nGubazning feruza ranglarda ishlangani, qolaversa uning tashqi ko’rinishi ham chodirni eslatib yuborishi sizga yordam berishi kerak edi. Bilamizki, “Hayyom” tahallusi otasining chodir yasovchi usta ekanligi sabab tanlangan degan faraz muzjud.\nhttps://moya-planeta.ru/reports/view/mavzolej_omara_khajyama\nhttps://www.facebook.com/respublika.bolalar.kutubxonasi/photos/bir-qolda-quronu-bittasida-jom-bazida-halolmiz-bazida-harom-feruza-gumbazli-osmo/380998192405735/\nhttps://ru.wikipedia.org/wiki/Омар_Хайям\nMuallif: Sardor Axmedov",
+    "category": "Zakovat #469",
+    "media_url": "https://api-zakoweb.claive.uz/media/questions/q_9c50c4685ede.png",
+    "created_at": "2026-08-11T16:55:30.853Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 2035,
+  "fields": {
+    "pack": 6,
+    "text": "Savolda “U” so’zi bir necha so'zni almashtirib keladi.\nYangi tug'ilgan chaqaloqlarda U bo'lishi mumkin, chunki tokoferollar platsentaga yaxshi yetib bormaydi. U gemolitik anemiya, retinopatiya, ko'rish qobiliyatining buzilishi va lipofustsinozga olib kelishi ham mumkin. Savol muallifining haziliga ko'ra, 1969-yilda yozilgan horijiy romanda ham U bor deb aytish mumkin. Ushbu roman muallifini yozib bering.",
+    "accepted_answers": [
+      "Jorj Perek",
+      "Perek"
+    ],
+    "explanation": "U – “E vitamini etishmovchiligi / E vitamini defitsiti”. Savolning birinchi qismida gap E vitamini yetishmovchiligi va uning asoratlari haqida bormoqda. Jorj Perekning \"G'oyib bo'lish\" romanida ham biron marta \"e\" harfini uchratish mumkin emas, shu sababli unda ham \"E\"ning yetishmasligi/defetsiti bor desak bo'ladi. E vitaminida eng muhim birikmalar tokoferollar va tokotrienollar hisoblanadi.",
+    "category": "Zakovat #470",
+    "media_url": null,
+    "created_at": "2026-08-11T16:55:38.120Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 2036,
+  "fields": {
+    "pack": 6,
+    "text": "Savol muallifi 1906-yilda Nyu Yorkda tug'ilgan BU AYOLni Googlda qidirish chog'ida \"chigirtkalar\" bilan bog'liq ko'plab maqolalarga duch keldi. Buning sababi yozuvdagi xatolik edi, dasturdagi xatolik emas. BU AYOLNING ism va familiyasini yozib bering.",
+    "accepted_answers": [
+      "Greys Xopper",
+      "Grace Hopper",
+      "Grace Brewster Murray"
+    ],
+    "explanation": "“Grasshopper” so'zi ingiliz tilidan \"chigirtka\" deb tarjima qilinadi. Bu so'z Greys Hopper ism-familiyasi bilan o'xshash talaffuzga ega. Savoldagi \"dasturdagi xatolik\" so'zlari, dasturlashda ishlatiladigan \"bug\" [bag] terminiga ishora edi. Chunki, ba'zi versiyalarga ko'ra aynan Xopper bu terminni ilk bora 1947-yilda qo'llagan ekan.",
+    "category": "Zakovat #471",
+    "media_url": null,
+    "created_at": "2026-08-11T16:55:43.809Z"
+  }
+},
+{
+  "model": "questions.question",
+  "pk": 2037,
+  "fields": {
+    "pack": 6,
+    "text": "[Tarqatma material]\n[chap tarafdagi rasm birinchi savol uchun, o’ng tarafdagisi ikkinchi savol uchun]\n1-savol. [Boshlovchiga: asar nomi aynan “Z” harfi bilan yozilganligiga urg’u berish kerak]\nQarshingizda yurtimizda \"LiZon ut-tayr\" ga o'rnatilgan, hozirda mavjud bo’lmagan haykalning bir qismini ko'rib turibsiz. Savolda \"LiZon ut-tayr\" so'zlari bilan qaysi BIR so'zni almashtirdik?\n2-savol. Qarshingizda Karl Ulrix Nusning U deb ataluvchi ishi. UNING familiyasini yozib bering.",
+    "accepted_answers": [
+      "1) Hamza 2) Zamza",
+      "1) Xamza 2) Samsa",
+      "1) Niyoziy 2) Samsa",
+      "1) Nihoniy 2) Samsa"
+    ],
+    "explanation": "",
+    "category": "Zakovat #472",
+    "media_url": "https://api-zakoweb.claive.uz/media/questions/q_4dc2517828fc.jpeg",
+    "created_at": "2026-08-11T16:55:50.883Z"
+  }
 }
 ]

@@ -29,7 +29,6 @@ class Command(BaseCommand):
 
         self.stdout.write(self.style.SUCCESS(f"🤖 Starting AI Question Ingestion Agent on: {file_path}"))
 
-        # Step 1: Extract text blocks and images from DOCX
         raw_blocks = self.extract_docx_blocks(file_path)
         self.stdout.write(f"📄 Found {len(raw_blocks)} candidate question blocks in document.")
 
@@ -43,12 +42,10 @@ class Command(BaseCommand):
         )
 
         imported_count = 0
-
-        # Try using Gemini API if key is available, else fallback to high-precision parser
         use_ai = bool(api_key)
 
         if use_ai:
-            self.stdout.write(self.style.SUCCESS("✨ Gemini API key detected! Running LLM AI extraction..."))
+            self.stdout.write(self.style.SUCCESS("✨ Gemini API key detected! Running LLM AI extraction with model 'gemini-3.5-flash'..."))
         else:
             self.stdout.write(self.style.WARNING("⚠️ No GEMINI_API_KEY set. Running High-Precision Preserving Parser..."))
 
@@ -56,11 +53,9 @@ class Command(BaseCommand):
             raw_text = block['text']
             imgs = block['imgs']
 
-            # Skip BLITS
             if re.search(r'\bblits\b', raw_text, re.IGNORECASE) or re.search(r'блиц', raw_text, re.IGNORECASE):
                 continue
 
-            # Process Media Image if present
             media_url = None
             if imgs:
                 media_url = self.save_media_image(file_path, imgs[0])
@@ -88,6 +83,8 @@ class Command(BaseCommand):
                 category=f"Zakovat #{Question.objects.filter(pack=pack).count() + 1}"
             )
             imported_count += 1
+            if imported_count % 10 == 0:
+                self.stdout.write(f"  Processed {imported_count} questions...")
 
         self.stdout.write(self.style.SUCCESS(f"✅ Successfully ingested {imported_count} questions into '{pack.title}'!"))
 
@@ -211,10 +208,10 @@ JSON Schema:
   "accepted_answers": ["Primary Answer", "Alternative Answer"],
   "explanation": "Detailed izoh or lore explanation."
 }}
-Return ONLY valid raw JSON."""
+Return ONLY valid raw JSON without codeblocks."""
 
             response = client.models.generate_content(
-                model='gemini-2.5-flash',
+                model='gemini-3.5-flash',
                 contents=prompt
             )
             clean_json = re.sub(r'```json|```', '', response.text).strip()

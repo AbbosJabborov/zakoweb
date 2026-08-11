@@ -237,7 +237,6 @@ export default function InfiniteMode({ apiBase, lang = 'en' }) {
                 className="wordle-input"
                 value={userGuess}
                 onChange={(e) => setUserGuess(e.target.value)}
-                autoFocus
               />
               <button type="submit" className="wordle-btn-submit" disabled={!userGuess.trim()}>
                 {t.check}

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Clock, Send, CheckCircle2, Trophy, MessageSquare, Image } from 'lucide-react';
+import { Clock, Send, CheckCircle2, Trophy, MessageSquare } from 'lucide-react';
 import { sound } from '../utils/sound';
 import { AvatarIcon } from '../utils/avatars';
 
@@ -17,7 +17,7 @@ export default function PlayScreen({
 }) {
   const [inputText, setInputText] = useState('');
   const [timeLeft, setTimeLeft] = useState(activeQuestion?.duration || 30);
-  const feedEndRef = useRef(null);
+  const feedContainerRef = useRef(null);
 
   const onLockQuestionRef = useRef(onLockQuestion);
   const isHostRef = useRef(isHost);
@@ -30,8 +30,11 @@ export default function PlayScreen({
   const duration = activeQuestion?.duration || 30;
   const isLocked = activeQuestion?.is_locked || false;
 
+  // Scroll ONLY the inner chat feed element without jumping the outer page window
   useEffect(() => {
-    feedEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    if (feedContainerRef.current) {
+      feedContainerRef.current.scrollTop = feedContainerRef.current.scrollHeight;
+    }
   }, [answersFeed]);
 
   // Smooth continuous 1s countdown timer
@@ -187,7 +190,6 @@ export default function PlayScreen({
                   value={inputText}
                   onChange={(e) => setInputText(e.target.value)}
                   disabled={cooldownRemaining > 0 || isLocked}
-                  autoFocus
                 />
                 <button
                   type="submit"
@@ -213,7 +215,7 @@ export default function PlayScreen({
             </span>
           </div>
 
-          <div style={{ flex: 1, overflowY: 'auto', paddingRight: '0.2rem' }}>
+          <div ref={feedContainerRef} style={{ flex: 1, overflowY: 'auto', paddingRight: '0.2rem' }}>
             {answersFeed.length === 0 ? (
               <div style={{ textAlign: 'center', color: 'var(--text-muted)', padding: '3rem 1rem', fontSize: '0.88rem' }}>
                 No submissions yet. Be the first to guess!
@@ -240,7 +242,6 @@ export default function PlayScreen({
                 </div>
               ))
             )}
-            <div ref={feedEndRef} />
           </div>
         </div>
 

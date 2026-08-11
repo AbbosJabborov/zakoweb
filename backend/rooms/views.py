@@ -1,4 +1,7 @@
 import uuid
+from django.db import models
+from django.utils import timezone
+from datetime import timedelta
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
@@ -11,11 +14,27 @@ from questions.models import Question
 def list_public_rooms(api_request):
     """
     Returns list of active public rooms waiting in lobby or currently playing.
+    Auto-cleans stale abandoned rooms (0 connected players or >2 hours old).
     """
+    stale_cutoff = timezone.now() - timedelta(hours=2)
+    
+    # Clean up old/empty rooms
+    stale_rooms = Room.objects.filter(
+        status__in=['lobby', 'active']
+    ).filter(
+        models.Q(created_at__lt=stale_cutoff) | ~models.Q(players__connected=True)
+    ).distinct()
+
+    for r in stale_rooms:
+        r.status = 'ended'
+        r.save()
+
+    # Return only rooms with at least 1 currently connected player
     rooms = Room.objects.filter(
         status__in=['lobby', 'active'],
-        settings__is_public=True
-    ).order_by('-created_at')[:20]
+        settings__is_public=True,
+        players__connected=True
+    ).distinct().order_by('-created_at')[:20]
 
     serializer = PublicRoomSerializer(rooms, many=True)
     return Response(serializer.data, status=status.HTTP_200_OK)
@@ -100,8 +119,6 @@ def get_room_snapshot(api_request, code):
     """
     Returns full room snapshot for page reloads / state recovery.
     """
-    from django.utils import timezone as django_timezone
-
     try:
         room = Room.objects.get(code__iexact=code)
     except Room.DoesNotExist:
@@ -113,7 +130,7 @@ def get_room_snapshot(api_request, code):
         rq = room.room_questions.filter(order_index=room.current_question_index).first()
         if rq:
             q = rq.question
-            now = django_timezone.now()
+            now = timezone.now()
             elapsed = (now - rq.started_at).total_seconds() if rq.started_at else 0
             time_remaining = max(0, room.settings.time_per_question - elapsed)
 

@@ -737,35 +737,46 @@ class RoomConsumer(AsyncWebsocketConsumer):
         next_index = room.current_question_index + 1
 
         if next_index >= room.room_questions.count():
-            room.status = 'ended'
-            room.save()
-            from rooms.serializers import PlayerSerializer
-            leaderboard = PlayerSerializer(room.players.all(), many=True).data
-            leaderboard.sort(key=lambda p: p['score'], reverse=True)
-            return {'action': 'game_over', 'data': {'leaderboard': leaderboard}}
-        else:
-            room.current_question_index = next_index
-            room.save()
+            if room.settings.question_count >= 999:
+                all_qs = list(Question.objects.all())
+                import random
+                random.shuffle(all_qs)
+                existing_ids = set(rq.question_id for rq in room.room_questions.all())
+                new_qs = [q for q in all_qs if q.id not in existing_ids]
+                if not new_qs:
+                    new_qs = all_qs
+                for idx_offset, q in enumerate(new_qs[:50]):
+                    RoomQuestion.objects.create(room=room, question=q, order_index=room.room_questions.count() + idx_offset)
+            else:
+                room.status = 'ended'
+                room.save()
+                from rooms.serializers import PlayerSerializer
+                leaderboard = PlayerSerializer(room.players.all(), many=True).data
+                leaderboard.sort(key=lambda p: p['score'], reverse=True)
+                return {'action': 'game_over', 'data': {'leaderboard': leaderboard}}
 
-            rq = room.room_questions.filter(order_index=next_index).first()
-            now = django_timezone.now()
-            rq.started_at = now
-            rq.locked_at = None
-            rq.save()
+        room.current_question_index = next_index
+        room.save()
 
-            q = rq.question
-            return {
-                'action': 'question_started',
-                'data': {
-                    'index': next_index,
-                    'total_questions': room.room_questions.count(),
-                    'text': q.text,
-                    'category': q.category,
-                    'media_url': q.media_url,
-                    'duration': room.settings.time_per_question,
-                    'started_at': now.isoformat()
-                }
+        rq = room.room_questions.filter(order_index=next_index).first()
+        now = django_timezone.now()
+        rq.started_at = now
+        rq.locked_at = None
+        rq.save()
+
+        q = rq.question
+        return {
+            'action': 'question_started',
+            'data': {
+                'index': next_index,
+                'total_questions': room.room_questions.count() if room.settings.question_count < 999 else '♾️',
+                'text': q.text,
+                'category': q.category,
+                'media_url': q.media_url,
+                'duration': room.settings.time_per_question,
+                'started_at': now.isoformat()
             }
+        }
 
     @database_sync_to_async
     def finish_game(self, room_code):

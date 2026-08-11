@@ -198,7 +198,7 @@ export default function PlayerLobby({ roomData, isHost, hostToken, onStartGame, 
                 </label>
                 {isHost ? (
                   <div style={{ display: 'flex', gap: '0.35rem' }}>
-                    {[5, 10, 15, 20].map(cnt => (
+                    {[5, 10, 15, 20, 999].map(cnt => (
                       <button
                         key={cnt}
                         type="button"
@@ -215,13 +215,13 @@ export default function PlayerLobby({ roomData, isHost, hostToken, onStartGame, 
                           cursor: 'pointer'
                         }}
                       >
-                        {cnt} Qs
+                        {cnt === 999 ? '♾️ Inf' : `${cnt} Qs`}
                       </button>
                     ))}
                   </div>
                 ) : (
                   <div style={{ background: '#121213', padding: '0.55rem 0.85rem', borderRadius: '0.4rem', border: '1px solid #3a3a3c', color: '#ffffff', fontWeight: 800, fontSize: '0.95rem' }}>
-                    🎯 {settings.question_count || 10} Questions
+                    🎯 {(settings.question_count >= 999) ? '♾️ Infinite Mode (No Limit)' : `${settings.question_count || 10} Questions`}
                   </div>
                 )}
               </div>

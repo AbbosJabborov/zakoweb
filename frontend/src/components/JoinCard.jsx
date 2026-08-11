@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { ArrowRight, PlusCircle } from 'lucide-react';
 import { AVATAR_LIST, AvatarIcon } from '../utils/avatars';
 import { translations } from '../utils/i18n';
@@ -9,20 +9,34 @@ export default function JoinCard({ onJoin, onCreateOpen, initialCode = '', lang 
   const [selectedAvatarId, setSelectedAvatarId] = useState('brain');
   const [isLoading, setIsLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
+  const nicknameInputRef = useRef(null);
 
   const t = translations[lang] || translations.uz;
 
   useEffect(() => {
     if (initialCode) {
       setCode(initialCode.toUpperCase());
+      if (nicknameInputRef.current && !nickname.trim()) {
+        nicknameInputRef.current.focus();
+      }
     }
   }, [initialCode]);
 
   const handleJoinSubmit = async (e) => {
     e.preventDefault();
-    if (!nickname.trim() || !code.trim()) return;
-
     setErrorMsg('');
+
+    if (!nickname.trim()) {
+      setErrorMsg('⚠️ Please enter your nickname before joining!');
+      if (nicknameInputRef.current) nicknameInputRef.current.focus();
+      return;
+    }
+
+    if (!code.trim() || code.trim().length < 4) {
+      setErrorMsg('⚠️ Please enter a valid room code!');
+      return;
+    }
+
     setIsLoading(true);
     try {
       await onJoin({
@@ -95,13 +109,16 @@ export default function JoinCard({ onJoin, onCreateOpen, initialCode = '', lang 
             {t.nickname.toUpperCase()}
           </label>
           <input
+            ref={nicknameInputRef}
             type="text"
             placeholder="e.g. BrainMaster"
             className="wordle-input"
             value={nickname}
-            onChange={(e) => setNickname(e.target.value)}
+            onChange={(e) => {
+              setNickname(e.target.value);
+              if (errorMsg) setErrorMsg('');
+            }}
             maxLength={18}
-            required
           />
         </div>
 
@@ -116,9 +133,11 @@ export default function JoinCard({ onJoin, onCreateOpen, initialCode = '', lang 
             className="wordle-input"
             style={{ fontFamily: 'var(--font-mono)', letterSpacing: '3px', textTransform: 'uppercase', fontWeight: 700, fontSize: '1.15rem', textAlign: 'center' }}
             value={code}
-            onChange={(e) => setCode(e.target.value.toUpperCase())}
+            onChange={(e) => {
+              setCode(e.target.value.toUpperCase());
+              if (errorMsg) setErrorMsg('');
+            }}
             maxLength={6}
-            required
           />
         </div>
 
@@ -127,7 +146,7 @@ export default function JoinCard({ onJoin, onCreateOpen, initialCode = '', lang 
           type="submit"
           className="wordle-btn-submit"
           style={{ width: '100%', padding: '0.85rem' }}
-          disabled={isLoading || !nickname.trim() || code.length < 4}
+          disabled={isLoading}
         >
           {isLoading ? '...' : t.enter} <ArrowRight size={18} />
         </button>

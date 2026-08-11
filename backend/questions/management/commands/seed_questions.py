@@ -46,9 +46,9 @@ def extract_and_parse_docx(docx_path):
     for item in paras:
         t = item['text']
         is_new_q = False
-        if re.search(r'^\d+\s*-\s*savol', t, re.I):
+        if re.search(r'^\d{1,3}\s*-\s*savol', t, re.I):
             is_new_q = True
-        elif re.search(r'^\d+[\.\-]\s*', t) and not re.search(r'^(to[\'`ʻʼ]?g[\'`ʻʼ]?ri\s*)?javob', t, re.I) and not re.search(r'^(izoh|qabul|manba|muallif)', t, re.I):
+        elif re.search(r'^\d{1,3}\s*[\.\)]\s+', t) and not re.search(r'^(to[\'`ʻʼ]?g[\'`ʻʼ]?ri\s*)?javob', t, re.I) and not re.search(r'^(izoh|qabul|manba|muallif)', t, re.I):
             is_new_q = True
 
         if is_new_q and current_block:
@@ -93,9 +93,9 @@ def extract_and_parse_docx(docx_path):
         parts = re.split(r'\n(to[\'`ʻʼ]?g[\'`ʻʼ]?ri\s*)?javob:', block_text, flags=re.IGNORECASE)
         q_text = parts[0].strip()
 
-        # Clean leading numbers (e.g. "1. " or "12-savol. ")
-        q_text = re.sub(r'^\d+\s*-\s*savol\.?\s*', '', q_text, flags=re.IGNORECASE)
-        q_text = re.sub(r'^\d+[\.\-]\s*', '', q_text)
+        # Clean ONLY leading question prefixes (e.g. "1. ", "12-savol. "), preserving 4-digit years like "1883-yilda"
+        q_text = re.sub(r'^\d{1,3}\s*-\s*savol[\.:\s]*', '', q_text, flags=re.IGNORECASE)
+        q_text = re.sub(r'^\d{1,3}\s*[\.\)]\s+', '', q_text)
 
         if not q_text or len(q_text) < 8:
             continue
@@ -194,4 +194,4 @@ class Command(BaseCommand):
                     )
                     total_seeded += 1
 
-        self.stdout.write(self.style.SUCCESS(f"Successfully seeded {total_seeded} questions into '{pack.title}'! Excluded BLITS, extracted Tarqatma material images."))
+        self.stdout.write(self.style.SUCCESS(f"Successfully seeded {total_seeded} questions into '{pack.title}'! Excluded BLITS, preserved 4-digit dates/centuries."))

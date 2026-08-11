@@ -19,6 +19,7 @@ export default function App() {
   const [activeTab, setActiveTab] = useState('infinite'); // 'infinite', 'daily', 'party'
   const [lang, setLang] = useState(() => localStorage.getItem('zakoweb_lang') || 'en');
   const [isStatsOpen, setIsStatsOpen] = useState(false);
+  const [pendingCode, setPendingCode] = useState('');
 
   const [sessionState, setSessionState] = useState(() => {
     const savedCode = localStorage.getItem('zakoweb_room_code') || '';
@@ -29,6 +30,27 @@ export default function App() {
   });
 
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
+
+  // Check URL params for room code on initial load
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const codeParam = params.get('code');
+    if (codeParam) {
+      const upperCode = codeParam.toUpperCase();
+      const savedCode = localStorage.getItem('zakoweb_room_code') || '';
+      const savedToken = localStorage.getItem('zakoweb_session_token') || '';
+
+      // If user already has valid session token for this room, reconnect directly
+      if (savedCode === upperCode && savedToken) {
+        setSessionState(prev => ({ ...prev, roomCode: upperCode, sessionToken: savedToken }));
+      } else {
+        // Shared link visitor: show JoinCard with pre-filled room code
+        setPendingCode(upperCode);
+        setSessionState(prev => ({ ...prev, roomCode: '', sessionToken: '' }));
+      }
+      setActiveTab('party');
+    }
+  }, []);
 
   const {
     isConnected,
@@ -46,24 +68,12 @@ export default function App() {
     hostEndGame
   } = useRoomSocket(sessionState.roomCode, sessionState.sessionToken);
 
-  // Check URL params for room code on initial load
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const codeParam = params.get('code');
-    if (codeParam) {
-      const upperCode = codeParam.toUpperCase();
-      setSessionState(prev => ({ ...prev, roomCode: upperCode }));
-      setActiveTab('party');
-    }
-  }, []);
-
   // Update browser URL query string whenever active room code changes
   useEffect(() => {
     if (sessionState.roomCode) {
       const newUrl = `${window.location.pathname}?code=${sessionState.roomCode}`;
       window.history.pushState({ roomCode: sessionState.roomCode }, '', newUrl);
     } else if (!window.location.search.includes('code=')) {
-      // Clean URL when no room code active
       window.history.pushState({}, '', window.location.pathname);
     }
   }, [sessionState.roomCode]);
@@ -103,6 +113,7 @@ export default function App() {
       hostToken: '',
       nickname: nickname
     });
+    setPendingCode('');
     setActiveTab('party');
   };
 
@@ -146,6 +157,7 @@ export default function App() {
     });
 
     setIsCreateModalOpen(false);
+    setPendingCode('');
     setActiveTab('party');
   };
 
@@ -155,6 +167,7 @@ export default function App() {
     localStorage.removeItem('zakoweb_host_token');
     localStorage.removeItem('zakoweb_nickname');
     setSessionState({ roomCode: '', sessionToken: '', hostToken: '', nickname: '' });
+    setPendingCode('');
     window.history.pushState({}, '', window.location.pathname);
   };
 
@@ -196,6 +209,7 @@ export default function App() {
           ) : (
             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '70vh' }}>
               <JoinCard
+                initialCode={pendingCode}
                 onJoin={handleJoin}
                 onCreateOpen={() => setIsCreateModalOpen(true)}
                 lang={lang}

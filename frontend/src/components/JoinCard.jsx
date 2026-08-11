@@ -1,16 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ArrowRight, PlusCircle } from 'lucide-react';
 import { AVATAR_LIST, AvatarIcon } from '../utils/avatars';
 import { translations } from '../utils/i18n';
 
-export default function JoinCard({ onJoin, onCreateOpen, lang = 'uz' }) {
+export default function JoinCard({ onJoin, onCreateOpen, initialCode = '', lang = 'uz' }) {
   const [nickname, setNickname] = useState('');
-  const [code, setCode] = useState('');
+  const [code, setCode] = useState(initialCode);
   const [selectedAvatarId, setSelectedAvatarId] = useState('brain');
   const [isLoading, setIsLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
 
   const t = translations[lang] || translations.uz;
+
+  useEffect(() => {
+    if (initialCode) {
+      setCode(initialCode.toUpperCase());
+    }
+  }, [initialCode]);
 
   const handleJoinSubmit = async (e) => {
     e.preventDefault();

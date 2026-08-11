@@ -6,12 +6,17 @@ import PlayerLobby from './components/PlayerLobby';
 import PlayScreen from './components/PlayScreen';
 import HostPanel from './components/HostPanel';
 import Leaderboard from './components/Leaderboard';
+import DailyChallenge from './components/DailyChallenge';
+import StatsModal from './components/StatsModal';
 import { useRoomSocket } from './hooks/useRoomSocket';
 
 const isDev = typeof window !== 'undefined' && (window.location.host.includes('5173') || window.location.host.includes('localhost'));
 export const API_BASE = isDev ? '' : 'https://api-zakoweb.claive.uz';
 
 export default function App() {
+  const [activeTab, setActiveTab] = useState('party'); // 'party' or 'daily'
+  const [isStatsOpen, setIsStatsOpen] = useState(false);
+
   const [sessionState, setSessionState] = useState(() => {
     const savedCode = localStorage.getItem('zakoweb_room_code') || '';
     const savedToken = localStorage.getItem('zakoweb_session_token') || '';
@@ -44,6 +49,7 @@ export default function App() {
     const codeParam = params.get('code');
     if (codeParam && !sessionState.roomCode) {
       setSessionState(prev => ({ ...prev, roomCode: codeParam.toUpperCase() }));
+      setActiveTab('party');
     }
   }, []);
 
@@ -78,6 +84,7 @@ export default function App() {
       hostToken: '',
       nickname: nickname
     });
+    setActiveTab('party');
   };
 
   // Handle Host Room Creation
@@ -117,6 +124,7 @@ export default function App() {
     });
 
     setIsCreateModalOpen(false);
+    setActiveTab('party');
   };
 
   const handleLeave = () => {
@@ -143,16 +151,26 @@ export default function App() {
         roomCode={sessionState.roomCode}
         isConnected={isConnected}
         onLeave={handleLeave}
+        activeTab={activeTab}
+        setActiveTab={setActiveTab}
+        onOpenStats={() => setIsStatsOpen(true)}
       />
 
-      <main style={{ flex: 1, padding: '2rem 1rem 6rem 1rem' }}>
+      <main style={{ flex: 1, padding: '1.5rem 1rem 6rem 1rem' }}>
         {!sessionState.roomCode || status === 'home' ? (
-          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '75vh' }}>
-            <JoinCard
-              onJoin={handleJoin}
-              onCreateOpen={() => setIsCreateModalOpen(true)}
+          activeTab === 'daily' ? (
+            <DailyChallenge
+              apiBase={API_BASE}
+              onOpenStats={() => setIsStatsOpen(true)}
             />
-          </div>
+          ) : (
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '75vh' }}>
+              <JoinCard
+                onJoin={handleJoin}
+                onCreateOpen={() => setIsCreateModalOpen(true)}
+              />
+            </div>
+          )
         ) : status === 'lobby' ? (
           <PlayerLobby
             roomData={roomData}
@@ -203,6 +221,11 @@ export default function App() {
         isOpen={isCreateModalOpen}
         onClose={() => setIsCreateModalOpen(false)}
         onCreate={handleCreateRoom}
+      />
+
+      <StatsModal
+        isOpen={isStatsOpen}
+        onClose={() => setIsStatsOpen(false)}
       />
     </div>
   );

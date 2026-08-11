@@ -2,136 +2,194 @@ import os
 import zipfile
 import xml.etree.ElementTree as ET
 import re
+import hashlib
 from django.core.management.base import BaseCommand
+from django.conf import settings
 from questions.models import QuestionPack, Question
 
-def parse_docx_questions(docx_path):
+MEDIA_DIR = os.path.join(settings.BASE_DIR, 'media', 'questions')
+
+def extract_and_parse_docx(docx_path):
     if not os.path.exists(docx_path):
         return []
 
+    os.makedirs(MEDIA_DIR, exist_ok=True)
+
     with zipfile.ZipFile(docx_path) as z:
+        # Map rIds from document.xml.rels
+        rels_xml = z.read('word/_rels/document.xml.rels')
+        rels_tree = ET.fromstring(rels_xml)
+        rids = {}
+        for elem in rels_tree:
+            rid = elem.attrib.get('Id')
+            target = elem.attrib.get('Target')
+            if rid and target:
+                rids[rid] = target
+
         xml_content = z.read('word/document.xml')
         tree = ET.fromstring(xml_content)
-        paras = []
-        for elem in tree.iter():
-            if elem.tag.endswith('}p'):
-                p_text = ''.join(e.text for e in elem.iter() if e.tag.endswith('}t') and e.text)
-                if p_text.strip():
-                    paras.append(p_text.strip())
 
-    full_text = '\n'.join(paras)
-    chunks = re.split(r'\n(?=\d+\s*-\s*savol)', full_text, flags=re.IGNORECASE)
+        paras = []
+        for p_elem in tree.iter('{http://schemas.openxmlformats.org/wordprocessingml/2006/main}p'):
+            p_text = ''.join(e.text for e in p_elem.iter() if e.tag.endswith('}t') and e.text).strip()
+            img_rids = []
+            for elem in p_elem.iter():
+                for attr_k, attr_v in elem.attrib.items():
+                    if attr_k.endswith('embed') or attr_k.endswith('id'):
+                        if attr_v in rids and 'media/' in rids[attr_v]:
+                            img_rids.append(rids[attr_v])
+            if p_text or img_rids:
+                paras.append({'text': p_text, 'imgs': img_rids})
+
+    # Group into question blocks
+    raw_blocks = []
+    current_block = []
+
+    for item in paras:
+        t = item['text']
+        is_header = False
+        if re.search(r'^\d+[\.\-]\s*', t) and not re.search(r'^(to[\'`ʻʼ]?g[\'`ʻʼ]?ri\s*)?javob', t, re.I) and not re.search(r'^izoh', t, re.I):
+            is_header = True
+        elif re.search(r'^\d+\s*-\s*savol', t, re.I):
+            is_header = True
+
+        if is_header and current_block:
+            raw_blocks.append(current_block)
+            current_block = [item]
+        else:
+            current_block.append(item)
+
+    if current_block:
+        raw_blocks.append(current_block)
 
     parsed = []
-    for chunk in chunks:
-        match_num = re.search(r'^(\d+)\s*-\s*savol', chunk, flags=re.IGNORECASE)
-        if not match_num:
+
+    for block in raw_blocks:
+        lines = [b['text'] for b in block if b['text']]
+        block_text = '\n'.join(lines)
+        block_imgs = []
+        for b in block:
+            block_imgs.extend(b['imgs'])
+
+        # RULE 1: EXCLUDE BLITS QUESTIONS
+        if re.search(r'\bblits\b', block_text, re.IGNORECASE) or re.search(r'блиц', block_text, re.IGNORECASE):
             continue
 
-        q_num = match_num.group(1)
+        # Extract Question, Answer, Qabul, Explanation
+        ans_m = re.search(r'(to[\'`ʻʼ]?g[\'`ʻʼ]?ri\s*)?javob:\s*(.*?)(?=\nqabul:|\nizoh:|\nmanba:|\nmuallif:|$)', block_text, re.DOTALL | re.IGNORECASE)
+        qabul_m = re.search(r'qabul:\s*(.*?)(?=\nizoh:|\nmanba:|\nmuallif:|$)', block_text, re.DOTALL | re.IGNORECASE)
+        izoh_m = re.search(r'izoh:\s*(.*?)(?=\nmanba:|\nmuallif:|$)', block_text, re.DOTALL | re.IGNORECASE)
 
-        # Extract Javob, Qabul, Izoh, Manba, Muallif
-        q_text_m = re.search(r'^\d+\s*-\s*savol\.?\s*(.*?)(?=\nJavob:)', chunk, flags=re.DOTALL | re.IGNORECASE)
-        javob_m = re.search(r'Javob:\s*(.*?)(?=\nQabul:|\nIzoh:|\nManba:|\nMuallif:|$)', chunk, flags=re.DOTALL | re.IGNORECASE)
-        qabul_m = re.search(r'Qabul:\s*(.*?)(?=\nIzoh:|\nManba:|\nMuallif:|$)', chunk, flags=re.DOTALL | re.IGNORECASE)
-        izoh_m = re.search(r'Izoh:\s*(.*?)(?=\nManba:|\nMuallif:|$)', chunk, flags=re.DOTALL | re.IGNORECASE)
+        if not ans_m:
+            continue
 
-        q_text = q_text_m.group(1).strip() if q_text_m else chunk.strip()
-        javob = javob_m.group(1).strip() if javob_m else ''
+        javob = ans_m.group(2).strip()
         qabul = qabul_m.group(1).strip() if qabul_m else ''
         izoh = izoh_m.group(1).strip() if izoh_m else ''
 
+        # Question main body text
+        parts = re.split(r'\n(to[\'`ʻʼ]?g[\'`ʻʼ]?ri\s*)?javob:', block_text, flags=re.IGNORECASE)
+        q_text = parts[0].strip()
+
+        # Clean leading numbers (e.g. "1. " or "12-savol. ")
+        q_text = re.sub(r'^\d+\s*-\s*savol\.?\s*', '', q_text, flags=re.IGNORECASE)
+        q_text = re.sub(r'^\d+[\.\-]\s*', '', q_text)
+
+        if not q_text or len(q_text) < 8:
+            continue
+
+        # RULE 2: TARQATMA MATERIAL & IMAGE EXTRACTION
+        media_url = None
+        if block_imgs:
+            img_path_in_zip = block_imgs[0]
+            try:
+                with zipfile.ZipFile(docx_path) as z:
+                    img_data = z.read(img_path_in_zip)
+                    ext = os.path.splitext(img_path_in_zip)[1] or '.png'
+                    img_hash = hashlib.md5(img_data).hexdigest()[:12]
+                    filename = f"q_{img_hash}{ext}"
+                    out_path = os.path.join(MEDIA_DIR, filename)
+                    with open(out_path, 'wb') as f:
+                        f.write(img_data)
+                    media_url = f"https://api-zakoweb.claive.uz/media/questions/{filename}"
+            except Exception:
+                pass
+
+        # Build accepted answers list
         answers = []
         if javob:
-            lines = [l.strip() for l in javob.split('\n') if l.strip()]
-            for line in lines:
-                cleaned_line = re.sub(r'^\d+\.\s*', '', line)
-                raw_clean = cleaned_line.replace('[', '').replace(']', '').strip()
-                if raw_clean:
-                    answers.append(raw_clean)
-
-                no_bracket = re.sub(r'\[.*?\]', '', cleaned_line).strip()
-                if no_bracket and no_bracket != raw_clean:
-                    answers.append(no_bracket)
-
-                bracket_words = re.findall(r'\[(.*?)\]', cleaned_line)
-                for bw in bracket_words:
-                    if bw.strip() and len(bw.strip()) > 1:
-                        answers.append(bw.strip())
+            raw_clean = javob.replace('[', '').replace(']', '').strip()
+            if raw_clean:
+                answers.append(raw_clean)
+            no_bracket = re.sub(r'\[.*?\]', '', javob).strip()
+            if no_bracket and no_bracket != raw_clean:
+                answers.append(no_bracket)
+            bracket_words = re.findall(r'\[(.*?)\]', javob)
+            for bw in bracket_words:
+                if bw.strip() and len(bw.strip()) > 1:
+                    answers.append(bw.strip())
 
         if qabul:
             qabul_clean = qabul.replace('"', '').replace("'", '').strip()
             if qabul_clean:
                 answers.append(qabul_clean)
-            quoted = re.findall(r'["\'](.*?)["\']', qabul)
-            for qstr in quoted:
-                if qstr.strip():
-                    answers.append(qstr.strip())
 
         unique_answers = list(dict.fromkeys(answers))
         if not unique_answers:
             unique_answers = ["Javob berilmadi"]
 
         parsed.append({
-            'num': q_num,
             'text': q_text,
             'accepted_answers': unique_answers,
             'explanation': izoh,
-            'category': f"Zakovat #{q_num}"
+            'media_url': media_url
         })
 
     return parsed
 
 
 class Command(BaseCommand):
-    help = "Seed official Zakovat questions from 120qs.docx into database"
+    help = "Seed official Zakovat question bank (Zakopediya.docx and 120qs.docx)"
 
     def handle(self, *args, **options):
-        self.stdout.write("Seeding official 120qs.docx questions bank...")
+        self.stdout.write("Seeding Zakoweb question bank...")
 
         base_dir = os.path.dirname(__file__)
-        possible_paths = [
-            os.path.join(base_dir, '../../fixtures/120qs.docx'),
-            '/home/claive/website/zakoweb/qs_bank/120qs.docx',
-            '/app/questions/fixtures/120qs.docx',
-            'qs_bank/120qs.docx'
+        doc_sources = [
+            ('/home/claive/website/zakoweb/qs_bank/Zakopediya.docx', 'Zakopediya (Saralangan Savollar)'),
+            ('/home/claive/website/zakoweb/qs_bank/120qs.docx', 'Zakovat Rasmiy Bank (120 Savol)'),
+            (os.path.join(base_dir, '../../fixtures/120qs.docx'), 'Zakovat Rasmiy Bank (120 Savol)'),
         ]
 
-        target_path = None
-        for p in possible_paths:
-            if os.path.exists(p):
-                target_path = p
-                break
-
-        if not target_path:
-            self.stdout.write(self.style.ERROR("Could not locate 120qs.docx in any expected path."))
-            return
-
-        parsed_qs = parse_docx_questions(target_path)
-        if not parsed_qs:
-            self.stdout.write(self.style.ERROR(f"Failed to parse questions from {target_path}"))
-            return
-
-        # Replace existing questions
+        # Reset Question Pack & Questions
         Question.objects.all().delete()
         QuestionPack.objects.all().delete()
 
         pack = QuestionPack.objects.create(
-            title="Zakovat Rasmiy Bank (120 Savol)",
-            description="Sardor Axmedov muallifligidagi 120 ta saralangan va izohli Zakovat savollari banki.",
+            title="Zakoweb Rasmiy Savollar Banki",
+            description="Zakopediya va Sardor Axmedov muallifligidagi saralangan Zakovat savollari, rasm tarqatmalar va izohlar to'plami.",
             language='uz',
             is_official=True
         )
 
-        created_count = 0
-        for q in parsed_qs:
-            Question.objects.create(
-                pack=pack,
-                text=q['text'],
-                accepted_answers=q['accepted_answers'],
-                explanation=q['explanation'],
-                category=q['category']
-            )
-            created_count += 1
+        total_seeded = 0
+        processed_files = set()
 
-        self.stdout.write(self.style.SUCCESS(f"Successfully seeded {created_count} official Zakovat questions with full explanations into '{pack.title}'!"))
+        for path, label in doc_sources:
+            if os.path.exists(path) and path not in processed_files:
+                processed_files.add(path)
+                parsed = extract_and_parse_docx(path)
+                self.stdout.write(f"Parsing '{os.path.basename(path)}': found {len(parsed)} non-blits questions...")
+
+                for idx, q in enumerate(parsed):
+                    Question.objects.create(
+                        pack=pack,
+                        text=q['text'],
+                        accepted_answers=q['accepted_answers'],
+                        explanation=q['explanation'],
+                        media_url=q['media_url'],
+                        category=f"Zakovat #{total_seeded + 1}"
+                    )
+                    total_seeded += 1
+
+        self.stdout.write(self.style.SUCCESS(f"Successfully seeded {total_seeded} questions into '{pack.title}'! Excluded BLITS, extracted Tarqatma material images."))

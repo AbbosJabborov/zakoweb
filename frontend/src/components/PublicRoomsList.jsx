@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Users, Play, Radio, RefreshCw, ArrowRight, Lock, Globe } from 'lucide-react';
+import { Users, Radio, RefreshCw, ArrowRight, Globe } from 'lucide-react';
 
 export default function PublicRoomsList({ apiBase, onSelectRoomCode, lang = 'en' }) {
   const [publicRooms, setPublicRooms] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [isSpinning, setIsSpinning] = useState(false);
 
   const fetchPublicRooms = async () => {
     try {
@@ -17,6 +18,13 @@ export default function PublicRoomsList({ apiBase, onSelectRoomCode, lang = 'en'
     } finally {
       setIsLoading(false);
     }
+  };
+
+  const handleManualRefresh = () => {
+    setIsSpinning(true);
+    fetchPublicRooms().finally(() => {
+      setTimeout(() => setIsSpinning(false), 600);
+    });
   };
 
   useEffect(() => {
@@ -40,12 +48,18 @@ export default function PublicRoomsList({ apiBase, onSelectRoomCode, lang = 'en'
         </div>
 
         <button
-          onClick={fetchPublicRooms}
+          onClick={handleManualRefresh}
           className="btn-secondary"
-          style={{ padding: '0.4rem 0.6rem', borderRadius: '0.5rem' }}
+          style={{ padding: '0.4rem 0.6rem', borderRadius: '0.5rem', cursor: 'pointer' }}
           title="Refresh rooms"
         >
-          <RefreshCw size={14} className={isLoading ? 'animate-spin' : ''} />
+          <RefreshCw
+            size={14}
+            style={{
+              transition: 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)',
+              transform: isSpinning ? 'rotate(360deg)' : 'rotate(0deg)'
+            }}
+          />
         </button>
       </div>
 

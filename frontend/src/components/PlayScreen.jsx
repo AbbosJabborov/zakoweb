@@ -236,26 +236,42 @@ export default function PlayScreen({
                 No submissions yet. Be the first to guess!
               </div>
             ) : (
-              answersFeed.map((item, idx) => (
-                <div key={item.id || idx} className={`feed-item ${item.is_correct ? 'correct' : ''}`}>
-                  <AvatarIcon id={item.player_avatar} size={16} />
-                  <div style={{ flex: 1, overflow: 'hidden' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                      <span style={{ fontWeight: 700, fontSize: '0.85rem', color: item.is_correct ? '#34d399' : 'var(--text-main)' }}>
-                        {item.player_nickname}
-                      </span>
-                      {item.is_correct && (
-                        <span style={{ fontSize: '0.75rem', fontWeight: 800, color: '#10b981', background: 'rgba(16, 185, 129, 0.2)', padding: '0.15rem 0.5rem', borderRadius: '0.4rem' }}>
-                          +{item.points} pts
+              answersFeed.map((item, idx) => {
+                const isSelf = item.player_nickname === currentPlayer?.nickname;
+                const isCorrect = item.is_correct;
+
+                let displayText = item.text;
+                if (isCorrect) {
+                  if (!isLocked) {
+                    displayText = isSelf
+                      ? `🎉 You solved the question!`
+                      : `🎉 ${item.player_nickname} solved the question!`;
+                  } else {
+                    displayText = `★ Solved: "${item.text}"`;
+                  }
+                }
+
+                return (
+                  <div key={item.id || idx} className={`feed-item ${isCorrect ? 'correct' : ''}`}>
+                    <AvatarIcon id={item.player_avatar} size={16} />
+                    <div style={{ flex: 1, overflow: 'hidden' }}>
+                      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                        <span style={{ fontWeight: 700, fontSize: '0.85rem', color: isCorrect ? '#34d399' : 'var(--text-main)' }}>
+                          {item.player_nickname}
                         </span>
-                      )}
-                    </div>
-                    <div style={{ fontSize: '0.92rem', wordBreak: 'break-word', marginTop: '0.15rem', color: item.is_correct ? '#ffffff' : '#d1d5db' }}>
-                      {item.is_correct ? `★ Solved: "${item.text}"` : item.text}
+                        {isCorrect && (
+                          <span style={{ fontSize: '0.75rem', fontWeight: 800, color: '#10b981', background: 'rgba(16, 185, 129, 0.2)', padding: '0.15rem 0.5rem', borderRadius: '0.4rem' }}>
+                            +{item.points} pts
+                          </span>
+                        )}
+                      </div>
+                      <div style={{ fontSize: '0.92rem', wordBreak: 'break-word', marginTop: '0.15rem', color: isCorrect ? '#ffffff' : '#d1d5db', fontWeight: isCorrect ? 700 : 400 }}>
+                        {displayText}
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))
+                );
+              })
             )}
           </div>
         </div>
